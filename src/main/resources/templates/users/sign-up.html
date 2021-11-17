@@ -1,30 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sign Up</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-          crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-            crossorigin="anonymous"></script>
-</head>
+<head th:replace="partials/partials.html :: head('Sign-Up Page')">
+    <title>Please sign up!</title>
 <body>
-<h1>Sign Up To BookAlert</h1>
 
+<nav th:replace="partials/partials.html :: navbar"></nav>
+<h1>Sign Up To BookAlert</h1>
 <form class="row g-3" th:action="@{/sign-up}" method="POST" th:object="${user}">
     <div class="col-md-4">
         <label for="firstName" class="form-label">First name</label>
-        <input th:field="*{firstName}" type="text" class="form-control is-valid" id="firstName" value="Mark" required>
+        <input th:field="*{first_name}" type="text" class="form-control is-valid" id="firstName" value="Mark" required>
         <div class="valid-feedback">
             Looks good!
         </div>
     </div>
     <div class="col-md-4">
         <label for="lastName" class="form-label">Last name</label>
-        <input th:field="*{lastName}" type="text" class="form-control is-valid" id="lastName" value="Otto" required>
+        <input th:field="*{last_name}" type="text" class="form-control is-valid" id="lastName" value="Otto" required>
         <div class="valid-feedback">
             Looks good!
         </div>
@@ -89,9 +81,9 @@
 
 <!--    <label for="password">Password</label>-->
 <!--    <input id="password"/>-->
+<!--</form>-->
 
-
-</form>
-
+<script th:replace="partials/partials.html :: bootstrap-js"></script>
+<script th:replace="partials/partials.html :: bootstrap-j-query"></script>
 </body>
 </html>
