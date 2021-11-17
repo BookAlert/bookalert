@@ -30,11 +30,24 @@ public class User {
     @Column(nullable = false)
     private boolean is_private;
 
+//    @OneToMany(mappedBy = "users")
+//    private List<Author> authors;
 
-    @OneToMany( mappedBy = "users")
+    @ManyToMany
+    @JoinTable(
+            name="author_user",
+            joinColumns ={@JoinColumn(name="user_id")},
+            inverseJoinColumns = {@JoinColumn(name="author_id")}
+    )
     private List<Author> authors;
 
-
+    @ManyToMany
+    @JoinTable(
+            name="book_user",
+            joinColumns ={@JoinColumn(name="user_id")},
+            inverseJoinColumns = {@JoinColumn(name="book_id")}
+    )
+    private List<Books> books;
 
     public User() {
 
