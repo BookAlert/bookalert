@@ -21,8 +21,16 @@ public class Books {
     private String release_date;
 
 
-    @OneToMany
-    @JoinColumn(name = "genre_id")
+//    @OneToMany
+//    @JoinColumn(name = "genre_id")
+//    private List<Genre> genres;
+
+    @ManyToMany
+    @JoinTable(
+            name = "book_genre",
+            joinColumns = { @JoinColumn(name = "book_id")},
+            inverseJoinColumns = { @JoinColumn(name = "genre_id")}
+    )
     private List<Genre> genres;
 
     @Column(nullable = false)
@@ -34,6 +42,9 @@ public class Books {
     @ManyToOne
     @JoinColumn(name = "author_id")
     private Author authors;
+
+    @ManyToMany(mappedBy = "books")
+    private List<User> users;
 
     public Books() {
 
