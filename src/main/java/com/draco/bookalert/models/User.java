@@ -31,7 +31,7 @@ public class User {
     private boolean is_private;
 
 
-    @OneToMany( mappedBy = "users")
+    @OneToMany(mappedBy = "users")
     private List<Author> authors;
 
 
