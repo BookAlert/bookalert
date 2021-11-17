@@ -17,14 +17,14 @@
 <form class="row g-3" th:action="@{/sign-up}" method="POST" th:object="${user}">
     <div class="col-md-4">
         <label for="firstName" class="form-label">First name</label>
-        <input type="text" class="form-control is-valid" id="firstName" value="Mark" required>
+        <input th:field="*{firstName}" type="text" class="form-control is-valid" id="firstName" value="Mark" required>
         <div class="valid-feedback">
             Looks good!
         </div>
     </div>
     <div class="col-md-4">
         <label for="lastName" class="form-label">Last name</label>
-        <input type="text" class="form-control is-valid" id="lastName" value="Otto" required>
+        <input th:field="*{lastName}" type="text" class="form-control is-valid" id="lastName" value="Otto" required>
         <div class="valid-feedback">
             Looks good!
         </div>
@@ -33,7 +33,7 @@
         <label for="username" class="form-label">Username</label>
         <div class="input-group has-validation">
             <span class="input-group-text" id="inputGroupPrepend3">@</span>
-            <input type="text" class="form-control is-invalid" id="username" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+            <input th:field="*{username}" type="text" class="form-control is-invalid" id="username" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
             <div id="validationServerUsernameFeedback" class="invalid-feedback">
                 Please choose a username.
             </div>
@@ -41,14 +41,14 @@
     </div>
     <div class="col-md-6">
         <label for="email" class="form-label">Email</label>
-        <input type="text" class="form-control is-invalid" id="email" aria-describedby="validationServer03Feedback" required>
+        <input th:field="*{email}" type="text" class="form-control is-invalid" id="email" aria-describedby="validationServer03Feedback" required>
         <div id="validationServer03Feedback" class="invalid-feedback">
             Please provide a valid email.
         </div>
     </div>
     <div class="col-md-6">
         <label for="password" class="form-label">Password</label>
-        <input type="text" class="form-control is-invalid" id="password" aria-describedby="validationServer04Feedback" required>
+        <input th:field="*{password}" type="text" class="form-control is-invalid" id="password" aria-describedby="validationServer04Feedback" required>
         <div id="validationServer04Feedback" class="invalid-feedback">
             Please provide a valid password.
         </div>
@@ -77,18 +77,18 @@
     </div>
 </form>
 
-<form th:action="@{/sign-up}" method="POST" th:object="${user}">
-    <label for="firstName">First name</label>
-    <input id="firstName" th:field="*{username}"/>
+<!--<form th:action="@{/sign-up}" method="POST" th:object="${user}">-->
+<!--    <label for="firstName">First name</label>-->
+<!--    <input id="firstName" th:field="*{username}"/>-->
 
-    <label for="lastName">Last name</label>
-    <input id="lastName" />
+<!--    <label for="lastName">Last name</label>-->
+<!--    <input id="lastName" />-->
 
-    <label for="email">Email</label>
-    <input id="email"/>
+<!--    <label for="email">Email</label>-->
+<!--    <input id="email"/>-->
 
-    <label for="password">Password</label>
-    <input id="password"/>
+<!--    <label for="password">Password</label>-->
+<!--    <input id="password"/>-->
 
 
 </form>
