@@ -33,4 +33,11 @@ public class HomeController {
 
 
 
+    ///==================================  ENDPOINT TO SEARCH PAGE
+    @GetMapping("/search")
+    public String searchPage() {
+        return "users/search";
+    }
+
+
 }
