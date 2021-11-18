@@ -5,10 +5,55 @@
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
+<!-- Showcase slider component   -->
+    <section id="showcase">
+        <div id="picCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#picCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#picCarousel" data-slide-to="1"></li>
+                <li data-target="#picCarousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item carousel-image-1 active">
+                    <div class="container">
+                        <div class="carousel-caption d-none d-sm-block text-right mb-5">
+                            <h1 class="display-3">Heading One</h1>
+                            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Aliquam assumenda exercitationem facilis itaque quas, voluptatibus.</p>
+                            <a href="#" class="btn btn-outline-danger btn-lg">Sign Up Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item carousel-image-2">
+                    <div class="container">
+                        <div class="carousel-caption d-none d-sm-block mb-5">
+                            <h1 class="display-3">Heading One</h1>
+                            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Aliquam assumenda exercitationem facilis itaque quas, voluptatibus.</p>
+                            <a href="#" class="btn btn-outline-info btn-lg">Learn More!</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item carousel-image-3">
+                    <div class="container">
+                        <div class="carousel-caption d-none d-sm-block text-right mb-5">
+                            <h1 class="display-3">Heading Three</h1>
+                            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Aliquam assumenda exercitationem facilis itaque quas, voluptatibus.</p>
+                            <a href="#" class="btn btn-outline-dark btn-lg">About Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 
 <script th:replace="partials/partials.html :: bootstrap-js"></script>
+<script th:replace="partials/partials.html :: popper-js"></script>
 <script th:replace="partials/partials.html :: bootstrap-j-query"></script>
 </body>
 </html>
