@@ -48,6 +48,6 @@
 }
 
 .bg-dark {
-    background: url("static/img/img9.jpg");
+    background: url("../img/img9.jpg");
     background-size: cover;
 }
