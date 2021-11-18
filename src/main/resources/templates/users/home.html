@@ -5,10 +5,101 @@
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
+<!--Home Showcase slider component   -->
+    <section id="showcase">
+        <div id="picCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#picCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#picCarousel" data-slide-to="1"></li>
+                <li data-target="#picCarousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item carousel-image-1 active">
+                    <div class="container">
+                        <div class="carousel-caption d-none d-sm-block text-right mb-5">
+                            <h1 class="display-3">Heading One</h1>
+                            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Aliquam assumenda exercitationem facilis itaque quas, voluptatibus.</p>
+                            <a href="#" class="btn btn-outline-danger btn-lg">Sign Up Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item carousel-image-2">
+                    <div class="container">
+                        <div class="carousel-caption d-none d-sm-block mb-5">
+                            <h1 class="display-3">Heading One</h1>
+                            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Aliquam assumenda exercitationem facilis itaque quas, voluptatibus.</p>
+                            <a href="#" class="btn btn-outline-info btn-lg">Learn More!</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item carousel-image-3">
+                    <div class="container">
+                        <div class="carousel-caption d-none d-sm-block text-right mb-5">
+                            <h1 class="display-3">Heading Three</h1>
+                            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Aliquam assumenda exercitationem facilis itaque quas, voluptatibus.</p>
+                            <a href="#" class="btn btn-outline-dark btn-lg">About Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#picCarousel" class="carousel-control-prev" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a href="#picCarousel" class="carousel-control-next" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+    </section>
+
+<!--Home section with icons-->
+<section id="home-icons" class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4 text-centered">
+                <i class="fas fa-book-open fa-3x mb-2"></i>
+                <h3>Search your favorites</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            </div>
+            <div class="col-md-4 mb-4 text-centered">
+                <i class="fas fa-list-ul fa-3x mb-2"></i>
+                <h3>Make A List</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            </div>
+            <div class="col-md-4 mb-4 text-centered">
+                <i class="fas fa-exclamation fa-3x mb-2"></i>
+                <h3>Stay Current</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Home Heading Section Intro -->
+<section id="home-heading" class="p-5">
+    <div class="dark-overlay">
+        <div class="row">
+            <div class="col">
+                <div class="container p-5">
+                    <h1>Are You Ready To Get Started?</h1>
+                    <p class="d-none d-md-block">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Deserunt esse magni nesciunt officiis perferendis tempora?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
-
-<script th:replace="partials/partials.html :: bootstrap-js"></script>
 <script th:replace="partials/partials.html :: bootstrap-j-query"></script>
+<script th:replace="partials/partials.html :: popper-js"></script>
+<script th:replace="partials/partials.html :: bootstrap-js"></script>
+
+
 </body>
 </html>
