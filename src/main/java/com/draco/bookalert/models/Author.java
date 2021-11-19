@@ -29,6 +29,11 @@ public class Author {
 
     }
 
+    public Author(List<Books> books) {
+        this.books = books;
+    }
+
+
     public long getId() {
         return id;
     }
