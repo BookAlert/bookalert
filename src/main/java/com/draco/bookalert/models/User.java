@@ -30,9 +30,6 @@ public class User {
     @Column(nullable = false)
     private boolean is_private;
 
-//    @OneToMany(mappedBy = "users")
-//    private List<Author> authors;
-
     @ManyToMany
     @JoinTable(
             name="author_user",
@@ -52,6 +49,19 @@ public class User {
     public User() {
 
     }
+
+    // Our User class will be used for the authentication process (login/logout).
+    // It will need the following constructor:
+
+    public User(User copy) {
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+    }
+
+
+
 
     public User(long id, String first_name, String last_name, String username, String password, String email) {
         this.id = id;

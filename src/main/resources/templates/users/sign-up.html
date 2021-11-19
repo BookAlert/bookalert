@@ -5,6 +5,8 @@
 <body>
 
 <nav th:replace="partials/partials.html :: navbar"></nav>
+
+
 <h1>Sign Up To BookAlert</h1>
 <form class="row g-3" th:action="@{/sign-up}" method="POST" th:object="${user}">
     <div class="col-md-4">
@@ -45,7 +47,7 @@
             Please provide a valid password.
         </div>
     </div>
-    </div>
+
     <div class="col-md-6">
         <label for="confirmPassword" class="form-label">Confirm password</label>
         <input type="text" class="form-control is-invalid" id="confirmPassword" aria-describedby="validationServer05Feedback" required>
@@ -65,23 +67,10 @@
         </div>
     </div>
     <div class="col-12">
-        <button class="btn btn-primary" type="submit">Submit form</button>
+        <button class="btn btn-primary" type="submit">Sign up!!</button>
     </div>
 </form>
 
-<!--<form th:action="@{/sign-up}" method="POST" th:object="${user}">-->
-<!--    <label for="firstName">First name</label>-->
-<!--    <input id="firstName" th:field="*{username}"/>-->
-
-<!--    <label for="lastName">Last name</label>-->
-<!--    <input id="lastName" />-->
-
-<!--    <label for="email">Email</label>-->
-<!--    <input id="email"/>-->
-
-<!--    <label for="password">Password</label>-->
-<!--    <input id="password"/>-->
-<!--</form>-->
 
 <script th:replace="partials/partials.html :: bootstrap-js"></script>
 <script th:replace="partials/partials.html :: bootstrap-j-query"></script>
