@@ -12,9 +12,9 @@
 <body>
 
 
-
+<!------------------- NAVBAR PARTIAL --------->
 <nav th:fragment="navbar" >
-    <div class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
+    <div class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="#">BookAlert!</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -34,21 +34,34 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/search">Search</a>
                     </li>
-
-                        <li class="nav-item" sec:authorize="!isAuthenticated()">
-                            <a class="nav-link" th:href="@{/login}">Login</a>
-                        </li>
-                        <li sec:authorize="isAuthenticated()">
-                            <form th:action="@{/logout}" th:method="POST">
-                                <button class="btn btn-link">Logout</button>
-                            </form>
-                        </li>
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" th:href="@{/login}">Login</a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()">
+                        <form th:action="@{/logout}" th:method="POST">
+                            <button class="btn btn-link">Logout</button>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
-
 </nav>
+
+
+<!------------------------------ FOOTER PARTIAL ------>
+<footer th:fragment="footer" id="main-footer" class="text-center bg-dark text-light p-4">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p>Copyright &copy;
+                    <span id="year"></span>BookAlert!</p>
+                <p>Contact Us: </p>
+                <a href="BookAlertProject@gmail.com"> <i class="fas fa-envelope-open fa-2x"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
 
 
 <!-- JavaScript Bundle with Popper -->
