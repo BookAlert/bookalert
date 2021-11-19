@@ -9,23 +9,26 @@
     justify-content: center;
 }
 
-.submitBtn1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.submitBtn2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .col-12 {
-    width: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .btn {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+/*.col {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*}*/
+
+.form-control.is-valid {
+    display: flex;
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    margin-left: 200px;
+    margin-right: 100px;
 }
