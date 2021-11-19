@@ -46,3 +46,8 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.8);
 }
+
+.bg-dark {
+    background: url("../img/img9.jpg");
+    background-size: cover;
+}
