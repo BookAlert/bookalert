@@ -40,4 +40,10 @@ public class HomeController {
     }
 
 
+    ///================================== ENDPOINT TO ABOUT PAGE
+    @GetMapping("/about")
+    public String aboutPage() {
+        return "users/about";
+    }
+
 }
