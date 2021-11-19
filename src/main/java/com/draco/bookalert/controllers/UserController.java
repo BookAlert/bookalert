@@ -19,12 +19,5 @@ public class UserController {
         return "users/profile";
     }
 
-    @RequestMapping(value = "img/{imageName}")
-    @ResponseBody
-    public byte[] getImage(@PathVariable(value = "imageName") String imageName) throws IOException {
 
-        File serverFile = new File("/static/img/" + imageName + ".jpg");
-
-        return Files.readAllBytes(serverFile.toPath());
-    }
 }
