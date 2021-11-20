@@ -9,7 +9,8 @@ import java.util.Collection;
 public class UserWithRoles extends User implements UserDetails {
 
 //    User Details
-//    The security package will need a single model with the information required to authenticate and authorize users; therefore, this single model is the union of both users and roles.
+//    The security package will need a single model with the information required to authenticate and authorize users;
+//    therefore, this single model is the union of both users and roles.
 //    This class must implement the UserDetails interface.
 
 

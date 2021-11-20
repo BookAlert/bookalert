@@ -21,10 +21,6 @@ public class Books {
     private String release_date;
 
 
-//    @OneToMany
-//    @JoinColumn(name = "genre_id")
-//    private List<Genre> genres;
-
     @ManyToMany
     @JoinTable(
             name = "book_genre",
