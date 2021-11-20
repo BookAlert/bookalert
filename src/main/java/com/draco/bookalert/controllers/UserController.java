@@ -3,6 +3,7 @@ package com.draco.bookalert.controllers;
 
 import com.draco.bookalert.models.User;
 import com.draco.bookalert.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
