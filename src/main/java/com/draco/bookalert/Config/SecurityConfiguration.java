@@ -35,27 +35,34 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 /* Login configuration */
+
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/") // user's home page, it can be any URL
+
+                .defaultSuccessUrl("/profile") // user's home page, it can be any URL
+
                 .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
                 .and()
                 .logout()
                 .logoutSuccessUrl("/login?logout") // append a query string value
+
                 /* Pages that can be viewed without having to log in */
                 .and()
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/", "/about", "/sign-up") // anyone can see the home and the about pages
+                .permitAll()
                 /* Pages that require authentication */
+                .and()
                 .authorizeRequests()
                 .antMatchers(
                         "/users/profile" // only authenticated users can view profile
 //                        "/users/{id}/edit" // only authenticated users can edit ads
                 )
                 .authenticated()
-                .and()
-                .authorizeRequests()
-                .antMatchers("/", "/about", "/sign-up") // anyone can see the home and the ads pages
-                .permitAll()
+
+
         ;
     }
 

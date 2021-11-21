@@ -13,9 +13,6 @@ public class Genre {
     @Column(nullable = false, length = 25)
     private String name;
 
-//    @ManyToOne
-//    @JoinColumn(name = "book_id")
-//    private Books book;
 
     @ManyToMany(mappedBy = "genres")
     private List<Books> books;
