@@ -35,6 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 /* Login configuration */
+
                 .formLogin()
                 .loginPage("/login")
 
@@ -45,8 +46,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutSuccessUrl("/login?logout") // append a query string value
+
                 /* Pages that can be viewed without having to log in */
                 .and()
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/about", "/sign-up") // anyone can see the home and the about pages
                 .permitAll()

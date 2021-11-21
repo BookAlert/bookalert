@@ -10,10 +10,28 @@ $(() => {
             .then(response => response.json())
             .then(buildSearchResults)
     })
+
     function buildSearchResults(results) {
-        const html = results.map(result => `<div class="author-search-result">${result.artistName}</div>`)
+        const html = results.map(result => `
+            
+            <div class="author-search-result" data-name="${result.artistName}"> <i class="fas fa-plus mr-2"></i>${result.artistName} </div>
+            
+          `).join("")
         $('#authorResults').html(html)
     }
-    console.log('attached')
+
+    $('body').on('click', '.author-search-result', function(){
+        const authorName = $(this).data("name");
+
+        fetch("add-author", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({name: authorName})
+        })
+
+    })
 
 })
