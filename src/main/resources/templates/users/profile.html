@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/partials.html :: head('Profile')">
+    <title>User Profile</title>
+
+<body>
+    <nav th:replace="partials/partials.html :: navbar"></nav>
+    <div class="row align-items-center">
+        <div class="col col-md-auto">
+            <h1>Welcome to your profile!</h1>
+            <h2>New and upcoming books</h2>
+        </div>
+    </div>
+
+    <div class="container mb-10">
+        <div class="card-group">
+            <!--bootstrap card with 3 horizontal images-->
+            <div class="row">
+                    <div class="card col-md-2">
+                        <img class="card-img-top" src=
+                                "https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/300x300bb.jpg">
+                    </div>
+                    <div class="card col-md-2">
+                        <img class="card-img-top" src=
+                                "https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/300x300bb.jpg">
+                        </div>
+                    <div class="card col-md-2">
+                        <img class="card-img-top" src=
+                                "https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/300x300bb.jpg">
+                    </div>
+                    <div class="card col-md-2">
+                        <img class="card-img-top" src=
+                                "https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/300x300bb.jpg">
+                    </div>
+                    <div class="card col-md-2">
+                        <img class="card-img-top" src=
+                                "https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/300x300bb.jpg">
+                    </div>
+                    <div class="card col-md-2">
+                        <img class="card-img-top" src=
+                                "https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/300x300bb.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row row-cols-2">
+            <div class="col">
+                <h2>Your Books</h2>
+                <img src="https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/60x60bb.jpg">
+                <img src="https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/60x60bb.jpg">
+                <img src="https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/60x60bb.jpg">
+                <img src="https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/60x60bb.jpg">
+            </div>
+            <div class="col">
+                <h2>Your Authors</h2>
+                <ul>
+                    <li><a href="#">Stephen King</a></li>
+                    <li><a href="#">Stephen King</a></li>
+                    <li><a href="#">Stephen King</a></li>
+                    <li><a href="#">Stephen King</a></li>
+                    <li><a href="#">Stephen King</a></li>
+                    <li><a href="#">Stephen King</a></li>
+                    <li><a href="#">Stephen King</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

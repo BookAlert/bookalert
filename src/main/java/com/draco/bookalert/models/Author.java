@@ -18,13 +18,21 @@ public class Author {
     @OneToMany(mappedBy = "authors")
     private List<Books> books;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User users;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    private User users;
+
+    @ManyToMany(mappedBy = "authors")
+    private List<User> users;
 
     public Author() {
 
     }
+
+    public Author(List<Books> books) {
+        this.books = books;
+    }
+
 
     public long getId() {
         return id;

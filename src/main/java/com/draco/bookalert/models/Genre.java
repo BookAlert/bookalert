@@ -1,6 +1,7 @@
 package com.draco.bookalert.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "genres")
@@ -12,9 +13,9 @@ public class Genre {
     @Column(nullable = false, length = 25)
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "book_id")
-    private Books book;
+
+    @ManyToMany(mappedBy = "genres")
+    private List<Books> books;
 
     public Genre(){}
 
@@ -34,11 +35,11 @@ public class Genre {
         this.name = name;
     }
 
-    public Books getBook() {
-        return book;
+    public List<Books> getBooks() {
+        return books;
     }
 
-    public void setBook(Books book) {
-        this.book = book;
+    public void setBooks(List<Books> books) {
+        this.books = books;
     }
 }
