@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 @RestController
-public class ConsumeWebService {
+public class ConsumeWebServiceController {
     @Autowired
     RestTemplate restTemplate;
 
@@ -21,7 +21,7 @@ public class ConsumeWebService {
     @RequestMapping(value = "/author-suggestions")
     public ArrayList<iTunesAuthor> getProductList(@RequestParam String search) {
 
-               return restTemplate.getForEntity("http://itunes.apple.com/search?term=" + search + "&media=ebook&entity=ebookAuthor&attribute=authorTerm&limit=16", iTunesAuthorSearchResponse.class).getBody().getResults();
+        return restTemplate.getForEntity("http://itunes.apple.com/search?term=" + search + "&media=ebook&entity=ebookAuthor&attribute=authorTerm&limit=16", iTunesAuthorSearchResponse.class).getBody().getResults();
 
     }
 
