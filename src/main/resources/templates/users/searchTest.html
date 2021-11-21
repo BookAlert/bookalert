@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search test</title>
+</head>
+<body>
+<div>
+    <form th:action="@{/users/searchTest}" th:method="post" th:object="${author}">
+        <label for="authorName">Author name</label><br>
+        <input th:field="*{name}" id="authorName"><br>
+        <input type="submit" value="Submit">
+    </form>
+
+</div>
+</body>
+</html>
