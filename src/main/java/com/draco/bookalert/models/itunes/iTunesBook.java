@@ -1,10 +1,13 @@
-package com.draco.bookalert.models;
+package com.draco.bookalert.models.itunes;
+
+import com.draco.bookalert.models.Books;
+import com.draco.bookalert.models.Genre;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
 
-public class iTunesAuthorSearchResponse {
-
-    private String artistName;
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class iTunesBook {
 
     private List<Books> trackName;
 
@@ -17,14 +20,6 @@ public class iTunesAuthorSearchResponse {
     private String trackViewUrl;
 
     private String artworkUrl100;
-
-    public String getArtistName() {
-        return artistName;
-    }
-
-    public void setArtistName(String artistName) {
-        this.artistName = artistName;
-    }
 
     public List<Books> getTrackName() {
         return trackName;
