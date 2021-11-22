@@ -6,6 +6,7 @@ import com.draco.bookalert.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -33,5 +34,9 @@ public class HomeController {
         return "users/about";
     }
 
+    @GetMapping("/authors")
+    public String authorPage() {
+        return "authors/authors";
+    }
 
 }
