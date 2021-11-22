@@ -9,23 +9,23 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class iTunesBook {
 
-    private List<Books> trackName;
+    private String trackName;
 
     private String description;
 
     private String releaseDate;
 
-    private List<Genre> genres;
+//    private List<Genre> genres;
 
     private String trackViewUrl;
 
     private String artworkUrl100;
 
-    public List<Books> getTrackName() {
+    public String getTrackName() {
         return trackName;
     }
 
-    public void setTrackName(List<Books> trackName) {
+    public void setTrackName(String trackName) {
         this.trackName = trackName;
     }
 
@@ -45,13 +45,13 @@ public class iTunesBook {
         this.releaseDate = releaseDate;
     }
 
-    public List<Genre> getGenres() {
-        return genres;
-    }
-
-    public void setGenres(List<Genre> genres) {
-        this.genres = genres;
-    }
+//    public List<Genre> getGenres() {
+//        return genres;
+//    }
+//
+//    public void setGenres(List<Genre> genres) {
+//        this.genres = genres;
+//    }
 
     public String getTrackViewUrl() {
         return trackViewUrl;
