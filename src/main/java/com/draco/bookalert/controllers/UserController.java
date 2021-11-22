@@ -48,5 +48,9 @@ public class UserController {
         return "users/profile";
     }
 
+    @PostMapping("/profile")
+    public String profilePage() {
+        return "users/profile";
+    }
 
 }

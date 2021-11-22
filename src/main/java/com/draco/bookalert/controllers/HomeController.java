@@ -33,8 +33,5 @@ public class HomeController {
         return "users/about";
     }
 
-//    @GetMapping("/profile")
-//    public String profilePage() {
-//        return "users/profile";
-//    }
+
 }
