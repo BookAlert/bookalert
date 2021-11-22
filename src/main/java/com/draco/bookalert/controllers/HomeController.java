@@ -16,7 +16,7 @@ public class HomeController {
     ////===================================  ENDPOINT FOR HOME PAGE  ====
     @GetMapping("/")
     public String landingPage() {
-        return "/users/home";
+        return "users/home";
     }
 
 
