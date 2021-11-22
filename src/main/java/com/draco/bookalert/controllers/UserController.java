@@ -41,8 +41,6 @@ public class UserController {
 
     ///=================================== ENDPOINT TO LOGIN PAGE
 
-
-
     @GetMapping("/profile")
     public String showProfile() {
         return "users/profile";
