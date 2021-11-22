@@ -21,10 +21,6 @@ package com.draco.bookalert.controllers;
          authorRepository.save(author);
      }
 
-     @GetMapping("/authors")
-     public String authorpage() {
-         return "/authors/authors";
-     }
 
  }
 
