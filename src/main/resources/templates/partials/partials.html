@@ -42,6 +42,11 @@
                             <button class="btn btn-link">Logout</button>
                         </form>
                     </li>
+                    <li sec:authorize="isAuthenticated()">
+                        <form th:action="@{/profile}" th:method="POST">
+                            <button class="btn btn-link">Profile</button>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>
