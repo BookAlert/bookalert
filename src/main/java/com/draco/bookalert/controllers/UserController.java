@@ -51,4 +51,13 @@ public class UserController {
         return "users/profile";
     }
 
+
+    @GetMapping("/test")
+    @ResponseBody
+    public String deleteUser() {
+        userDao.deleteById(2L);
+        return "test";
+    }
+
+
 }

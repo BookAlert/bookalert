@@ -1,6 +1,11 @@
 package com.draco.bookalert.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -11,13 +16,13 @@ public class Books {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column
     private String title;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(nullable = false, length = 25)
+    @Column
     private String release_date;
 
 

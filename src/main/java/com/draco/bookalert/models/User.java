@@ -12,22 +12,22 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false)
     private String first_name;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false)
     private String last_name;
 
     @Column(nullable = false, length = 25, unique = true)
     private String username;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false, columnDefinition = "TEXT", unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column
     private boolean is_private;
 
     @ManyToMany
