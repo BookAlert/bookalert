@@ -34,10 +34,10 @@ public class Books {
     )
     private List<Genre> genres;
 
-    @Column(nullable = false)
+    @Column
     private String itunes_url;
 
-    @Column(nullable = false)
+    @Column
     private String artwork_url;
 
     @ManyToOne
@@ -61,6 +61,8 @@ public class Books {
         this.artwork_url = artwork_url;
         this.authors = authors;
     }
+
+
 
     public long getId() {
         return id;
