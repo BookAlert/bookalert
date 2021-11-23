@@ -12,7 +12,7 @@ public class Author {
     private long id;
 
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "authors")

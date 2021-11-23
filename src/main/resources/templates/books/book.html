@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="partials/partials.html :: head('Book')">
+<title>A Book</title>
+<body>
+<nav th:replace="partials/partials.html :: navbar"></nav>
+
+
+ <h1>Book</h1>
+<main class="container">
+  <div class="card border-dark text-black-50 mb-3">
+    <div class="card-body">
+      <h4 class="card-title">Book title</h4>
+      <p class="card-text">Book Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+    </div>
+  </div>
+</main>
+
+
+
+<script th:replace="partials/partials.html :: bootstrap-j-query"></script>
+<script th:replace="partials/partials.html :: bootstrap-js"></script>
+<script th:replace="partials/partials.html :: popper-js"></script>
+</body>
+</html>

@@ -6,6 +6,7 @@ import com.draco.bookalert.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -15,7 +16,7 @@ public class HomeController {
     ////===================================  ENDPOINT FOR HOME PAGE  ====
     @GetMapping("/")
     public String landingPage() {
-        return "/users/home";
+        return "users/home";
     }
 
 
@@ -33,5 +34,16 @@ public class HomeController {
         return "users/about";
     }
 
+    @GetMapping("/authors")
+    public String authorPage() {
+        return "authors/authors";
+    }
+
+
+    //======================  ENDPOINT TO BOOK(ID) VIEW
+    @GetMapping("/book")
+    public String viewBook() {
+        return "books/book";
+    }
 
 }
