@@ -21,7 +21,7 @@ $(() => {
         $('#authorResults').html(html)
     }
 
-    //==================  DISPLAY RESULTS OF AUTHOR SEARCH W/ EVENT HANDLER
+    //==================  POST RESULTS OF AUTHOR SEARCH W/ EVENT HANDLER
     $('body').on('click', '.author-search-result', function(){
         const authorName = $(this).data("name");
 
@@ -64,7 +64,7 @@ $(() => {
     }
 
 
-    //==================  DISPLAY RESULTS OF TITLE SEARCH W/ EVENT HANDLER
+    //==================  POST RESULTS OF TITLE SEARCH W/ EVENT HANDLER
     $('body').on('click', '.title-search-result', function(){
         const bookName = $(this).data("name");
         const description = $(this).data("description");

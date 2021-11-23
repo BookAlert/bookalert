@@ -39,4 +39,11 @@ public class HomeController {
         return "authors/authors";
     }
 
+
+    //======================  ENDPOINT TO BOOK(ID) VIEW
+    @GetMapping("/book")
+    public String viewBook() {
+        return "books/book";
+    }
+
 }
