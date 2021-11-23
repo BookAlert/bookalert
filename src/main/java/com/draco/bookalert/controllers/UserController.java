@@ -3,6 +3,7 @@ package com.draco.bookalert.controllers;
 
 import com.draco.bookalert.models.User;
 import com.draco.bookalert.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,12 +41,14 @@ public class UserController {
 
     ///=================================== ENDPOINT TO LOGIN PAGE
 
-
-
     @GetMapping("/profile")
     public String showProfile() {
         return "users/profile";
     }
 
+    @PostMapping("/profile")
+    public String profilePage() {
+        return "users/profile";
+    }
 
 }

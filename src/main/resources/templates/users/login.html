@@ -5,7 +5,14 @@
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
+<h1 class="lead">Log In</h1>
 
+<div th:if="${param.error}">
+    Invalid Username and Password.
+</div>
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
 
 <div class="container">
 
@@ -15,7 +22,7 @@
             <label for="validationServerUsername" class="form-label">Username</label>
             <div class="input-group has-validation">
                 <span class="input-group-text" id="inputGroupPrepend3">@</span>
-                <input type="text" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" >
+                <input type="text" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" name="username">
                 <div id="validationServerUsernameFeedback" class="invalid-feedback">
                     Please enter your username.
                 </div>
@@ -23,7 +30,7 @@
         </div>
         <div class="col-md-6">
             <label for="validationServer03" class="form-label">Password</label>
-            <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" >
+            <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="password" >
             <div id="validationServer03Feedback" class="invalid-feedback">
                 Please enter your password.
             </div>
@@ -44,7 +51,7 @@
 <script th:replace="partials/partials.html :: bootstrap-js"></script>
 
 <script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
+   // Example starter JavaScript for disabling form submissions if there are invalid fields...
     (function () {
         'use strict'
 

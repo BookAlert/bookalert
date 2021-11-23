@@ -1,36 +1,31 @@
-package com.draco.bookalert.models;
+package com.draco.bookalert.models.itunes;
+
+import com.draco.bookalert.models.Books;
+import com.draco.bookalert.models.Genre;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
 
-public class iTunesAuthorSearchResponse {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class iTunesBook {
 
-    private String artistName;
-
-    private List<Books> trackName;
+    private String trackName;
 
     private String description;
 
     private String releaseDate;
 
-    private List<Genre> genres;
+//    private List<Genre> genres;
 
     private String trackViewUrl;
 
     private String artworkUrl100;
 
-    public String getArtistName() {
-        return artistName;
-    }
-
-    public void setArtistName(String artistName) {
-        this.artistName = artistName;
-    }
-
-    public List<Books> getTrackName() {
+    public String getTrackName() {
         return trackName;
     }
 
-    public void setTrackName(List<Books> trackName) {
+    public void setTrackName(String trackName) {
         this.trackName = trackName;
     }
 
@@ -50,13 +45,13 @@ public class iTunesAuthorSearchResponse {
         this.releaseDate = releaseDate;
     }
 
-    public List<Genre> getGenres() {
-        return genres;
-    }
-
-    public void setGenres(List<Genre> genres) {
-        this.genres = genres;
-    }
+//    public List<Genre> getGenres() {
+//        return genres;
+//    }
+//
+//    public void setGenres(List<Genre> genres) {
+//        this.genres = genres;
+//    }
 
     public String getTrackViewUrl() {
         return trackViewUrl;
