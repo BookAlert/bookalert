@@ -18,7 +18,12 @@ package com.draco.bookalert.controllers;
      @ResponseBody
      @RequestMapping(value = "/add-author", method = RequestMethod.POST)
      public void addAuthor(@RequestBody Author author) {
+         if(authorRepository.findAll().contains(author.getName())) {
+             System.out.println("Author exists");
+         } else {
          authorRepository.save(author);
+         }
+
      }
 
 
