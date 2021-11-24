@@ -8,24 +8,30 @@ package com.draco.bookalert.controllers;
  import org.springframework.web.bind.annotation.*;
 
  import java.util.ArrayList;
+ import java.util.List;
 
- @RestController
+@RestController
  public class AuthorController {
      @Autowired
      private AuthorRepository authorRepository;
 
+    @Override
+    public String toString() {
+        return "AuthorController{" +
+                "authorRepository=" + authorRepository +
+                '}';
+    }
 
-     @ResponseBody
+    @ResponseBody
      @RequestMapping(value = "/add-author", method = RequestMethod.POST)
      public void addAuthor(@RequestBody Author author) {
-         if(authorRepository.findAll().contains(author.getName())) {
-             System.out.println("Author exists");
-         } else {
+         List<Author> a = authorRepository.findByName(author.getName());
+         System.out.println(a);
          authorRepository.save(author);
          }
 
      }
 
 
- }
+
 
