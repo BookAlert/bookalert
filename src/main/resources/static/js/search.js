@@ -41,7 +41,7 @@ $(() => {
 
 
     //=================  FETCH DATA FOR TITLES/BOOKS
-    $('body').on('click', '#titleSearch', function(){
+    $('#titleSearch').on('click',  function(){
         const text = $('#titleSearchInput').val();
         var url = new URL('book-suggestions', window.location.origin )
 
@@ -53,22 +53,28 @@ $(() => {
     })
 
 
+
+
+
     //================ FUNCTION TO MAP TITLE RESULTS TO HTML
     function buildTitleResults(results) {
-        const html = results.map(result => `
-        <div class="container mb-3 ">
-            <img alt="image" src="${result.artworkUrl100}">
-               <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title" data-name="${result.trackName}" >${result.trackName}</h2>
-                            <p class="card-text lead" data-description="${result.description}">
-                                <small>${result.description}</small>
-                            </p>
-                        <div  data-date="${result.releaseDate}">${result.releaseDate}</div>
-                        <a href="${result.trackViewUrl}">${result.trackViewUrl}</a>
-                    </div>
-                    <button class="btn btn-outline-info title-search-result" type="submit">Add Title</button>
+
+        let html = results.map(result =>
+
+        `
+        <div>
+            <img alt="image" data-src="${result.artworkUrl100} hidden" src="${result.artworkUrl100}">
+           <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title" data-title="${result.trackName}" >${result.trackName}</h2>
+                        <p class="card-text lead" data-description="${result.description}">
+                            <small>${result.description}</small>
+                        </p>
+                    <span  data-date="${result.releaseDate}">${result.releaseDate}</span>
+                    <a data-href="${result.trackViewUrl}">${result.trackViewUrl}</a>
                 </div>
+                <button class="btn btn-outline-info title-search-result" type="submit">Add Title</button>
+            </div>
         </div>
             
             
@@ -79,12 +85,16 @@ $(() => {
 
     //==================  POST RESULTS OF TITLE SEARCH W/ EVENT HANDLER
     $('body').on('click', '.title-search-result', function(){
-        const title = $(this).data("name");
-        const description = $(this).data("description");
-        const release_date = $(this).data("date");
-        const itunes_url = $(this).data("href");
-        const artwork_url = $(this).data("src");
-        console.log($(this));
+
+        let newTitle = {
+            title : $("h2").data("title"),
+            description : $("p").data("description"),
+            release_date : $("span").data("date"),
+            itunes_url : $("a").data("href"),
+            artwork_url : $("img").data("src")
+        }
+
+        console.log(newTitle);
 
         fetch("add-book", {
             headers: {
@@ -92,13 +102,8 @@ $(() => {
                 'Content-Type': 'application/json'
             },
             method: "POST",
-            body: JSON.stringify(
-                {title,
-                    description,
-                    release_date,
-                    itunes_url,
-                    artwork_url
-            })
+            body: JSON.stringify(newTitle)
+
         })
 
     })
