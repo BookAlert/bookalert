@@ -15,18 +15,11 @@ package com.draco.bookalert.controllers;
      @Autowired
      private AuthorRepository authorRepository;
 
-    @Override
-    public String toString() {
-        return "AuthorController{" +
-                "authorRepository=" + authorRepository +
-                '}';
-    }
-
     @ResponseBody
      @RequestMapping(value = "/add-author", method = RequestMethod.POST)
      public void addAuthor(@RequestBody Author author) {
          List<Author> a = authorRepository.findByName(author.getName());
-         System.out.println(a);
+
          authorRepository.save(author);
          }
 
