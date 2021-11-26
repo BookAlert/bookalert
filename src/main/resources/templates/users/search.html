@@ -19,6 +19,20 @@
 
             </div>
         </div>
+
+        <div th:if="${!param.isEmpty()}">
+            <div>
+                <div class="errorMsg" th:if="${param.exists}">
+                    <p>Author currently exists</p>
+                </div>
+            </div>
+            <div>
+                <div class="errorMsg" th:if="${param.saved}">
+                    <p>Author has been added</p>
+                </div>
+            </div>
+        </div>
+
         <div class="col-md-4">
             <h3><label for="titleSearchInput" class="form-label">Search by Title</label></h3>
             <input type="text" id="titleSearchInput" class="form-control is-valid"  placeholder="Enter a book title" >
@@ -48,24 +62,7 @@
     </div>
 
 
-<!--<div>-->
-<!--        <div class="card" style="width: 18rem;">-->
-<!--            <img src="..." class="card-img-top" alt="...">-->
-<!--            <div class="card-body">-->
-<!--                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. ex: book synopsis/summary</p>-->
-<!--            </div>-->
-<!--            <div class="btn-group">-->
-<!--            <button type="button" class="btn btn-info dropdown-toggle"data-bs-toggle="dropdown" aria-expanded="false">Book Info</button>-->
-<!--            <ul class="dropdown-menu">-->
-<!--                <li><a class="dropdown-item" href="#">Author:</a></li>-->
-<!--                <li><a class="dropdown-item" href="#">Date Published:</a></li>-->
-<!--                <li><a class="dropdown-item" href="#">Genre:</a></li>-->
-<!--                <li><hr class="dropdown-divider"></li>-->
-<!--                <li><a class="dropdown-item" href="#">Separated link</a></li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--        </div>-->
-<!--    </div>-->
+
 
 
 <script th:replace="partials/partials.html :: bootstrap-j-query"></script>
