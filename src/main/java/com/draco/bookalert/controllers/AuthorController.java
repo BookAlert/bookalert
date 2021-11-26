@@ -20,8 +20,9 @@ package com.draco.bookalert.controllers;
      @RequestMapping(value = "/add-author", method = RequestMethod.POST)
      public void addAuthor(@RequestBody Author author) {
          List<Author> a = authorRepository.findByName(author.getName());
-         if(a.)
+         if(authorRepository.existsByName(author.getName())) {
          authorRepository.save(author);
+            }
          }
 
      }
