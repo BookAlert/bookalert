@@ -52,11 +52,13 @@ public class AuthorService {
     }
 
     private void addExistingAuthor(Author author, User user) {
-        Author existingUserAuthor = user.getAuthors()
-                .stream()
-                .filter(a -> a.getName().equals(author.getName()))
-                .findFirst()
-                .orElse(null);
+        Author existingUserAuthor = null;
+        for (Author a : user.getAuthors()) {
+            if (a.getName().equals(author.getName())) {
+                existingUserAuthor = a;
+                break;
+            }
+        }
         if(existingUserAuthor == null) {
             user.getAuthors().add(author);
             userRepository.save(user);
