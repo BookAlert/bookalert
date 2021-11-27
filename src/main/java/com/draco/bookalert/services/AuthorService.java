@@ -2,10 +2,13 @@ package com.draco.bookalert.services;
 
 import com.draco.bookalert.models.Author;
 import com.draco.bookalert.models.Book;
+import com.draco.bookalert.models.User;
 import com.draco.bookalert.models.itunes.iTunesBook;
 import com.draco.bookalert.repositories.AuthorRepository;
 import com.draco.bookalert.repositories.BooksRepository;
+import com.draco.bookalert.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,15 +27,41 @@ public class AuthorService {
     @Autowired
     private iTunesService iTunesService;
 
-    public void addAuthor(Author author) {
-        List<Author> a = authorRepository.findAuthorByName(author.getName());
-        if(a.size() == 0)  {
-            Author savedAuthor = authorRepository.save(author);
-            List<iTunesBook> iTunesBooks = iTunesService.getAuthorBooks(author.getName());
-            for (iTunesBook iTunesBook : iTunesBooks) {
-                Book book = new Book(iTunesBook, savedAuthor);
-                booksRepository.save(book);
+    @Autowired
+    private UserRepository userRepository;
+
+    public void addAuthor(Author author, String username) {
+        User user = userRepository.findByUsername(username);
+        Author existingAuthor = authorRepository.findAuthorByName(author.getName());
+        if(existingAuthor == null)  {
+            addNewAuthor(author, user);
+        } else {
+            addExistingAuthor(existingAuthor, user);
+        }
+    }
+
+    private void addNewAuthor(Author author, User user) {
+        Author savedAuthor = authorRepository.save(author);
+        user.getAuthors().add(savedAuthor);
+        userRepository.save(user);
+        List<iTunesBook> iTunesBooks = iTunesService.getAuthorBooks(author.getName());
+        for (iTunesBook iTunesBook : iTunesBooks) {
+            Book book = new Book(iTunesBook, savedAuthor);
+            booksRepository.save(book);
+        }
+    }
+
+    private void addExistingAuthor(Author author, User user) {
+        Author existingUserAuthor = null;
+        for (Author a : user.getAuthors()) {
+            if (a.getName().equals(author.getName())) {
+                existingUserAuthor = a;
+                break;
             }
+        }
+        if(existingUserAuthor == null) {
+            user.getAuthors().add(author);
+            userRepository.save(user);
         }
     }
 }
