@@ -1,7 +1,5 @@
 package com.draco.bookalert.models.itunes;
 
-import com.draco.bookalert.models.Books;
-import com.draco.bookalert.models.Genre;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
@@ -15,7 +13,7 @@ public class iTunesBook {
 
     private String releaseDate;
 
-//    private List<Genre> genres;
+    //private List<String> genres;
 
     private String trackViewUrl;
 
@@ -45,11 +43,11 @@ public class iTunesBook {
         this.releaseDate = releaseDate;
     }
 
-//    public List<Genre> getGenres() {
+//    public List<String> getGenres() {
 //        return genres;
 //    }
 //
-//    public void setGenres(List<Genre> genres) {
+//    public void setGenres(List<String> genres) {
 //        this.genres = genres;
 //    }
 

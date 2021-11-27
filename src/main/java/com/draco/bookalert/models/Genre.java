@@ -15,7 +15,7 @@ public class Genre {
 
 
     @ManyToMany(mappedBy = "genres")
-    private List<Books> books;
+    private List<Book> books;
 
     public Genre(){}
 
@@ -35,11 +35,11 @@ public class Genre {
         this.name = name;
     }
 
-    public List<Books> getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(List<Books> books) {
+    public void setBooks(List<Book> books) {
         this.books = books;
     }
 }
