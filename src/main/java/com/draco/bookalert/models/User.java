@@ -44,7 +44,7 @@ public class User {
             joinColumns ={@JoinColumn(name="user_id")},
             inverseJoinColumns = {@JoinColumn(name="book_id")}
     )
-    private List<Books> books;
+    private List<Book> books;
 
     public User() {
 

@@ -15,8 +15,8 @@ public class Author {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "authors")
-    private List<Books> books;
+    @OneToMany(mappedBy = "author")
+    private List<Book> books;
 
 //    @ManyToOne
 //    @JoinColumn(name = "user_id")
@@ -29,7 +29,7 @@ public class Author {
 
     }
 
-    public Author(List<Books> books) {
+    public Author(List<Book> books) {
         this.books = books;
     }
 
@@ -50,11 +50,11 @@ public class Author {
         this.name = name;
     }
 
-    public List<Books> getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(List<Books> books) {
+    public void setBooks(List<Book> books) {
         this.books = books;
     }
 }
