@@ -5,6 +5,7 @@ import com.draco.bookalert.models.itunes.iTunesAuthor;
 import com.draco.bookalert.models.itunes.iTunesAuthorSearchResponse;
 import com.draco.bookalert.models.itunes.iTunesBook;
 import com.draco.bookalert.models.itunes.iTunesBookSearchResponse;
+import com.draco.bookalert.services.iTunesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -16,21 +17,20 @@ import java.util.Arrays;
 @RestController
 public class ConsumeWebServiceController {
     @Autowired
-    RestTemplate restTemplate;
+    private iTunesService iTunesService;
 
     @ResponseBody
     @RequestMapping(value = "/author-suggestions")
     public ArrayList<iTunesAuthor> getProductList(@RequestParam String search) {
 
-        return restTemplate.getForEntity("http://itunes.apple.com/search?term=" + search + "&media=ebook&entity=ebookAuthor&attribute=authorTerm&limit=20", iTunesAuthorSearchResponse.class).getBody().getResults();
-
+        return iTunesService.getProductList(search);
     }
 
     @ResponseBody
     @RequestMapping(value = "/book-suggestions")
     public ArrayList<iTunesBook> getTitleList(@RequestParam String search) {
 
-        return restTemplate.getForEntity("http://itunes.apple.com/search?term=" + search + "&media=ebook&entity=ebook&limit=20", iTunesBookSearchResponse.class).getBody().getResults();
+        return iTunesService.getTitleList(search);
 
     }
 
