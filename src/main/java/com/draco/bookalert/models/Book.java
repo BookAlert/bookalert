@@ -3,6 +3,7 @@ package com.draco.bookalert.models;
 import com.draco.bookalert.models.itunes.iTunesBook;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -19,7 +20,7 @@ public class Book {
     private String description;
 
     @Column
-    private String release_date;
+    private Timestamp release_date;
 
 
     @ManyToMany
@@ -47,7 +48,7 @@ public class Book {
 
     }
 
-    public Book(long id, String title, String description, String release_date, List<Genre> genres, String itunes_url, String artwork_url, Author author) {
+    public Book(long id, String title, String description, Timestamp release_date, List<Genre> genres, String itunes_url, String artwork_url, Author author) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -93,11 +94,11 @@ public class Book {
         this.description = description;
     }
 
-    public String getRelease_date() {
+    public Timestamp getRelease_date() {
         return release_date;
     }
 
-    public void setRelease_date(String release_date) {
+    public void setRelease_date(Timestamp release_date) {
         this.release_date = release_date;
     }
 
