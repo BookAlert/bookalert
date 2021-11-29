@@ -39,7 +39,7 @@
                 <img src="/static/img/ernest.jpeg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
             </div>
             <div class="col-lg-6">
-                <h1 class="display-5 fw-bold lh-1 mb-3">Ernest Cline</h1>
+                <h1 class="display-5 fw-bold lh-1 mb-3" th:text="${author.name}"></h1>
                 <p class="lead">Ernest Christy Cline is an American science fiction novelist, slam poet, and screenwriter.
                     He wrote the novels Ready Player One, Armada, and Ready Player Two and co-wrote the screenplay for the film adaptation of Ready Player One, directed by Steven Spielberg. </p>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-start">
@@ -47,6 +47,7 @@
                     <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
                 </div>
             </div>
+
         </div>
     </div>
 
