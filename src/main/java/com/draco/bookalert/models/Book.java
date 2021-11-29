@@ -64,7 +64,7 @@ public class Book {
         this.release_date = book.getReleaseDate();
 //        this.genres = null;
         this.itunes_url = book.getTrackViewUrl();
-        this.artwork_url = book.getArtworkUrl100();
+        this.artwork_url = book.getArtworkUrl100().replace("100x100bb", "300x300bb");
         this.author = author;
     }
 
