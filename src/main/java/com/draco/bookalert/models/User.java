@@ -38,6 +38,14 @@ public class User {
     )
     private List<Author> authors;
 
+    public List<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
+    }
+
     @ManyToMany
     @JoinTable(
             name="book_user",

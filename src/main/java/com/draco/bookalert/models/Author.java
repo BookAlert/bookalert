@@ -22,8 +22,8 @@ public class Author {
 //    @JoinColumn(name = "user_id")
 //    private User users;
 
-    @ManyToMany(mappedBy = "authors")
-    private List<User> users;
+//    @ManyToMany(mappedBy = "authors")
+//    private List<User> users;
 
     public Author() {
 
