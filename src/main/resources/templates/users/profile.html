@@ -17,47 +17,8 @@
         <div class="card-group">
             <!--bootstrap card with 3 horizontal images-->
             <div class="row">
-                    <div class="card col-md-2">
-                        <img class="card-img-top" src=
-                                "https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/300x300bb.jpg">
-                        <form th:action="@{/book}">
-                            <button class="btn btn-outline-info btn-sm">View</button>
-                        </form>
-                    </div>
-                    <div class="card col-md-2">
-                        <img class="card-img-top" src=
-                                "https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/300x300bb.jpg">
-                        <form th:action="@{/book}">
-                            <button class="btn btn-outline-info btn-sm">View</button>
-                        </form>
-                        </div>
-                    <div class="card col-md-2">
-                        <img class="card-img-top" src=
-                                "https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/300x300bb.jpg">
-                        <form th:action="@{/book}">
-                            <button class="btn btn-outline-info btn-sm">View</button>
-                        </form>
-                    </div>
-                    <div class="card col-md-2">
-                        <img class="card-img-top" src=
-                                "https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/300x300bb.jpg">
-                        <form th:action="@{/book}">
-                            <button class="btn btn-outline-info btn-sm">View</button>
-                        </form>
-                    </div>
-                    <div class="card col-md-2">
-                        <img class="card-img-top" src=
-                                "https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/300x300bb.jpg">
-                        <form th:action="@{/book}">
-                            <button class="btn btn-outline-info btn-sm">View</button>
-                        </form>
-                    </div>
-                    <div class="card col-md-2">
-                        <img class="card-img-top" src=
-                                "https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/300x300bb.jpg">
-                        <form th:action="@{/book}">
-                            <button class="btn btn-outline-info btn-sm">View</button>
-                        </form>
+                    <div class="card" th:each="book : ${books}">
+                            <a th:href="@{/book}"><li><img th:src="${book.artwork_url}"></li></a>
                     </div>
                 </div>
             </div>
@@ -93,22 +54,9 @@
     <div class="container">
         <div class="row row-cols-2">
             <div class="col">
-                <h2>Your Books</h2>
-                <img src="https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/60x60bb.jpg">
-                <img src="https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/60x60bb.jpg">
-                <img src="https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/60x60bb.jpg">
-                <img src="https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/60x60bb.jpg">
-            </div>
-            <div class="col">
                 <h2>Your Authors</h2>
-                <ul>
-                    <li><a href="/authors">Stephen King</a></li>
-                    <li><a href="/authors">Stephen King</a></li>
-                    <li><a href="/authors">Stephen King</a></li>
-                    <li><a href="/authors">Stephen King</a></li>
-                    <li><a href="/authors">Stephen King</a></li>
-                    <li><a href="/authors">Stephen King</a></li>
-                    <li><a href="/authors">Stephen King</a></li>
+                <ul th:each="author : ${authors}">
+                    <a th:href="@{'/authors/' + ${author.id}}"><li th:text="${author.name}"></li></a>
                 </ul>
             </div>
 
