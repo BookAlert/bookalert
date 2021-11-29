@@ -2,6 +2,7 @@ package com.draco.bookalert.models.itunes;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -11,7 +12,7 @@ public class iTunesBook {
 
     private String description;
 
-    private String releaseDate;
+    private Timestamp releaseDate;
 
     //private List<String> genres;
 
@@ -35,11 +36,11 @@ public class iTunesBook {
         this.description = description;
     }
 
-    public String getReleaseDate() {
+    public Timestamp getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(Timestamp releaseDate) {
         this.releaseDate = releaseDate;
     }
 
