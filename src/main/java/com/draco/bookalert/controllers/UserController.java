@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.sql.Timestamp;
+import java.util.Date;
 
 @Controller
 public class UserController {
@@ -51,10 +53,12 @@ public class UserController {
     ///=================================== ENDPOINT TO LOGIN PAGE
 
     @GetMapping("/profile")
-    public String showProfile(Model model) {
+    public String showProfile(Model model, Timestamp date) {
+        Long datetime = System.currentTimeMillis();
+        Timestamp timestamp = new Timestamp(datetime);
+        booksRepository.findByStartDateAfter();
         model.addAttribute("authors", authorRepository.findAll());
         model.addAttribute("books", booksRepository.findAll());
-
         return "users/profile";
     }
 
