@@ -45,6 +45,9 @@ public class Book {
     @ManyToMany(mappedBy = "books")
     private List<User> users;
 
+    @Column(name = "externalId")
+    private long externalId;
+
     public Book() {
 
     }
@@ -68,6 +71,7 @@ public class Book {
         this.itunes_url = book.getTrackViewUrl();
         this.artwork_url = book.getArtworkUrl100().replace("100x100bb", "300x300bb");
         this.author = author;
+        this.externalId = book.getTrackId();
     }
 
 
