@@ -1,21 +1,19 @@
 package com.draco.bookalert.controllers;
 
 
-import com.draco.bookalert.models.Author;
 import com.draco.bookalert.models.User;
 import com.draco.bookalert.repositories.AuthorRepository;
 import com.draco.bookalert.repositories.BooksRepository;
 import com.draco.bookalert.repositories.UserRepository;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
+
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 @Controller
@@ -54,9 +52,15 @@ public class UserController {
 
     @GetMapping("/profile")
     public String showProfile(Model model, Timestamp date) {
-        Long datetime = System.currentTimeMillis();
-        Timestamp timestamp = new Timestamp(datetime);
-        booksRepository.findByStartDateAfter();
+
+        Date timestamp = new Date();
+        Timestamp ts = new Timestamp(timestamp.getTime());
+
+//        Calendar calender = Calendar.getInstance();
+//        calender.add(Calendar.DATE, +365);
+//        Date toDate = calender.getTime();
+//        boolean fromDate = ts.after(toDate);
+
         model.addAttribute("authors", authorRepository.findAll());
         model.addAttribute("books", booksRepository.findAll());
         return "users/profile";

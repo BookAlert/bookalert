@@ -54,6 +54,14 @@ public class User {
     )
     private List<Book> books;
 
+//    public List<Book> getNewReleases() {
+//        return newReleases;
+//    }
+//
+//    public void setNewReleases(List<Book> newReleases) {
+//        this.newReleases = newReleases;
+//    }
+
     public User() {
 
     }

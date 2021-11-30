@@ -4,6 +4,7 @@ import com.draco.bookalert.models.itunes.iTunesBook;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 
 @Entity
@@ -62,7 +63,7 @@ public class Book {
     public Book(iTunesBook book, Author author) {
         this.title = book.getTrackName();
         this.description = book.getDescription();
-        this.release_date = book.getReleaseDate();
+        this.release_date =  Timestamp.from(Instant.parse(book.getReleaseDate()));;
 //        this.genres = null;
         this.itunes_url = book.getTrackViewUrl();
         this.artwork_url = book.getArtworkUrl100().replace("100x100bb", "300x300bb");

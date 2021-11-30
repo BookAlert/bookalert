@@ -12,13 +12,23 @@ public class iTunesBook {
 
     private String description;
 
-    private Timestamp releaseDate;
+    private String releaseDate;
 
     //private List<String> genres;
 
     private String trackViewUrl;
 
     private String artworkUrl100;
+
+    private Integer trackId;
+
+    public Integer getTrackId() {
+        return trackId;
+    }
+
+    public void setTrackId(Integer trackId) {
+        this.trackId = trackId;
+    }
 
     public String getTrackName() {
         return trackName;
@@ -36,11 +46,11 @@ public class iTunesBook {
         this.description = description;
     }
 
-    public Timestamp getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Timestamp releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
