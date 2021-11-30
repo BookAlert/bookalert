@@ -1,17 +1,15 @@
 package com.draco.bookalert.models;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.draco.bookalert.models.itunes.iTunesBook;
 
 import javax.persistence.*;
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 @Entity
 @Table(name = "books")
-public class Books {
+public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -23,7 +21,7 @@ public class Books {
     private String description;
 
     @Column
-    private String release_date;
+    private Timestamp release_date;
 
 
     @ManyToMany
@@ -34,24 +32,24 @@ public class Books {
     )
     private List<Genre> genres;
 
-    @Column
+    @Column (name = "itunes_url")
     private String itunes_url;
 
-    @Column
+    @Column(name = "artwork_url")
     private String artwork_url;
 
     @ManyToOne
     @JoinColumn(name = "author_id")
-    private Author authors;
+    private Author author;
 
     @ManyToMany(mappedBy = "books")
     private List<User> users;
 
-    public Books() {
+    public Book() {
 
     }
 
-    public Books(long id, String title, String description, String release_date, List<Genre> genres, String itunes_url, String artwork_url, Author authors) {
+    public Book(long id, String title, String description, Timestamp release_date, List<Genre> genres, String itunes_url, String artwork_url, Author author) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -59,9 +57,18 @@ public class Books {
         this.genres = genres;
         this.itunes_url = itunes_url;
         this.artwork_url = artwork_url;
-        this.authors = authors;
+        this.author = author;
     }
 
+    public Book(iTunesBook book, Author author) {
+        this.title = book.getTrackName();
+        this.description = book.getDescription();
+        this.release_date =  Timestamp.from(Instant.parse(book.getReleaseDate()));;
+//        this.genres = null;
+        this.itunes_url = book.getTrackViewUrl();
+        this.artwork_url = book.getArtworkUrl100().replace("100x100bb", "300x300bb");
+        this.author = author;
+    }
 
 
     public long getId() {
@@ -88,11 +95,11 @@ public class Books {
         this.description = description;
     }
 
-    public String getRelease_date() {
+    public Timestamp getRelease_date() {
         return release_date;
     }
 
-    public void setRelease_date(String release_date) {
+    public void setRelease_date(Timestamp release_date) {
         this.release_date = release_date;
     }
 
@@ -120,11 +127,11 @@ public class Books {
         this.artwork_url = artwork_url;
     }
 
-    public Author getAuthors() {
-        return authors;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setAuthors(Author authors) {
-        this.authors = authors;
+    public void setAuthor(Author authors) {
+        this.author = authors;
     }
 }

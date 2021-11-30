@@ -36,11 +36,13 @@ insert into books (artwork_url, description, itunes_url, release_date, title, au
 insert into books (artwork_url, description, itunes_url, release_date, title, author_id) values ('http://dummyimage.com/x.png/cc0000/ffffff', 'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.', 'https://books.apple.com/us/book/unlimited-power/id381545225?uo=4', '2008-06-30T07:00:00Z', 'The Hound of the Baskervilles', 1);
 insert into books (artwork_url, description, itunes_url, release_date, title, author_id) values ('http://dummyimage.com/x.png/dddddd/000000', 'In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.', 'https://books.apple.com/us/book/unlimited-power/id381545225?uo=4', '2008-06-30T07:00:00Z', 'Pieta', 2);
 
-insert into users (email, first_name, is_private, last_name, password, username) values ('rpetegre0@sakura.ne.jp', 'Romola', 1, 'Petegre', 'WBwuXZ', 'rpetegre0');
-insert into users (email, first_name, is_private, last_name, password, username) values ('xiddenden1@kickstarter.com', 'Xymenes', 1, 'Iddenden', 'Pw829os', 'xiddenden1');
-insert into users (email, first_name, is_private, last_name, password, username) values ('gedowes2@weather.com', 'Goddard', 1, 'Edowes', 'zj40ftkn2sk', 'gedowes2');
-insert into users (email, first_name, is_private, last_name, password, username) values ('babbot3@aol.com', 'Becky', 1, 'Abbot', 'tHdwIB0Xk', 'babbot3');
-insert into users (email, first_name, is_private, last_name, password, username) values ('wbach4@japanpost.jp', 'Wade', 1, 'Bach', 'vjIfqu', 'wbach4');
+insert into users (email, first_name, is_private, last_name, password, username) values ('a@a.com', 'a', 1, 'a', 'a', 'a');
+insert into users (email, first_name, is_private, last_name, password, username) values ('b@b.com', 'b', 1, 'b', 'b', 'b');
+insert into users (email, first_name, is_private, last_name, password, username) values ('c@c.com', 'c', 1, 'c', 'c', 'c');
+insert into users (email, first_name, is_private, last_name, password, username) values ('d@d.com', 'd', 1, 'd', 'd', 'd');
+insert into users (email, first_name, is_private, last_name, password, username) values ('e@e.com', 'e', 1, 'e', 'e', 'e');
+
+truncate users;
 
 insert into author_user (user_id, author_id) values (1, 1);
 insert into author_user (user_id, author_id) values (2, 1);

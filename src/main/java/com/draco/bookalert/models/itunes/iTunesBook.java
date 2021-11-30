@@ -1,9 +1,8 @@
 package com.draco.bookalert.models.itunes;
 
-import com.draco.bookalert.models.Books;
-import com.draco.bookalert.models.Genre;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -15,11 +14,21 @@ public class iTunesBook {
 
     private String releaseDate;
 
-//    private List<Genre> genres;
+    //private List<String> genres;
 
     private String trackViewUrl;
 
     private String artworkUrl100;
+
+    private Integer trackId;
+
+    public Integer getTrackId() {
+        return trackId;
+    }
+
+    public void setTrackId(Integer trackId) {
+        this.trackId = trackId;
+    }
 
     public String getTrackName() {
         return trackName;
@@ -45,11 +54,11 @@ public class iTunesBook {
         this.releaseDate = releaseDate;
     }
 
-//    public List<Genre> getGenres() {
+//    public List<String> getGenres() {
 //        return genres;
 //    }
 //
-//    public void setGenres(List<Genre> genres) {
+//    public void setGenres(List<String> genres) {
 //        this.genres = genres;
 //    }
 

@@ -60,7 +60,28 @@
     background-size: cover;
 }
 
-.image-3{
-    background: url("../img/img11.jpeg");
+.image-head-1{
+    background: url("../img/aboutBackground.png");
     background-size: cover;
 }
+
+.image-head-2{
+    background: url("../img/aboutBackground.png");
+    background-size: cover;
+}
+
+.image-head-3{
+    background: url("../img/aboutBackground.png");
+    background-size: cover;
+}
+
+.image-head-4{
+    background: url("../img/aboutBackground.png");
+    background-size: cover;
+}
+
+
+/*!*PROFILE PAGE STYLING*!*/
+/*#myBtn {*/
+/*    background: url("../img/RPO.jpeg")*/
+/*}*/

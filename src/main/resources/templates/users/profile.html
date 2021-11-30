@@ -4,6 +4,7 @@
     <title>User Profile</title>
 
 <body>
+<script src=https://code.jquery.com/jquery-3.6.0.min.js></script>
     <nav th:replace="partials/partials.html :: navbar"></nav>
     <div class="row align-items-center">
         <div class="col col-md-auto">
@@ -16,77 +17,67 @@
         <div class="card-group">
             <!--bootstrap card with 3 horizontal images-->
             <div class="row">
-                    <div class="card col-md-2">
-                        <img class="card-img-top" src=
-                                "https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/300x300bb.jpg">
-                        <form th:action="@{/book}">
-                            <button class="btn btn-outline-info btn-sm">View</button>
-                        </form>
-                    </div>
-                    <div class="card col-md-2">
-                        <img class="card-img-top" src=
-                                "https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/300x300bb.jpg">
-                        <form th:action="@{/book}">
-                            <button class="btn btn-outline-info btn-sm">View</button>
-                        </form>
-                        </div>
-                    <div class="card col-md-2">
-                        <img class="card-img-top" src=
-                                "https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/300x300bb.jpg">
-                        <form th:action="@{/book}">
-                            <button class="btn btn-outline-info btn-sm">View</button>
-                        </form>
-                    </div>
-                    <div class="card col-md-2">
-                        <img class="card-img-top" src=
-                                "https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/300x300bb.jpg">
-                        <form th:action="@{/book}">
-                            <button class="btn btn-outline-info btn-sm">View</button>
-                        </form>
-                    </div>
-                    <div class="card col-md-2">
-                        <img class="card-img-top" src=
-                                "https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/300x300bb.jpg">
-                        <form th:action="@{/book}">
-                            <button class="btn btn-outline-info btn-sm">View</button>
-                        </form>
-                    </div>
-                    <div class="card col-md-2">
-                        <img class="card-img-top" src=
-                                "https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/300x300bb.jpg">
-                        <form th:action="@{/book}">
-                            <button class="btn btn-outline-info btn-sm">View</button>
-                        </form>
+                    <div class="card" th:each="book : ${books}">
+                            <a th:href="@{/book}"><li><img th:src="${book.artwork_url}"></li></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+<!--    &lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal" id="myBtn">-->
+<!--        Book Cover-->
+<!--    </button>-->
 
+<!--    &lt;!&ndash; Modal &ndash;&gt;-->
+<!--    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--        <div class="modal-dialog modal-lg" role="document">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h5 class="modal-title" id="exampleModalLabel">Book title</h5>-->
+<!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                        <span aria-hidden="true">&times;</span>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--                <div class="modal-body">-->
+<!--                    <p>-->
+<!--                        Book description-->
+<!--                    </p>-->
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
     <div class="container">
         <div class="row row-cols-2">
             <div class="col">
-                <h2>Your Books</h2>
-                <img src="https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/60x60bb.jpg">
-                <img src="https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/60x60bb.jpg">
-                <img src="https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/60x60bb.jpg">
-                <img src="https://is4-ssl.mzstatic.com/image/thumb/Publication123/v4/f6/de/be/f6debe75-bce3-55e1-73bf-de8d199e89ab/9780393609103.jpg/60x60bb.jpg">
-            </div>
-            <div class="col">
                 <h2>Your Authors</h2>
-                <ul>
-                    <li><a href="/authors">Stephen King</a></li>
-                    <li><a href="/authors">Stephen King</a></li>
-                    <li><a href="/authors">Stephen King</a></li>
-                    <li><a href="/authors">Stephen King</a></li>
-                    <li><a href="/authors">Stephen King</a></li>
-                    <li><a href="/authors">Stephen King</a></li>
-                    <li><a href="/authors">Stephen King</a></li>
+                <ul th:each="author : ${authors}">
+                    <a th:href="@{'/authors/' + ${author.id}}"><li th:text="${author.name}"></li></a>
                 </ul>
             </div>
 
         </div>
     </div>
+<!--<section>-->
+<!--    <script>-->
+<!--        $(document).ready(function(){-->
+<!--            $("#myBtn").click(function(){-->
+<!--                $("#myModal").modal();-->
+<!--            });-->
+<!--        });-->
+<!--    </script>-->
+
+<!--</section>-->
+
+<footer th:replace="partials/partials.html :: footer"></footer>
+
+<script th:replace="partials/partials.html :: bootstrap-j-query"></script>
+<script th:replace="partials/partials.html :: popper-js"></script>
+<script th:replace="partials/partials.html :: bootstrap-js"></script>
 
 </body>
 </html>

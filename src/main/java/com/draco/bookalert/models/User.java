@@ -38,13 +38,29 @@ public class User {
     )
     private List<Author> authors;
 
+    public List<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
+    }
+
     @ManyToMany
     @JoinTable(
             name="book_user",
             joinColumns ={@JoinColumn(name="user_id")},
             inverseJoinColumns = {@JoinColumn(name="book_id")}
     )
-    private List<Books> books;
+    private List<Book> books;
+
+//    public List<Book> getNewReleases() {
+//        return newReleases;
+//    }
+//
+//    public void setNewReleases(List<Book> newReleases) {
+//        this.newReleases = newReleases;
+//    }
 
     public User() {
 

@@ -1,7 +1,6 @@
 package com.draco.bookalert.controllers;
 
-import com.draco.bookalert.models.Author;
-import com.draco.bookalert.models.Books;
+import com.draco.bookalert.models.Book;
 import com.draco.bookalert.repositories.BooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +13,9 @@ public class BooksController {
 
     @ResponseBody
     @RequestMapping(value = "/add-book", method = RequestMethod.POST)
-    public void addTitle(@RequestBody Books book) {
+
+    public void addTitle(@RequestBody Book book) {
+
         booksRepository.save(book);
     }
 

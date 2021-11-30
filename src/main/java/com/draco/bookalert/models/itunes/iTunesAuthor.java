@@ -1,10 +1,6 @@
 package com.draco.bookalert.models.itunes;
 
-import com.draco.bookalert.models.Books;
-import com.draco.bookalert.models.Genre;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class iTunesAuthor {
