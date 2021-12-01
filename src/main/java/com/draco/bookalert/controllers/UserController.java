@@ -6,6 +6,7 @@ import com.draco.bookalert.repositories.AuthorRepository;
 import com.draco.bookalert.repositories.BooksRepository;
 import com.draco.bookalert.repositories.UserRepository;
 import com.draco.bookalert.services.RefreshService;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,11 +52,12 @@ public class UserController {
     ///=================================== ENDPOINT TO LOGIN PAGE
 
     @GetMapping("/profile")
-    public String showProfile(Model model) {
-
+    public String showProfile(Model model, Authentication authentication) {
 
         model.addAttribute("authors", authorRepository.findAll());
         model.addAttribute("books", booksRepository.findAll());
+        User user = userDao.findByUsername(authentication.getName());
+        model.addAttribute("newReleases", user.getNewReleases());
 
         return "users/profile";
     }
