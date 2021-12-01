@@ -5,6 +5,7 @@ import com.draco.bookalert.models.User;
 import com.draco.bookalert.repositories.AuthorRepository;
 import com.draco.bookalert.repositories.BooksRepository;
 import com.draco.bookalert.repositories.UserRepository;
+import com.draco.bookalert.services.RefreshService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,10 +22,9 @@ public class UserController {
 
     private UserRepository userDao;
     private PasswordEncoder passwordEncoder;
-
     private AuthorRepository authorRepository;
-
     private BooksRepository booksRepository;
+    private RefreshService refreshService;
 
     public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, AuthorRepository authorRepository, BooksRepository booksRepository) {
         this.userDao = userDao;
@@ -51,18 +51,12 @@ public class UserController {
     ///=================================== ENDPOINT TO LOGIN PAGE
 
     @GetMapping("/profile")
-    public String showProfile(Model model, Timestamp date) {
+    public String showProfile(Model model) {
 
-        Date timestamp = new Date();
-        Timestamp ts = new Timestamp(timestamp.getTime());
-
-//        Calendar calender = Calendar.getInstance();
-//        calender.add(Calendar.DATE, +365);
-//        Date toDate = calender.getTime();
-//        boolean fromDate = ts.after(toDate);
 
         model.addAttribute("authors", authorRepository.findAll());
         model.addAttribute("books", booksRepository.findAll());
+
         return "users/profile";
     }
 

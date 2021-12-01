@@ -20,13 +20,13 @@ public class iTunesBook {
 
     private String artworkUrl100;
 
-    private Integer trackId;
+    private long trackId;
 
-    public Integer getTrackId() {
+    public long getTrackId() {
         return trackId;
     }
 
-    public void setTrackId(Integer trackId) {
+    public void setTrackId(long trackId) {
         this.trackId = trackId;
     }
 

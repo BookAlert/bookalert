@@ -10,8 +10,20 @@
         <div class="col col-md-auto">
             <h1>Welcome to your profile!</h1>
             <h2>New and upcoming books</h2>
+            <div class="container mb-10">
+                <div class="card-group">
+                    <!--bootstrap card with 3 horizontal images-->
+                    <div class="row">
+                        <div class="card" th:each="book : ${books}">
+                            <li><img th:src="${book.artwork_url}"></li>
+                            <li th:pubdate="${book.release_date}"></li>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+      </div>
+   
 
     <div class="container mb-10">
         <div class="card-group">
@@ -24,8 +36,10 @@
             </div>
         </div>
 
+  
 
-<div class="container">
+    <div class="container">
+
         <div class="row row-cols-2">
             <div class="col">
                 <h2>Your Authors</h2>
@@ -36,16 +50,7 @@
 
         </div>
     </div>
-<!--<section>-->
-<!--    <script>-->
-<!--        $(document).ready(function(){-->
-<!--            $("#myBtn").click(function(){-->
-<!--                $("#myModal").modal();-->
-<!--            });-->
-<!--        });-->
-<!--    </script>-->
 
-<!--</section>-->
 
 <footer th:replace="partials/partials.html :: footer"></footer>
 
