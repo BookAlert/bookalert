@@ -46,13 +46,21 @@ public class User {
         this.authors = authors;
     }
 
+    public List<Book> getNewReleases() {
+        return newReleases;
+    }
+
+    public void setNewReleases(List<Book> newReleases) {
+        this.newReleases = newReleases;
+    }
+
     @ManyToMany
     @JoinTable(
             name="book_user",
             joinColumns ={@JoinColumn(name="user_id")},
             inverseJoinColumns = {@JoinColumn(name="book_id")}
     )
-    private List<Book> books;
+    private List<Book> newReleases;
 
 //    public List<Book> getNewReleases() {
 //        return newReleases;

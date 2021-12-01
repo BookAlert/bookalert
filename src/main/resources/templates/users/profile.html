@@ -11,21 +11,23 @@
             <h1>Welcome to your profile!</h1>
             <h2>New and upcoming books</h2>
 
+        </div>
+    </div>
 
-            <div class="container mb-10">
-                <div class="card-group">
-                    <!--bootstrap card with 3 horizontal images-->
-                    <div class="row">
-                        <div class="card" th:each="book : ${books}">
-                            <li><img th:src="${book.artwork_url}"></li>
-                            <li th:pubdate="${book.release_date}"></li>
-                        </div>
-                    </div>
+<section>
+    <div class="container mb-10">
+        <div class="card-group">
+            <!--bootstrap card with 3 horizontal images-->
+            <div class="row">
+                <div class="card" th:each="book : ${newReleases}">
+                    <li><img th:src="${book.artwork_url}"></li>
+                    <p th:text="${book.release_date}"></p>
                 </div>
             </div>
         </div>
     </div>
-
+</section>
+<hr>
 
     <div class="container mb-10">
         <div class="card-group">
@@ -53,7 +55,7 @@
         </div>
     </div>
 
-
+<hr>
 <footer th:replace="partials/partials.html :: footer"></footer>
 
 <script th:replace="partials/partials.html :: bootstrap-j-query"></script>

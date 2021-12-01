@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -43,6 +44,7 @@ public class AuthorService {
 
     private void addNewAuthor(Author author, User user) {
         Author savedAuthor = authorRepository.save(author);
+
         user.getAuthors().add(savedAuthor);
         userRepository.save(user);
         List<iTunesBook> iTunesBooks = iTunesService.getAuthorBooks(author.getName());

@@ -42,8 +42,8 @@ public class Book {
     @JoinColumn(name = "author_id")
     private Author author;
 
-    @ManyToMany(mappedBy = "books")
-    private List<User> users;
+//    @ManyToMany(mappedBy = "books")
+//    private List<User> users;
 
     @Column(name = "external_id")
     private long externalId;

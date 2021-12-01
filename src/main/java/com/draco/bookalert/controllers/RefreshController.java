@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class RefreshController {
 
+
     @Autowired
     private RefreshService refreshService;
 
@@ -17,4 +18,5 @@ public class RefreshController {
 //        refreshService.run();
 //        System.out.println("Alerted user");
 //    }
+
 }
