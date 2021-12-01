@@ -8,5 +8,4 @@ import java.util.Collection;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByUsername(String username);
-    //Collection<User> findByAuthors(Author author);
 }

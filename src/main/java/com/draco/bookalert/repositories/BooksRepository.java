@@ -11,6 +11,5 @@ import java.util.List;
 public interface BooksRepository extends JpaRepository<Book, Long> {
     List<Book> findByAuthor_IdAndTitle(long id, String trackName);
     List<Book> findBookByAuthor(Author author);
-//    Book findAllByRelease_dateGreaterThan(Book newBook);
-//    Book findBooksByRelease_dateIsWithinMonth();
+
 }

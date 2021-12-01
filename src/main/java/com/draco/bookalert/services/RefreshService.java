@@ -10,6 +10,7 @@ import com.draco.bookalert.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.util.*;
 
@@ -28,7 +29,7 @@ public class RefreshService {
     @Autowired
     private BooksRepository booksRepository;
 
-
+@Transactional
     public void run() {
         List<Author> allAuthors = authorRepository.findAll();
         List<Book> releaseBooks = new ArrayList<>();
@@ -38,8 +39,9 @@ public class RefreshService {
             for (iTunesBook iTunesBook : iTunesBooks) {
 
                 List<Book> existingBooks = booksRepository.findByAuthor_IdAndTitle(author.getId(), iTunesBook.getTrackName());
-                System.out.println(existingBooks);
+
                 if (existingBooks.isEmpty()) {
+                    System.out.println(existingBooks);
                     Book newBook = booksRepository.save(new Book(iTunesBook, author));
                     Date now = new Date();
 
