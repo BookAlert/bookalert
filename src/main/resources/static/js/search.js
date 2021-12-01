@@ -15,7 +15,7 @@ $(() => {
     function buildSearchResults(results) {
         const html = results.map(result => `
             
-            <div class="author-search-result" data-name="${result.artistName}"> <i class="fas fa-plus mr-2"></i>${result.artistName} </div>
+            <div class="author-search-result" data-name="${result.artistName}" id="search"> <i class="fas fa-plus mr-2"></i>${result.artistName} </div>
             
           `).join("")
         $('#authorResults').html(html)
@@ -33,6 +33,23 @@ $(() => {
             method: "POST",
             body: JSON.stringify({name: authorName})
         })
+        // $.post("/search", {'search': $('#search').val()}, function () {
+        //     iziToast.show({
+        //         title: 'Success',
+        //         message: 'Successfully added author!',
+        //         position: 'topRight',
+        //         timeout: 5000,
+        //         color: 'green'
+        //     });
+        //
+        // }).fail(function () {
+        //     iziToast.show({
+        //         title: 'Fail',
+        //         message: 'Failed to add author',
+        //         position: 'topLeft',
+        //         color: 'red'
+        //     });
+        // });
 
     })
 
