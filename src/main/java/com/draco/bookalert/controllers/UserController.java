@@ -72,6 +72,13 @@ public class UserController {
         return "authors/authors";
     }
 
+//    @PostMapping("/authors/{id}")
+//    public String authorPage(Model model) {
+//        model.addAttribute("authors", authorRepository.findAll());
+//        model.addAttribute("books", booksRepository.findAll());
+//        return "authors/authors";
+//    }
+
 
     @PostMapping("/profile")
     public String profilePage(Model model) {

@@ -28,7 +28,7 @@
 </style>
 
 <body>
-
+<script src=https://code.jquery.com/jquery-3.6.0.min.js></script>
 <main>
 <h1>Author</h1>
     <div class="b-example-divider"></div>
@@ -58,12 +58,25 @@
                 possible modal component
             </h3>
         </div>
+        <div class="container mb-10">
+            <div class="card-group">
+                <!--bootstrap card with 3 horizontal images-->
+                <div class="row">
+                    <div class="card" th:each="book : ${books}">
+                        <a th:href="@{/book}"><li><img th:src="${book.artwork_url}"></li></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
 
 </main>
 
 
-
+<script th:replace="partials/partials.html :: bootstrap-j-query"></script>
+<script th:replace="partials/partials.html :: popper-js"></script>
+<script th:replace="partials/partials.html :: bootstrap-js"></script>
 
 
 </body>
