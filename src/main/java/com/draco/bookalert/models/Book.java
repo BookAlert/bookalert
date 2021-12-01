@@ -138,4 +138,12 @@ public class Book {
     public void setAuthor(Author authors) {
         this.author = authors;
     }
+
+    public long getExternalId() {
+        return externalId;
+    }
+
+    public void setExternalId(long externalId) {
+        this.externalId = externalId;
+    }
 }
