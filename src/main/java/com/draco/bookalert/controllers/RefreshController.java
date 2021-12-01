@@ -9,15 +9,12 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class RefreshController {
 
-
     @Autowired
     private RefreshService refreshService;
 
-
-    @Scheduled(fixedRate = 3600000)
-   // @Scheduled(fixedDelay = 1000)
-    public void scheduleRelease() {
-        refreshService.run();
-        System.out.println("Alerted user");
-    }
+//    @Scheduled(fixedRate = 3600000)
+//    public void scheduleRelease() {
+//        refreshService.run();
+//        System.out.println("Alerted user");
+//    }
 }
