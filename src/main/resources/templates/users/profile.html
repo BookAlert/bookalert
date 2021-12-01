@@ -10,17 +10,17 @@
         <div class="col col-md-auto">
             <h1>Welcome to your profile!</h1>
             <h2>New and upcoming books</h2>
-            <div class="container mb-10">
-                <div class="card-group">
-                    <!--bootstrap card with 3 horizontal images-->
-                    <div class="row">
-                        <div class="card" th:each="book : ${books}">
-                            <li><img th:src="${book.artwork_url}"></li>
-                            <li th:pubdate="${book.release_date}"></li>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!--            <div class="container mb-10">-->
+<!--                <div class="card-group">-->
+<!--                    &lt;!&ndash;bootstrap card with 3 horizontal images&ndash;&gt;-->
+<!--                    <div class="row">-->
+<!--                        <div class="card" th:each="book : ${books}">-->
+<!--                            <li><img th:src="${book.artwork_url}"></li>-->
+<!--                            <li th:pubdate="${book.release_date}"></li>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
       </div>
    
