@@ -2,6 +2,7 @@ $(() => {
 
     ///=================  FETCH DATA FOR AUTHOR
     $('body').on('click', '#authorSearch', function(){
+        console.log("testing");
         const text = $('#authorSearchInput').val();
         var url = new URL('author-suggestions', window.location.origin )
 
