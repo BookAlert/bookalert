@@ -1,6 +1,7 @@
 package com.draco.bookalert.controllers;
 
 
+import com.draco.bookalert.models.Author;
 import com.draco.bookalert.models.User;
 import com.draco.bookalert.repositories.AuthorRepository;
 import com.draco.bookalert.repositories.BooksRepository;
@@ -64,16 +65,18 @@ public class UserController {
 
     @GetMapping("/authors/{id}")
     public String authorId(@PathVariable long id, Model authorModel) {
+        Author author = authorRepository.getById(id);
         authorModel.addAttribute("author", authorRepository.getById(id));
+        authorModel.addAttribute("books", booksRepository.findBookByAuthor(author));
         return "authors/authors";
     }
 
-//    @PostMapping("/authors/{id}")
-//    public String authorPage(Model model) {
-//        model.addAttribute("authors", authorRepository.findAll());
-//        model.addAttribute("books", booksRepository.findAll());
-//        return "authors/authors";
-//    }
+    @PostMapping("/authors/{id}")
+    public String authorPage(Model model) {
+        model.addAttribute("authors", authorRepository.findAll());
+        model.addAttribute("books", booksRepository.findAll());
+        return "authors/authors";
+    }
 
 
     @PostMapping("/profile")
