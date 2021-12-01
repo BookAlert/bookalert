@@ -18,12 +18,6 @@ public class Author {
     @OneToMany(mappedBy = "author")
     private List<Book> books;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User users;
-
-//    @ManyToMany(mappedBy = "authors")
-//    private List<User> users;
 
     public Author() {
 

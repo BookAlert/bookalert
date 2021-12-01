@@ -45,7 +45,7 @@ public class Book {
     @ManyToMany(mappedBy = "books")
     private List<User> users;
 
-    @Column(name = "externalId")
+    @Column(name = "external_id")
     private long externalId;
 
     public Book() {

@@ -10,6 +10,4 @@ import java.util.List;
 public interface AuthorRepository extends JpaRepository<Author, Long> {
     Author findAuthorByName(String name);
 
-//    List<Author> findAllByName(String name);
-
 }
