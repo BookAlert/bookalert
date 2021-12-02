@@ -42,10 +42,10 @@ public class Book {
     @JoinColumn(name = "author_id")
     private Author author;
 
-    @ManyToMany(mappedBy = "books")
-    private List<User> users;
+//    @ManyToMany(mappedBy = "books")
+//    private List<User> users;
 
-    @Column(name = "externalId")
+    @Column(name = "external_id")
     private long externalId;
 
     public Book() {
@@ -137,5 +137,13 @@ public class Book {
 
     public void setAuthor(Author authors) {
         this.author = authors;
+    }
+
+    public long getExternalId() {
+        return externalId;
+    }
+
+    public void setExternalId(long externalId) {
+        this.externalId = externalId;
     }
 }
