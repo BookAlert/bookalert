@@ -34,23 +34,24 @@ $(() => {
             method: "POST",
             body: JSON.stringify({name: authorName})
         })
-        // $.post("/search", {'search': $('#search').val()}, function () {
-        //     iziToast.show({
-        //         title: 'Success',
-        //         message: 'Successfully added author!',
-        //         position: 'topRight',
-        //         timeout: 5000,
-        //         color: 'green'
-        //     });
-        //
-        // }).fail(function () {
-        //     iziToast.show({
-        //         title: 'Fail',
-        //         message: 'Failed to add author',
-        //         position: 'topLeft',
-        //         color: 'red'
-        //     });
-        // });
+        // ******This is the iziToast code
+        $.post("/search", {'search': $('#search').val()}, function () {
+            iziToast.show({
+                title: 'Success',
+                message: 'Successfully added author!',
+                position: 'topRight',
+                timeout: 5000,
+                color: 'green'
+            });
+
+        }).fail(function () {
+            iziToast.show({
+                title: 'Fail',
+                message: 'Failed to add author',
+                position: 'topLeft',
+                color: 'red'
+            });
+        });
 
     })
 
