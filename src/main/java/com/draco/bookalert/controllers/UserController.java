@@ -63,6 +63,7 @@ public class UserController {
         return "users/profile";
     }
 
+    /// =================== ENDPOINT TO INDIVIDUAL AUTHOR PAGE
     @GetMapping("/authors/{id}")
     public String authorId(@PathVariable long id, Model authorModel) {
         Author author = authorRepository.getById(id);
@@ -71,12 +72,13 @@ public class UserController {
         return "authors/authors";
     }
 
-//    @PostMapping("/authors/{id}")
-//    public String authorPage(Model model) {
+    @PostMapping("/authors/{id}/delete")
+    public String authorPage(@PathVariable long id) {
 //        model.addAttribute("authors", authorRepository.findAll());
 //        model.addAttribute("books", booksRepository.findAll());
-//        return "authors/authors";
-//    }
+        authorRepository.deleteById(id);
+        return "redirect:/users/profile";
+    }
 
 
     @PostMapping("/profile")
