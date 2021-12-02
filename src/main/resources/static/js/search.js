@@ -1,10 +1,10 @@
 $(() => {
 
     ///=================  FETCH DATA FOR AUTHOR
-    $('body').on('click', '#authorSearch', function(){
+    $('body').on('click', '#authorSearch', function () {
         console.log("testing");
         const text = $('#authorSearchInput').val();
-        var url = new URL('author-suggestions', window.location.origin )
+        var url = new URL('author-suggestions', window.location.origin)
 
         url.search = new URLSearchParams({search: text}).toString();
 
@@ -12,20 +12,27 @@ $(() => {
             .then(response => response.json())
             .then(buildSearchResults)
     })
+
 //================  FUNCTION TO MAP AUTHOR RESULTS TO HTML
     function buildSearchResults(results) {
         const html = results.map(result => `
             
-            <div class="author-search-result" data-name="${result.artistName}"> <i class="fas fa-plus mr-2"></i>${result.artistName} </div>
+            <div class="author-search-result" data-name="${result.artistName}"> <i class="fas fa-plus mr-2" id="search"></i>${result.artistName} </div>
             
           `).join("")
         $('#authorResults').html(html)
     }
 
     //==================  POST RESULTS OF AUTHOR SEARCH W/ EVENT HANDLER
-    $('body').on('click', '.author-search-result', function(){
+    $('body').on('click', '.author-search-result', function () {
         const authorName = $(this).data("name");
-
+        iziToast.success({
+            title: 'Success',
+            message: 'Successfully added author!',
+            position: 'center',
+            timeout: 5000,
+            color: 'green'
+        })
         fetch("add-author", {
             headers: {
                 'Accept': 'application/json',
@@ -34,12 +41,12 @@ $(() => {
             method: "POST",
             body: JSON.stringify({name: authorName})
         })
+    });
 
-    })
-
-
-
-
+        //==================================click event for iziToast==================
+    // $('#search').click(function () {
+    //
+    // });
 
     //=================  FETCH DATA FOR TITLES/BOOKS
     $('#titleSearch').on('click',  function(){
@@ -110,3 +117,5 @@ $(() => {
 
     })
 })
+
+
