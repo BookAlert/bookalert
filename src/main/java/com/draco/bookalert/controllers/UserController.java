@@ -52,11 +52,13 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @RequestMapping("/search")
-    public String searchToAuthors(Model model){
+//    @RequestMapping("/search")
+//    public String searchToAuthors(@ModelAttribute Model model){
+//    String ModelAndView = new ModelAndView();
+//    model.containsAttribute("model", model);
+//    return "redirect:/authors/{id}";
+//}
 
-        return "redirect:/authors/{id}";
-    }
 
 
 
