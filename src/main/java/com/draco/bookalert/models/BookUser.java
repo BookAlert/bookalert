@@ -23,6 +23,16 @@ public class BookUser {
     @JoinColumn(name = "status_id")
     private Status status;
 
+    public BookUser() {
+    }
+
+    public BookUser(long id, User user, Book book, Status status) {
+        this.id = id;
+        this.user = user;
+        this.book = book;
+        this.status = status;
+    }
+
     public long getId() {
         return id;
     }
