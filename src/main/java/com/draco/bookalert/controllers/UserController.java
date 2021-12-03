@@ -78,6 +78,12 @@ public class UserController {
         return "authors/authors";
     }
 
+    @GetMapping("/book/{id}")
+    public String bookPage(@PathVariable long id, Model model) {
+        model.addAttribute("book", booksRepository.getById(id));
+        return "books/book";
+    }
+
 
     @PostMapping("/profile")
     public String profilePage(Model model) {
