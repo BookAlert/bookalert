@@ -49,6 +49,16 @@ public class UserController {
         return "redirect:/login";
     }
 
+    @PostMapping("/search")
+    public String searchToAuthors(Model model){
+//        String hash = passwordEncoder.encode(user.getPassword());
+//        user.setPassword(hash);
+//        userDao.save(user);
+        return "redirect:/authors/{id}";
+    }
+
+
+
     ///=================================== ENDPOINT TO LOGIN PAGE
 
     @GetMapping("/profile")
