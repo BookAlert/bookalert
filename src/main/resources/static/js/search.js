@@ -1,5 +1,8 @@
 $(() => {
-
+    iziToast.error({
+        title: 'Error',
+        message: 'Illegal operation',
+    });
     ///=================  FETCH DATA FOR AUTHOR
     $('body').on('click', '#authorSearch', function () {
         console.log("testing");
