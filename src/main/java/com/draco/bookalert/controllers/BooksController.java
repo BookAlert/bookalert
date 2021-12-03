@@ -55,6 +55,26 @@ public class BooksController {
 
     }
 
+    @RequestMapping(value = "/dismiss", method = RequestMethod.POST)
+    public void dismiss(@RequestBody Book book, Authentication authentication) {
+        Book newBook = booksRepository.findByTitle(book.getTitle());
+        String username = authentication.getName();
+        Status status = new Status();
+        status.setId(2);
+        statusRepository.save(status);
+        if(newBook == null) {
+            booksRepository.save(book);
+            newBook = book;
+        }
 
+        BookUser bookUser = new BookUser();
+        User user = userRepository.findByUsername(username);
+        bookUser.setStatus(status);
+        bookUser.setUser(user);
+        bookUser.setBook(newBook);
+        bookUserRepository.save(bookUser);
+
+
+    }
 
 }
