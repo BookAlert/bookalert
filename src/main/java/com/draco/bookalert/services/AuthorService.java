@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class AuthorService {
     @Autowired
     private UserRepository userRepository;
 
+    //=====================  ADD AUTHOR FUNCTIONALITY
     public void addAuthor(Author author, String username) {
         User user = userRepository.findByUsername(username);
         Author existingAuthor = authorRepository.findAuthorByName(author.getName());
@@ -41,8 +43,10 @@ public class AuthorService {
         }
     }
 
+
     private void addNewAuthor(Author author, User user) {
         Author savedAuthor = authorRepository.save(author);
+
         user.getAuthors().add(savedAuthor);
         userRepository.save(user);
         List<iTunesBook> iTunesBooks = iTunesService.getAuthorBooks(author.getName());
@@ -65,4 +69,30 @@ public class AuthorService {
             userRepository.save(user);
         }
     }
+
+
+
+  //=============== DELETE AUTHOR FUNCTIONALITY
+    public void deleteAuthor(Author author, String username) {
+
+        User user = userRepository.findByUsername(username);
+        findToDeleteAuthor(author, user);
+
+    }
+
+    public void findToDeleteAuthor(Author author, User user) {
+        if(user.getAuthors().contains(author)) {
+            user.getAuthors().remove(author);
+            userRepository.save(user);
+        }
+
+
+    }
+
+    public Author findById(long id) {
+        return authorRepository.findById(id);
+    }
+
+
+
 }

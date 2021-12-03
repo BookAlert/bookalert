@@ -1,10 +1,10 @@
 $(() => {
 
     ///=================  FETCH DATA FOR AUTHOR
-    $('body').on('click', '#authorSearch', function(){
+    $('body').on('click', '#authorSearch', function () {
         console.log("testing");
         const text = $('#authorSearchInput').val();
-        var url = new URL('author-suggestions', window.location.origin )
+        var url = new URL('author-suggestions', window.location.origin)
 
         url.search = new URLSearchParams({search: text}).toString();
 
@@ -12,18 +12,19 @@ $(() => {
             .then(response => response.json())
             .then(buildSearchResults)
     })
+
 //================  FUNCTION TO MAP AUTHOR RESULTS TO HTML
     function buildSearchResults(results) {
         const html = results.map(result => `
             
-            <div class="author-search-result" data-name="${result.artistName}"> <i class="fas fa-plus mr-2"></i>${result.artistName} </div>
+            <div class="author-search-result" data-name="${result.artistName}"> <i class="fas fa-plus mr-2" id="search"></i>${result.artistName} </div>
             
           `).join("")
         $('#authorResults').html(html)
     }
 
     //==================  POST RESULTS OF AUTHOR SEARCH W/ EVENT HANDLER
-    $('body').on('click', '.author-search-result', function(){
+    $('body').on('click', '.author-search-result', function () {
         const authorName = $(this).data("name");
 
         fetch("add-author", {
@@ -33,13 +34,28 @@ $(() => {
             },
             method: "POST",
             body: JSON.stringify({name: authorName})
+        }).then( () => {
+            iziToast.success({
+                title: 'Success',
+                message: 'Successfully added author!',
+                position: 'center',
+                timeout: 20000
+            })
+        }).catch(() => {
+            iziToast.fail({
+                title: 'Failure',
+                message: 'Author exists!',
+                position: 'center',
+                timeout: 5000
+
+            })
         })
+    });
 
-    })
-
-
-
-
+        //==================================click event for iziToast==================
+    // $('#search').click(function () {
+    //
+    // });
 
     //=================  FETCH DATA FOR TITLES/BOOKS
     $('#titleSearch').on('click',  function(){
@@ -59,9 +75,9 @@ $(() => {
 
     //================ FUNCTION TO MAP TITLE RESULTS TO HTML
     function buildTitleResults(results) {
+        console.log(results)
 
         let html = results.map(result =>
-
         `
         <div>
             <img alt="image" data-src="${result.artworkUrl100} hidden" src="${result.artworkUrl100}">
@@ -74,31 +90,28 @@ $(() => {
                     <span  data-date="${result.releaseDate}">${result.releaseDate}</span>
                     <a data-href="${result.trackViewUrl}">${result.trackViewUrl}</a>
                 </div>
-                <button class="btn btn-outline-info title-search-result" type="submit" id="${result.id}">Add Title</button>
+                <button class="btn btn-outline-info title-search-result" type="submit" id="${result.trackId}">Add Title</button>
+
             </div>
         </div>
             
             
           `).join("")
+
         $('#titleResults').html(html)
     }
 
 
     //==================  POST RESULTS OF TITLE SEARCH W/ EVENT HANDLER
-    $('body').on('click', '.title-search-result', function(){
+    $('body').on('click', '.title-search-result', async function(){
         let id = $(this).attr('id')
         console.log(id)
-        let newTitle = {
-            title : $("h2").data("title"),
-            description : $("p").data("description"),
-            release_date : $("span").data("date"),
-            itunes_url : $("a").data("href"),
-            artwork_url : $("img").data("src")
-        }
+         let newTitle = await getTitle(id);
+
 
         console.log(newTitle);
 
-        fetch(`add-book/${id}`, {
+        fetch(`add-book`, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -109,4 +122,22 @@ $(() => {
         })
 
     })
+
+    function getTitle(id) {
+        return fetch(`https://itunes.apple.com/lookup?id=${id}`).then(response => response.json().then(result => {
+            let book = result.results[0];
+
+            return {
+                externalId: book.trackId,
+                title: book.trackCensoredName,
+                description: book.description,
+                release_date: book.releaseDate,
+                itunes_url: book.trackViewUrl,
+                artwork_url: book.artworkUrl100
+            }
+        }))
+
+    }
 })
+
+

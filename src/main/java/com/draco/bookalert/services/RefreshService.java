@@ -29,38 +29,49 @@ public class RefreshService {
     @Autowired
     private BooksRepository booksRepository;
 
-@Transactional
+    @Transactional
     public void run() {
+
         List<Author> allAuthors = authorRepository.findAll();
-        List<Book> releaseBooks = new ArrayList<>();
+
         for (Author author : allAuthors) {
 
             List<iTunesBook> iTunesBooks = iTunesService.getAuthorBooks(author.getName());
+
+
+            Map<Long, Book> savedBookMap = new HashMap<>();
+            for (Book book : author.getBooks()) {
+                savedBookMap.put(book.getExternalId(), book);
+            }
             for (iTunesBook iTunesBook : iTunesBooks) {
 
-                List<Book> existingBooks = booksRepository.findByAuthor_IdAndTitle(author.getId(), iTunesBook.getTrackName());
+                if (savedBookMap.get(iTunesBook.getTrackId()) == null) {
 
-                if (existingBooks.isEmpty()) {
-                    System.out.println(existingBooks);
+                    Collection<User> usersList = userRepository.findByAuthors(author);
+
                     Book newBook = booksRepository.save(new Book(iTunesBook, author));
-                    Date now = new Date();
+                    System.out.println("Found new book release!");
+                    for (User user : usersList) {
 
-                    if (newBook.getRelease_date().before(now)) {
-                            // new release detected
-                            // add new record to the book_user table:
-                            // user_id = currentUser’s
-                            // book_id = newBook.getId()
-                            // Get all the users that have a record in the author_user table, where the author_id = author.getId()
-                            // ie: users that have this author saved in their library
-                        releaseBooks.add(newBook);
+                        user.getNewReleases().add(newBook);
+                        userRepository.save(user);
                     }
+//                    Date now = new Date();
+//                    System.out.println(now);
+//                    if (newBook.getRelease_date().after(now)) {
+//                            // new release detected
+//                            // add new record to the book_user table:
+//                            // user_id = currentUser’s
+//                            // book_id = newBook.getId()
+//                            // Get all the users that have a record in the author_user table, where the author_id = author.getId()
+//                            // ie: users that have this author saved in their library
+//
+//                    }
                 }
             }
         }
-        System.out.println(releaseBooks);
+
     }
-
-
 
 
 }

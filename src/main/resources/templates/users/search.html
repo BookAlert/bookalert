@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials/partials.html :: head('Search Page')">
     <title>Search!</title>
+    <link th:rel="stylesheet" th:href="@{/css/iziToast.css/iziToast.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
@@ -19,19 +21,19 @@
 <!--                <div class="nonUserSearch" th:object="${user}" th:if="${!user.exists}"></div>-->
             </div>
         </div>
-
-        <div th:if="${!param.isEmpty()}">
-            <div>
-                <div class="errorMsg" th:if="${param.exists}">
-                    <p>Author currently exists</p>
-                </div>
-            </div>
-            <div>
-                <div class="errorMsg" th:if="${param.saved}">
-                    <p>Author has been added</p>
-                </div>
-            </div>
-        </div>
+<div>
+    <div class="errorMsg" th:if="${param.exists}">
+        <p>Author currently exists</p>
+    </div>
+</div>
+<div>
+    <div class="errorMsg" th:if="${param.saved}">
+        <p>Author has been added</p>
+    </div>
+</div>
+<!--        <div th:if="${!param.isEmpty()}">-->
+<!--          -->
+<!--        </div>-->
 
         <div class="col-md-4">
             <h3><label for="titleSearchInput" class="form-label">Search by Title</label></h3>
@@ -46,9 +48,14 @@
 
             </div>
         </div>
+<script th:src="@{/js/iziToast.min.js}"></script>
 <script th:replace="partials/partials.html :: bootstrap-j-query"></script>
 <script th:replace="partials/partials.html :: popper-js"></script>
 <script th:replace="partials/partials.html :: bootstrap-js"></script>
 <script th:src="@{/js/search.js}"></script>
+
+
+
+
 </body>
 </html>
