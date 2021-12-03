@@ -32,6 +32,7 @@ public class AuthorService {
     @Autowired
     private UserRepository userRepository;
 
+    //=====================  ADD AUTHOR FUNCTIONALITY
     public void addAuthor(Author author, String username) {
         User user = userRepository.findByUsername(username);
         Author existingAuthor = authorRepository.findAuthorByName(author.getName());
@@ -41,6 +42,7 @@ public class AuthorService {
             addExistingAuthor(existingAuthor, user);
         }
     }
+
 
     private void addNewAuthor(Author author, User user) {
         Author savedAuthor = authorRepository.save(author);
@@ -67,4 +69,30 @@ public class AuthorService {
             userRepository.save(user);
         }
     }
+
+
+
+  //=============== DELETE AUTHOR FUNCTIONALITY
+    public void deleteAuthor(Author author, String username) {
+
+        User user = userRepository.findByUsername(username);
+        findToDeleteAuthor(author, user);
+
+    }
+
+    public void findToDeleteAuthor(Author author, User user) {
+        if(user.getAuthors().contains(author)) {
+            user.getAuthors().remove(author);
+            userRepository.save(user);
+        }
+
+
+    }
+
+    public Author findById(long id) {
+        return authorRepository.findById(id);
+    }
+
+
+
 }

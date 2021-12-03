@@ -32,10 +32,10 @@ public class Book {
     )
     private List<Genre> genres;
 
-    @Column (name = "itunes_url")
+    @Column (name = "itunes_url", columnDefinition = "TEXT")
     private String itunes_url;
 
-    @Column(name = "artwork_url")
+    @Column(name = "artwork_url", columnDefinition = "TEXT")
     private String artwork_url;
 
     @ManyToOne
@@ -47,6 +47,9 @@ public class Book {
 
     @Column(name = "external_id")
     private long externalId;
+
+    @OneToMany(mappedBy = "book")
+    private List<BookUser> bookUser;
 
     public Book() {
 

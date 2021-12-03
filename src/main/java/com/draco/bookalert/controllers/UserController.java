@@ -6,6 +6,7 @@ import com.draco.bookalert.models.User;
 import com.draco.bookalert.repositories.AuthorRepository;
 import com.draco.bookalert.repositories.BooksRepository;
 import com.draco.bookalert.repositories.UserRepository;
+import com.draco.bookalert.services.AuthorService;
 import com.draco.bookalert.services.RefreshService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,6 +34,7 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
         this.authorRepository = authorRepository;
         this.booksRepository = booksRepository;
+
     }
 
     /// ================================== ENDPOINT TO SIGN UP PAGE
@@ -63,6 +65,7 @@ public class UserController {
         return "users/profile";
     }
 
+    /// =================== ENDPOINT TO INDIVIDUAL AUTHOR PAGE
     @GetMapping("/authors/{id}")
     public String authorId(@PathVariable long id, Model authorModel) {
         Author author = authorRepository.getById(id);
@@ -71,6 +74,7 @@ public class UserController {
         return "authors/authors";
     }
 
+
     @PostMapping("/authors/{id}")
     public String authorPage(Model model) {
         model.addAttribute("authors", authorRepository.findAll());
@@ -78,20 +82,19 @@ public class UserController {
         return "authors/authors";
     }
 
+    @GetMapping("/book/{id}")
+    public String bookPage(@PathVariable long id, Model model) {
+        model.addAttribute("book", booksRepository.getById(id));
+        return "books/book";
+    }
+
+
 
     @PostMapping("/profile")
     public String profilePage(Model model) {
         model.addAttribute("authors", authorRepository.findAll());
         model.addAttribute("books", booksRepository.findAll());
         return "users/profile";
-    }
-
-
-    @GetMapping("/test")
-    @ResponseBody
-    public String deleteUser() {
-        userDao.deleteById(5L);
-        return "test";
     }
 
 
