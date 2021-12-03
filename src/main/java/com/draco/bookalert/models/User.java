@@ -63,6 +63,11 @@ public class User {
     private List<Book> newReleases;
 
 
+    @OneToMany(mappedBy = "user")
+    private List<BookUser> bookUser;
+
+
+
     public User() {
 
     }

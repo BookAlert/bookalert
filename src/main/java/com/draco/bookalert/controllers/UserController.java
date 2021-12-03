@@ -74,28 +74,12 @@ public class UserController {
         return "authors/authors";
     }
 
-//    @PostMapping("/authors/{id}/delete")
-//    public String authorPage(@PathVariable long id) {
-//       model.addAttribute("authors", authorRepository.findAll());
-//       model.addAttribute("books", booksRepository.findAll());
-//
-//        return "redirect:/users/profile";
-//    }
-
 
     @PostMapping("/profile")
     public String profilePage(Model model) {
         model.addAttribute("authors", authorRepository.findAll());
         model.addAttribute("books", booksRepository.findAll());
         return "users/profile";
-    }
-
-
-    @GetMapping("/test")
-    @ResponseBody
-    public String deleteUser() {
-        userDao.deleteById(5L);
-        return "test";
     }
 
 

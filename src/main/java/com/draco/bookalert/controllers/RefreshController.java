@@ -17,4 +17,5 @@ public class RefreshController {
         refreshService.run();
         System.out.println("Alerted user");
     }
+
 }
