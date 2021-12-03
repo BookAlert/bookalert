@@ -48,6 +48,9 @@ public class Book {
     @Column(name = "external_id")
     private long externalId;
 
+    @OneToMany(mappedBy = "book")
+    private List<BookUser> bookUser;
+
     public Book() {
 
     }

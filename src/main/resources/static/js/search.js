@@ -74,7 +74,7 @@ $(() => {
                     <span  data-date="${result.releaseDate}">${result.releaseDate}</span>
                     <a data-href="${result.trackViewUrl}">${result.trackViewUrl}</a>
                 </div>
-                <button class="btn btn-outline-info title-search-result" type="submit" id="${result.id}">Add Title</button>
+                <button class="btn btn-outline-info title-search-result" type="submit">Add Title</button>
             </div>
         </div>
             
@@ -86,8 +86,8 @@ $(() => {
 
     //==================  POST RESULTS OF TITLE SEARCH W/ EVENT HANDLER
     $('body').on('click', '.title-search-result', function(){
-        let id = $(this).attr('id')
-        console.log(id)
+        // let id = $(this).attr('id')
+        // console.log(id)
         let newTitle = {
             title : $("h2").data("title"),
             description : $("p").data("description"),
@@ -98,7 +98,7 @@ $(() => {
 
         console.log(newTitle);
 
-        fetch(`add-book/${id}`, {
+        fetch(`add-book`, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'

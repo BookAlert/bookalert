@@ -62,6 +62,9 @@ public class User {
     )
     private List<Book> newReleases;
 
+    @OneToMany(mappedBy = "user")
+    private List<BookUser> bookUser;
+
 //    public List<Book> getNewReleases() {
 //        return newReleases;
 //    }
