@@ -2,6 +2,7 @@ package com.draco.bookalert.services;
 
 import com.draco.bookalert.models.Author;
 import com.draco.bookalert.models.Book;
+import com.draco.bookalert.models.BookUser;
 import com.draco.bookalert.models.User;
 import com.draco.bookalert.models.itunes.iTunesBook;
 import com.draco.bookalert.repositories.AuthorRepository;
@@ -29,6 +30,9 @@ public class RefreshService {
     @Autowired
     private BooksRepository booksRepository;
 
+    @Autowired
+    private EmailService emailService;
+
     @Transactional
     public void run() {
 
@@ -50,11 +54,14 @@ public class RefreshService {
                     Collection<User> usersList = userRepository.findByAuthors(author);
 
                     Book newBook = booksRepository.save(new Book(iTunesBook, author));
+                    BookUser book = new BookUser();
                     System.out.println("Found new book release!");
                     for (User user : usersList) {
 
                         user.getNewReleases().add(newBook);
                         userRepository.save(user);
+                        emailService.prepareAndSend(book, "You have new titles " + book.getBook().getTitle(), book.getBook().getDescription());
+
                     }
 //                    Date now = new Date();
 //                    System.out.println(now);
