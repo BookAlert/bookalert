@@ -6,6 +6,7 @@ import com.draco.bookalert.models.User;
 import com.draco.bookalert.repositories.AuthorRepository;
 import com.draco.bookalert.repositories.BooksRepository;
 import com.draco.bookalert.repositories.UserRepository;
+import com.draco.bookalert.services.AuthorService;
 import com.draco.bookalert.services.RefreshService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,6 +34,7 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
         this.authorRepository = authorRepository;
         this.booksRepository = booksRepository;
+
     }
 
     /// ================================== ENDPOINT TO SIGN UP PAGE
@@ -72,13 +74,13 @@ public class UserController {
         return "authors/authors";
     }
 
-    @PostMapping("/authors/{id}/delete")
-    public String authorPage(@PathVariable long id) {
-//        model.addAttribute("authors", authorRepository.findAll());
-//        model.addAttribute("books", booksRepository.findAll());
-        authorRepository.deleteById(id);
-        return "redirect:/users/profile";
-    }
+//    @PostMapping("/authors/{id}/delete")
+//    public String authorPage(@PathVariable long id) {
+//       model.addAttribute("authors", authorRepository.findAll());
+//       model.addAttribute("books", booksRepository.findAll());
+//
+//        return "redirect:/users/profile";
+//    }
 
 
     @PostMapping("/profile")
