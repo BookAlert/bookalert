@@ -44,7 +44,10 @@
                     He wrote the novels Ready Player One, Armada, and Ready Player Two and co-wrote the screenplay for the film adaptation of Ready Player One, directed by Steven Spielberg. </p>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                     <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
-                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+                    <form th:action="@{'/authors/' + ${author.id} + '/delete'}" th:method="POST">
+                        <button type="submit" class="btn btn-outline-danger btn-lg px-4">Delete</button>
+                    </form>
+
                 </div>
             </div>
 

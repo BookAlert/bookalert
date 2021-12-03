@@ -27,6 +27,7 @@
         </div>
     </div>
 </section>
+
 <hr>
 
     <div class="container mb-10">
@@ -41,9 +42,8 @@
         </div>
 
 
-
+<section>
     <div class="container">
-
         <div class="row row-cols-2">
             <div class="col">
                 <h2>Your Authors</h2>
@@ -51,9 +51,10 @@
                     <a th:href="@{'/authors/' + ${author.id}}"><li th:text="${author.name}"></li></a>
                 </ul>
             </div>
-
         </div>
     </div>
+</section>
+
 
 <hr>
 <footer th:replace="partials/partials.html :: footer"></footer>

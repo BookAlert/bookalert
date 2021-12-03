@@ -62,16 +62,11 @@ public class User {
     )
     private List<Book> newReleases;
 
+
     @OneToMany(mappedBy = "user")
     private List<BookUser> bookUser;
 
-//    public List<Book> getNewReleases() {
-//        return newReleases;
-//    }
-//
-//    public void setNewReleases(List<Book> newReleases) {
-//        this.newReleases = newReleases;
-//    }
+
 
     public User() {
 

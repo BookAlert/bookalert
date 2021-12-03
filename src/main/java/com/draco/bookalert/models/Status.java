@@ -9,13 +9,28 @@ public class Status {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "tinyint(3)", nullable = false)
     private long id;
 
     @OneToMany(mappedBy = "status")
     private List<BookUser> bookUserList;
 
     private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<BookUser> getBookUserList() {
+        return bookUserList;
+    }
+
+    public void setBookUserList(List<BookUser> bookUserList) {
+        this.bookUserList = bookUserList;
+    }
 
     public long getId() {
         return id;
