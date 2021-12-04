@@ -1,6 +1,9 @@
 package com.draco.bookalert.models;
 
 
+import org.hibernate.annotations.SQLInsert;
+import org.hibernate.annotations.WhereJoinTable;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -53,7 +56,8 @@ public class User {
     public void setNewReleases(List<Book> newReleases) {
         this.newReleases = newReleases;
     }
-
+//    @WhereJoinTable(clause = "status_id = 1")
+    @SQLInsert(sql = "insert into book_user (user_id, book_id, status_id) values (?, ?, 1)")
     @ManyToMany
     @JoinTable(
             name="book_user",
