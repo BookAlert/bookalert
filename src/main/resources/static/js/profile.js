@@ -18,6 +18,36 @@ $(() => {
         })
         console.log($(this).data('book-id'))
     })
+
+    $('body').on('click', '.save-book', function () {
+        fetch("user/save-book", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({id: $(this).data('book-id') })
+        }).then(()=> {
+            $(this).closest('.new-release-card').remove();
+        })
+        console.log($(this).data('book-id'))
+    })
+
+    $('body').on('click', '.mark-purchased', function () {
+        fetch("user/mark-purchased", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({id: $(this).data('book-id') })
+        }).then(()=> {
+            $(this).closest('.new-release-card').remove();
+        })
+        console.log($(this).data('book-id'))
+    })
+
+
     //     const text = $('#authorSearchInput').val();
     //     var url = new URL('author-suggestions', window.location.origin)
     //

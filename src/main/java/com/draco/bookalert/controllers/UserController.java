@@ -10,6 +10,7 @@ import com.draco.bookalert.repositories.BooksRepository;
 import com.draco.bookalert.repositories.UserRepository;
 import com.draco.bookalert.services.AuthorService;
 import com.draco.bookalert.services.RefreshService;
+import org.hibernate.annotations.SQLInsert;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -105,6 +107,24 @@ public class UserController {
     public void dismiss(@RequestBody Book bookToRemove, Authentication authentication) {
         User user = userDao.findByUsername(authentication.getName());
         user.getNewReleases().remove(bookToRemove);
+        userDao.save(user);
+    }
+
+    @ResponseBody
+    @PostMapping("/user/save-book")
+    public void saveBook(@RequestBody Book bookToSave, Authentication authentication) {
+        User user = userDao.findByUsername(authentication.getName());
+        Book book = booksRepository.getById(bookToSave.getId());
+        user.getSavedBooks().add(book);
+        userDao.save(user);
+    }
+
+    @ResponseBody
+    @PostMapping("/user/mark-purchased")
+    public void markPurchased(@RequestBody Book bookToMark, Authentication authentication) {
+        User user = userDao.findByUsername(authentication.getName());
+        Book book = booksRepository.getById(bookToMark.getId());
+        user.getPurchasedBooks().add(book);
         userDao.save(user);
     }
 

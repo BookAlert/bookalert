@@ -15,15 +15,18 @@
     </div>
 
 <section>
-    <div class="container mb-10">
-        <div class="card-group">
+    <div>
+        <div class="row">
             <!--bootstrap card with 3 horizontal images-->
-            <div class="card new-release-card" th:each="book : ${newReleases}">
-                <a th:href="@{'/book/' + ${book.id}}"><li><img th:src="${book.artwork_url}"></li></a>
-                <p th:text="${book.release_date}"></p>
-                <button type="button" class="btn btn-outline-danger btn-sm dismiss-new-release" th:data-book-id="${book.id}">Dismiss</button>
-                <button type="button" class="btn btn-outline-primary btn-sm save-title">Save</button>
-                <a class="btn btn-outline-success btn-sm purchase-title" th:href="${book.itunes_url}" role="button">Purchase</a>
+            <div class="new-release-card col-3" th:each="book : ${newReleases}">
+                <div class="card">
+                    <a th:href="@{'/book/' + ${book.id}}"><li><img th:src="${book.artwork_url}"></li></a>
+                    <p th:text="${book.release_date}"></p>
+                    <button type="button" class="btn btn-outline-danger btn-sm dismiss-new-release" th:data-book-id="${book.id}">Dismiss</button>
+                    <button type="button" class="btn btn-outline-primary btn-sm save-book" th:data-book-id="${book.id}">Save</button>
+                    <a target="_blank" class="btn btn-outline-success btn-sm purchase-book" th:href="${book.itunes_url}" role="button">Buy from iTunes</a>
+                    <button type="button" class="btn btn-outline-info btn-sm mark-purchased" th:data-book-id="${book.id}">Purchased</button>
+                </div>
             </div>
         </div>
     </div>

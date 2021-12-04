@@ -66,6 +66,41 @@ public class User {
     )
     private List<Book> newReleases;
 
+    @WhereJoinTable(clause = "status_id = 2")
+    @SQLInsert(sql = "insert into book_user (user_id, book_id, status_id) values (?, ?, 2)")
+    @ManyToMany
+    @JoinTable(
+            name="book_user",
+            joinColumns ={@JoinColumn(name="user_id")},
+            inverseJoinColumns = {@JoinColumn(name="book_id")}
+    )
+    private List<Book> savedBooks;
+
+    @WhereJoinTable(clause = "status_id = 3")
+    @SQLInsert(sql = "insert into book_user (user_id, book_id, status_id) values (?, ?, 3)")
+    @ManyToMany
+    @JoinTable(
+            name="book_user",
+            joinColumns ={@JoinColumn(name="user_id")},
+            inverseJoinColumns = {@JoinColumn(name="book_id")}
+    )
+    private List<Book> purchasedBooks;
+
+    public List<Book> getPurchasedBooks() {
+        return purchasedBooks;
+    }
+
+    public void setPurchasedBooks(List<Book> purchasedBooks) {
+        this.purchasedBooks = purchasedBooks;
+    }
+
+    public List<Book> getSavedBooks() {
+        return savedBooks;
+    }
+
+    public void setSavedBooks(List<Book> savedBooks) {
+        this.savedBooks = savedBooks;
+    }
 
     @OneToMany(mappedBy = "user")
     private List<BookUser> bookUser;
