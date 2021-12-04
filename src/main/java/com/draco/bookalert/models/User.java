@@ -56,7 +56,7 @@ public class User {
     public void setNewReleases(List<Book> newReleases) {
         this.newReleases = newReleases;
     }
-//    @WhereJoinTable(clause = "status_id = 1")
+    @WhereJoinTable(clause = "status_id = 1")
     @SQLInsert(sql = "insert into book_user (user_id, book_id, status_id) values (?, ?, 1)")
     @ManyToMany
     @JoinTable(

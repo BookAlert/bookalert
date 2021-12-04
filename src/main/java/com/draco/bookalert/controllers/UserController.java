@@ -2,8 +2,10 @@ package com.draco.bookalert.controllers;
 
 
 import com.draco.bookalert.models.Author;
+import com.draco.bookalert.models.Book;
 import com.draco.bookalert.models.User;
 import com.draco.bookalert.repositories.AuthorRepository;
+import com.draco.bookalert.repositories.BookUserRepository;
 import com.draco.bookalert.repositories.BooksRepository;
 import com.draco.bookalert.repositories.UserRepository;
 import com.draco.bookalert.services.AuthorService;
@@ -28,6 +30,7 @@ public class UserController {
     private AuthorRepository authorRepository;
     private BooksRepository booksRepository;
     private RefreshService refreshService;
+    private BookUserRepository bookUserRepository;
 
     public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, AuthorRepository authorRepository, BooksRepository booksRepository) {
         this.userDao = userDao;
@@ -95,6 +98,14 @@ public class UserController {
         model.addAttribute("authors", authorRepository.findAll());
         model.addAttribute("books", booksRepository.findAll());
         return "users/profile";
+    }
+
+    @ResponseBody
+    @PostMapping("/user/dismiss-new-release")
+    public void dismiss(@RequestBody Book bookToRemove, Authentication authentication) {
+        User user = userDao.findByUsername(authentication.getName());
+        user.getNewReleases().remove(bookToRemove);
+        userDao.save(user);
     }
 
 
