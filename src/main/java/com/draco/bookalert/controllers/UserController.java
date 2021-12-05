@@ -57,7 +57,7 @@ public class UserController {
         model.addAttribute("authors", user.getAuthors());
         model.addAttribute("newReleases", user.getNewReleases());
         model.addAttribute("upcomingReleases", booksRepository.findUpcomingReleases());
-        model.addAttribute("recentReleases", booksRepository.findRecentReleases());
+        // TODO model.addAttribute("recentReleases", booksRepository.findRecentReleases());
         return "users/profile";
     }
 
