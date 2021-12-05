@@ -26,15 +26,13 @@ package com.draco.bookalert.controllers;
          authorService.addAuthor(author, username);
      }
 
-     @ResponseBody
      @RequestMapping(value = "/authors/{id}/delete", method = RequestMethod.POST)
-    public String  deletedAuthor( @PathVariable long id, Authentication authentication) {
+    public String  deletedAuthor(@PathVariable long id, Authentication authentication) {
        String username = authentication.getName();
          Author authorToDelete = authorService.findById(id);
          if(authorToDelete != null) {
              authorService.deleteAuthor(authorToDelete, username);
          }
-//
          return "redirect:/profile";
      }
 
