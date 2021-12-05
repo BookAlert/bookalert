@@ -1,0 +1,14 @@
+#demoButton {
+    height: 100px;
+    width: 100px;
+    opacity: 0;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.new-release-card {
+    height: 500px;
+    width: 250px;
+}
+

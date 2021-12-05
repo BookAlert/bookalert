@@ -47,6 +47,15 @@ $(() => {
         console.log($(this).data('book-id'))
     })
 
+    $('body').on('click', '#demoButton', function () {
+        fetch("/fake-new-releases", {method: "POST"})
+            .then(()=> {
+            window.location.reload();
+        })
+    })
+
+
+
 
     //     const text = $('#authorSearchInput').val();
     //     var url = new URL('author-suggestions', window.location.origin)

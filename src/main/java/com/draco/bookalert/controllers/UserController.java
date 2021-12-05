@@ -70,6 +70,13 @@ public class UserController {
         return "users/profile";
     }
 
+//    @PostMapping("/profile")
+//    public String profilePage(Model model) {
+//        model.addAttribute("authors", authorRepository.findAll());
+//        model.addAttribute("books", booksRepository.findAll());
+//        return "users/profile";
+//    }
+
     /// =================== ENDPOINT TO INDIVIDUAL AUTHOR PAGE
     @GetMapping("/authors/{id}")
     public String authorId(@PathVariable long id, Model authorModel) {
@@ -93,14 +100,6 @@ public class UserController {
         return "books/book";
     }
 
-
-
-    @PostMapping("/profile")
-    public String profilePage(Model model) {
-        model.addAttribute("authors", authorRepository.findAll());
-        model.addAttribute("books", booksRepository.findAll());
-        return "users/profile";
-    }
 
     @ResponseBody
     @PostMapping("/user/dismiss-new-release")
