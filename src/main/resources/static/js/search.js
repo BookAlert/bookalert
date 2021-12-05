@@ -90,7 +90,7 @@ $(() => {
                     <span  data-date="${result.releaseDate}">${result.releaseDate}</span>
                     <a data-href="${result.trackViewUrl}">${result.trackViewUrl}</a>
                 </div>
-                <button class="btn btn-outline-info title-search-result" type="submit" id="${result.trackId}">Add Title</button>
+                <button class="btn btn-outline-info title-search-result" type="submit" data-name="${result.artistName}">Add Author</button>
 
             </div>
         </div>
@@ -104,20 +104,21 @@ $(() => {
 
     //==================  POST RESULTS OF TITLE SEARCH W/ EVENT HANDLER
     $('body').on('click', '.title-search-result', async function(){
-        let id = $(this).attr('id')
-        console.log(id)
-         let newTitle = await getTitle(id);
+        let authorName = $(this).data("name");
 
 
-        console.log(newTitle);
 
-        fetch(`add-book`, {
+
+
+        fetch(`add-author`, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             method: "POST",
-            body: JSON.stringify(newTitle)
+            body: JSON.stringify({
+                name:authorName
+            })
 
         })
 
