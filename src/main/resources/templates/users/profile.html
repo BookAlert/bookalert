@@ -6,62 +6,37 @@
 <body>
 <script src=https://code.jquery.com/jquery-3.6.0.min.js></script>
     <nav th:replace="partials/partials.html :: navbar"></nav>
-    <div class="row align-items-center">
-        <div class="col col-md-auto">
-            <h1>Welcome to your profile!</h1>
-            <h2>New and upcoming books</h2>
-
+    <h1>Welcome to your profile!</h1>
+    <div class="d-flex">
+        <div id="authorLibrary">
+            <h3>Your Authors</h3>
+            <ul th:each="author : ${authors}">
+                <a th:href="@{'/authors/' + ${author.id}}"><li th:text="${author.name}"></li></a>
+            </ul>
         </div>
-    </div>
-
-<section>
-    <div class="container mb-10">
-        <div class="card-group">
+        <div class="d-flex flex-wrap flex-grow-1">
             <!--bootstrap card with 3 horizontal images-->
-            <div class="row">
-                <div class="card" th:each="book : ${newReleases}">
-                    <li><img th:src="${book.artwork_url}"></li>
+            <div class="new-release-card p-2" th:each="book : ${newReleases}">
+                <div class="card p-1 text-center">
+                    <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100" th:src="${book.artwork_url}"></a>
                     <p th:text="${book.release_date}"></p>
+                    <button type="button" class="btn btn-outline-danger btn-sm dismiss-new-release" th:data-book-id="${book.id}">Dismiss</button>
+                    <button type="button" class="btn btn-outline-primary btn-sm save-book" th:data-book-id="${book.id}">Save</button>
+                    <a target="_blank" class="btn btn-outline-success btn-sm purchase-book" th:href="${book.itunes_url}" role="button">Buy from iTunes</a>
+                    <button type="button" class="btn btn-outline-info btn-sm mark-purchased" th:data-book-id="${book.id}">Purchased</button>
                 </div>
             </div>
         </div>
     </div>
-</section>
 
-<hr>
-
-    <div class="container mb-10">
-        <div class="card-group">
-            <!--bootstrap card with 3 horizontal images-->
-            <div class="row">
-                    <div class="card" th:each="book : ${books}">
-                            <a th:href="@{/book}"><li><img th:src="${book.artwork_url}"></li></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-<section>
-    <div class="container">
-        <div class="row row-cols-2">
-            <div class="col">
-                <h2>Your Authors</h2>
-                <ul th:each="author : ${authors}">
-                    <a th:href="@{'/authors/' + ${author.id}}"><li th:text="${author.name}"></li></a>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
 
 
 <hr>
 <footer th:replace="partials/partials.html :: footer"></footer>
-
+<button id="demoButton" type="button"></button>
 <script th:replace="partials/partials.html :: bootstrap-j-query"></script>
 <script th:replace="partials/partials.html :: popper-js"></script>
 <script th:replace="partials/partials.html :: bootstrap-js"></script>
-
+<script th:src="@{/js/profile.js}"></script>
 </body>
 </html>

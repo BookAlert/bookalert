@@ -10,8 +10,13 @@
 <main class="container">
   <div class="card border-dark text-black-50 mb-3">
     <div class="card-body">
-      <h4 class="card-title"></h4>
-      <p class="card-text">Book Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+      <h1 class="display-5 fw-bold lh-1 mb-3" th:text="${book.title}"></h1>
+      <img th:src="${book.artwork_url}">
+      <br>
+    <a th:href="${book.itunes_url}">Purchase from iTunes</a>
+      <br>
+      <div th:remove="tag" th:utext="${book.description}"></div>
+      <br>
     </div>
   </div>
 </main>
