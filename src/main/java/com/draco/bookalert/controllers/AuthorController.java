@@ -19,13 +19,14 @@ package com.draco.bookalert.controllers;
 
 
 
-
+     @ResponseBody
      @RequestMapping(value = "/add-author", method = RequestMethod.POST)
      public void addAuthor(@RequestBody Author author, Authentication authentication) {
         String username = authentication.getName();
          authorService.addAuthor(author, username);
      }
 
+     @ResponseBody
      @RequestMapping(value = "/authors/{id}/delete", method = RequestMethod.POST)
     public String  deletedAuthor( @PathVariable long id, Authentication authentication) {
        String username = authentication.getName();

@@ -1,6 +1,10 @@
 CREATE DATABASE book_alert_db;
 USE book_alert_db;
 
+INSERT INTO status (name) VALUES ('New_Release');
+INSERT INTO status (name) VALUES ('Saved');
+INSERT INTO status (name) VALUES ('Purchased');
+
 INSERT INTO authors (name) VALUES  ('Anthony Robbins');
 INSERT INTO authors (name) VALUES  ('Neil Gaiman');
 INSERT INTO authors (name) VALUES  ('Henry Rollins');
