@@ -7,6 +7,10 @@
     right: 0;
 }
 
+#authorLibrary {
+    width: 420px;
+}
+
 .new-release-card {
     height: 500px;
     width: 250px;
