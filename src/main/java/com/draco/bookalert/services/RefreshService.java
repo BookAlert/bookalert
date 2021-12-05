@@ -61,6 +61,7 @@ public class RefreshService {
                         user.getNewReleases().add(newBook);
                         userRepository.save(user);
                         emailService.prepareAndSend(book, "You have new titles " + book.getBook().getTitle(), book.getBook().getDescription());
+                        System.out.println(book);
 
                     }
 //                    Date now = new Date();
