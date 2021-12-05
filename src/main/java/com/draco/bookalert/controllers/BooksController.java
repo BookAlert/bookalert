@@ -38,7 +38,7 @@ public class BooksController {
         Book newBook = booksRepository.findByTitle(book.getTitle());
         String username = authentication.getName();
         Status status = new Status();
-        status.setName("Saved");
+        status.setId(2);
         statusRepository.save(status);
         if(newBook == null) {
             booksRepository.save(book);

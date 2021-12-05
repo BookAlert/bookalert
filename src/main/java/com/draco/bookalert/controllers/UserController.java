@@ -3,6 +3,7 @@ package com.draco.bookalert.controllers;
 
 import com.draco.bookalert.models.Author;
 import com.draco.bookalert.models.Book;
+import com.draco.bookalert.models.BookUser;
 import com.draco.bookalert.models.User;
 import com.draco.bookalert.repositories.AuthorRepository;
 import com.draco.bookalert.repositories.BookUserRepository;
@@ -126,6 +127,8 @@ public class UserController {
         user.getPurchasedBooks().add(book);
         userDao.save(user);
     }
+
+
 
 
 }
