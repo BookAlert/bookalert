@@ -35,11 +35,13 @@ public class DemoController {
         List<Author> authors = authorRepository.findAll();
         for (int i = 0; i < authors.size() && i < 5; i++) {
             Author author = authors.get(i);
-            Book book = author.getBooks().get(0);
-            author.getBooks().remove(0);
-            authorRepository.save(author);
-            booksRepository.delete(book);
-            // TODO: Remove any records from the book_user table
+            if (author.getBooks() != null && !author.getBooks().isEmpty()) {
+                Book book = author.getBooks().get(0);
+                author.getBooks().remove(0);
+                authorRepository.save(author);
+                booksRepository.delete(book);
+                // TODO: Remove any records from the book_user table
+            }
         }
         refreshService.run();
     }
