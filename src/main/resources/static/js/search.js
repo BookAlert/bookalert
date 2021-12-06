@@ -17,7 +17,9 @@ $(() => {
     function buildSearchResults(results) {
         const html = results.map(result => `
             
-            <div class="author-search-result" data-name="${result.artistName}"> <i class="fas fa-plus mr-2" id="search"></i>${result.artistName} </div>
+            <div class="author-search-result" data-name="${result.artistName}"> <i class="fas fa-plus mr-2" id="search"></i>
+            <a href=""/authors/{id}">
+            ${result.artistName}</a></div>
             
           `).join("")
         $('#authorResults').html(html)
@@ -26,7 +28,7 @@ $(() => {
     //==================  POST RESULTS OF AUTHOR SEARCH W/ EVENT HANDLER
     $('body').on('click', '.author-search-result', function () {
         const authorName = $(this).data("name");
-// if user = false {
+
         fetch("add-author", {
             headers: {
                 'Accept': 'application/json',
@@ -51,19 +53,7 @@ $(() => {
             })
         })
     })
-// else {
-//             $.ajax({
-//                 type:'REQUEST',
-//                 url :"/authors{id}",
-//                 success: function(data) {
-//                     console.log('success',data);
-//                 },
-//                 error:function(exception){alert('Exeption:'+exception);}
-//             });
-//             e.preventDefault();
-//         });
-//         }
-//     }
+
 
 
         //==================================click event for iziToast==================

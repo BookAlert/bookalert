@@ -48,12 +48,10 @@ public class UserController {
         return "redirect:/login";
     }
 
-//    @RequestMapping("/search")
-//    public String searchToAuthors(@ModelAttribute Model model){
-//    String ModelAndView = new ModelAndView();
-//    model.containsAttribute("model", model);
-//    return "redirect:/authors/{id}";
-//}
+    @PostMapping("/search")
+    public String searchToAuthor(@RequestParam (name="authorSearchInput") long id, Model authorModel) {
+        return "redirect:/authors/{id}";
+}
 
 
 
@@ -101,7 +99,6 @@ public class UserController {
         return "books/book";
     }
 
-
     @ResponseBody
     @PostMapping("/user/dismiss-new-release")
     public void dismiss(@RequestBody Book bookToRemove, Authentication authentication) {
@@ -127,8 +124,6 @@ public class UserController {
         user.getPurchasedBooks().add(book);
         userDao.save(user);
     }
-
-
 
 
 }

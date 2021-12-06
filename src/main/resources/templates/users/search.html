@@ -9,7 +9,7 @@
 
         <div class="col-md-4">
             <h3><label for="authorSearchInput" class="form-label">Search by Author</label></h3>
-            <input type="text" id="authorSearchInput" class="form-control is-valid" placeholder="Enter an author's name" >
+            <input th:action="@{/authors/{id}}" th:method="POST" type="text" name="authorSearchInput" id="authorSearchInput" class="form-control is-valid" placeholder="Enter an author's name" >
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -17,9 +17,6 @@
                 <button class="btn btn-primary" type="button" id="authorSearch">Search Authors</button>
             </div>
             <div id="authorResults">
-                <ul th:each="author : ${authors}">
-                    <a th:href="@{'/authors/' + ${author.id}}"><li th:text="${author.name}"></li></a>
-                </ul>
 <!--                onClick="location.href='/authors/{id}'" th:object="${user}" th:if="${!user.exists}"-->
 <!--                <div class="nonUserSearch" th:object="${user}" th:if="${!user.exists}"></div>-->
             </div>

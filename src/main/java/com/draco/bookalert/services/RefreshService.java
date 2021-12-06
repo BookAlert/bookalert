@@ -31,8 +31,8 @@ public class RefreshService {
     @Autowired
     private BooksRepository booksRepository;
 
-//    @Autowired
-//    private EmailService emailService;
+    @Autowired
+    private EmailService emailService;
 
     private void sendEmails(Map<User,List<Book>> map) {
 
@@ -45,7 +45,7 @@ public class RefreshService {
                     .append("\n");
             }
 
-//            emailService.prepareAndSend(user, "New Book Releases found", body.toString());
+            emailService.prepareAndSend(user, "New Book Releases found", body.toString());
 
         });
     }
