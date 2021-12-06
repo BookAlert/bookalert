@@ -1,5 +1,4 @@
 $(() => {
-
     ///=================  FETCH DATA FOR AUTHOR
     $('body').on('click', '#authorSearch', function () {
         console.log("testing");
@@ -41,7 +40,7 @@ $(() => {
                 title: 'Success',
                 message: 'Successfully added author!',
                 position: 'center',
-                timeout: 20000
+                timeout: 5000
             })
         }).catch(() => {
             iziToast.fail({
