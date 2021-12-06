@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/css/partials.css}">
     <link rel="stylesheet" th:href="@{/css/profile.css}">
+    <link th:rel="stylesheet" th:href="@{/css/iziToast.min.css}">
 </head>
 <body>
 
@@ -43,7 +44,9 @@
                         </form>
                     </li>
                     <li sec:authorize="isAuthenticated()">
-                        <a class="nav-link" th:href="@{/profile}">Profile</a>
+                        <form th:action="@{/profile}" th:method="POST">
+                            <button class="btn btn-link">Profile</button>
+                        </form>
                     </li>
                 </ul>
             </div>
