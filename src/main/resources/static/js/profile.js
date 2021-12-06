@@ -5,6 +5,20 @@ $(() => {
         console.log("testing");
     });
 
+    $('body').on('click', '.delete-title', function () {
+        fetch("user/dismiss-new-release", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({id: $(this).data('book-id') })
+        }).then(()=> {
+            $(this).closest('.saved-book-card').remove();
+        })
+        console.log($(this).data('book-id'))
+    })
+
     $('body').on('click', '.dismiss-new-release', function () {
         fetch("user/dismiss-new-release", {
             headers: {
@@ -54,17 +68,6 @@ $(() => {
         })
     })
 
-
-
-
-    //     const text = $('#authorSearchInput').val();
-    //     var url = new URL('author-suggestions', window.location.origin)
-    //
-    //     url.search = new URLSearchParams({search: text}).toString();
-    //
-    //     fetch(url)
-    //         .then(response => response.json())
-    //         .then(buildSearchResults)
 
 
 

@@ -100,6 +100,15 @@ public class UserController {
     }
 
     @ResponseBody
+    @PostMapping("user/delete-title")
+    public void deleteTitle(@RequestBody Book titleToDelete, Authentication authentication) {
+        User user = userDao.findByUsername(authentication.getName());
+        user.getSavedBooks().remove(titleToDelete);
+        userDao.save(user);
+    }
+
+
+    @ResponseBody
     @PostMapping("/user/dismiss-new-release")
     public void dismiss(@RequestBody Book bookToRemove, Authentication authentication) {
         User user = userDao.findByUsername(authentication.getName());
