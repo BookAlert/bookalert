@@ -48,6 +48,14 @@ public class UserController {
         return "redirect:/login";
     }
 
+//    @PostMapping("/search")
+//    public String searchToAuthor(@RequestParam (name="authorSearchInput") long id, Model authorModel) {
+//        return "redirect:/authors/{id}";
+//}
+
+
+
+
     ///=================================== ENDPOINT TO LOGIN PAGE
 
     @GetMapping("/profile")
@@ -91,7 +99,6 @@ public class UserController {
         return "books/book";
     }
 
-
     @ResponseBody
     @PostMapping("user/delete-title")
     public void deleteTitle(@RequestBody Book titleToDelete, Authentication authentication) {
@@ -126,8 +133,6 @@ public class UserController {
         user.getPurchasedBooks().add(book);
         userDao.save(user);
     }
-
-
 
 
 }
