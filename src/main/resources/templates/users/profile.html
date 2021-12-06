@@ -4,9 +4,10 @@
     <title>User Profile</title>
 
 <body>
-<script src=https://code.jquery.com/jquery-3.6.0.min.js></script>
+<!--<script src=https://code.jquery.com/jquery-3.6.0.min.js></script>-->
     <nav th:replace="partials/partials.html :: navbar"></nav>
     <h1>Welcome to your profile!</h1>
+
     <div class="d-flex">
         <div id="authorLibrary">
             <h3>Your Authors</h3>
@@ -14,6 +15,18 @@
                 <a th:href="@{'/authors/' + ${author.id}}"><li th:text="${author.name}"></li></a>
             </ul>
         </div>
+        <section>
+            <div class="d-flex">
+                <h3>Your Saved Titles</h3>
+                <div class="saved-book-card" th:each="book : ${savedBooks}">
+                    <div class="card p-1 text-center">
+                        <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100" th:src="${book.artwork_url}"></a>
+                        <p th:text="${book.release_date}"></p>
+                        <button type="button" class="btn btn-outline-danger btn-sm mb-2 dismiss-new-release" th:data-book-id="${book.id}">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </section>
         <div class="d-flex flex-wrap flex-grow-1">
             <!--bootstrap card with 3 horizontal images-->
             <div class="new-release-card p-2" th:each="book : ${newReleases}">
@@ -27,9 +40,20 @@
                 </div>
             </div>
         </div>
+        <div class="d-flex flex-wrap flex-grow-1">
+            <!--bootstrap card with 3 horizontal images-->
+            <div class="new-release-card p-2" th:each="book : ${upcomingReleases}">
+                <div class="card p-1 text-center">
+                    <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100" th:src="${book.artwork_url}"></a>
+                    <p th:text="${book.release_date}"></p>
+                    <button type="button" class="btn btn-outline-danger btn-sm mb-2 dismiss-new-release" th:data-book-id="${book.id}">Dismiss</button>
+                    <button type="button" class="btn btn-outline-primary btn-sm mb-2 save-book" th:data-book-id="${book.id}">Save</button>
+                    <a target="_blank" class="btn btn-outline-success btn-sm mb-2 purchase-book" th:href="${book.itunes_url}" role="button">Buy from iTunes</a>
+                    <button type="button" class="btn btn-outline-info btn-sm mark-purchased" th:data-book-id="${book.id}">Purchased</button>
+                </div>
+            </div>
+        </div>
     </div>
-
-
 
 <hr>
 <footer th:replace="partials/partials.html :: footer"></footer>
