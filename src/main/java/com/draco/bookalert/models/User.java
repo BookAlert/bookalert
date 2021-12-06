@@ -58,6 +58,7 @@ public class User {
     }
     @WhereJoinTable(clause = "status_id = 1")
     @SQLInsert(sql = "insert into book_user (user_id, book_id, status_id) values (?, ?, 1)")
+    @OrderBy(value = "release_date desc")
     @ManyToMany
     @JoinTable(
             name="book_user",

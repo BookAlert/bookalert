@@ -3,27 +3,17 @@ package com.draco.bookalert.controllers;
 
 import com.draco.bookalert.models.Author;
 import com.draco.bookalert.models.Book;
-import com.draco.bookalert.models.BookUser;
 import com.draco.bookalert.models.User;
 import com.draco.bookalert.repositories.AuthorRepository;
 import com.draco.bookalert.repositories.BookUserRepository;
 import com.draco.bookalert.repositories.BooksRepository;
 import com.draco.bookalert.repositories.UserRepository;
-import com.draco.bookalert.services.AuthorService;
 import com.draco.bookalert.services.RefreshService;
-import org.hibernate.annotations.SQLInsert;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 @Controller
 public class UserController {
@@ -63,11 +53,11 @@ public class UserController {
     @GetMapping("/profile")
     public String showProfile(Model model, Authentication authentication) {
 
-        model.addAttribute("authors", authorRepository.findAll());
-        model.addAttribute("books", booksRepository.findAll());
         User user = userDao.findByUsername(authentication.getName());
+        model.addAttribute("authors", user.getAuthors());
         model.addAttribute("newReleases", user.getNewReleases());
-
+        model.addAttribute("upcomingReleases", booksRepository.findUpcomingReleases());
+        // TODO model.addAttribute("recentReleases", booksRepository.findRecentReleases());
         return "users/profile";
     }
 
