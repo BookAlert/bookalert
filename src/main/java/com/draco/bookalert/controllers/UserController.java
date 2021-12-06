@@ -110,6 +110,15 @@ public class UserController {
     }
 
     @ResponseBody
+    @PostMapping("/authors/save-book")
+    public void saveAuthorBook(@RequestBody Book bookToSave, Authentication authentication) {
+        User user = userDao.findByUsername(authentication.getName());
+        Book book = booksRepository.getById(bookToSave.getId());
+        user.getSavedBooks().add(book);
+        userDao.save(user);
+    }
+
+    @ResponseBody
     @PostMapping("/user/mark-purchased")
     public void markPurchased(@RequestBody Book bookToMark, Authentication authentication) {
         User user = userDao.findByUsername(authentication.getName());
