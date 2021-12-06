@@ -1,0 +1,18 @@
+#demoButton {
+    height: 100px;
+    width: 100px;
+    opacity: 0;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+#authorLibrary {
+    width: 420px;
+}
+
+.new-release-card {
+    height: 430px;
+    width: 150px;
+}
+
