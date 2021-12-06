@@ -52,11 +52,11 @@ public class UserController {
 
     @GetMapping("/profile")
     public String showProfile(Model model, Authentication authentication) {
-
         User user = userDao.findByUsername(authentication.getName());
         model.addAttribute("authors", user.getAuthors());
         model.addAttribute("newReleases", user.getNewReleases());
         model.addAttribute("upcomingReleases", booksRepository.findUpcomingReleases());
+        model.addAttribute("savedBooks",user.getSavedBooks());
         // TODO model.addAttribute("recentReleases", booksRepository.findRecentReleases());
         return "users/profile";
     }
