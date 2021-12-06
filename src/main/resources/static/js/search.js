@@ -16,7 +16,9 @@ $(() => {
     function buildSearchResults(results) {
         const html = results.map(result => `
             
-            <div class="author-search-result" data-name="${result.artistName}"> <i class="fas fa-plus mr-2" id="search"></i>${result.artistName} </div>
+            <div class="author-search-result" data-name="${result.artistName}"> <i class="fas fa-plus mr-2" id="search"></i>
+            <a href=""/authors/{id}">
+            ${result.artistName}</a></div>
             
           `).join("")
         $('#authorResults').html(html)
@@ -49,7 +51,9 @@ $(() => {
 
             })
         })
-    });
+    })
+
+
 
         //==================================click event for iziToast==================
     // $('#search').click(function () {
