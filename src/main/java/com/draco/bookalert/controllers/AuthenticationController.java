@@ -17,7 +17,7 @@ public class AuthenticationController {
 
     @GetMapping("/login")
     public String showLoginForm() {
-        refreshService.run();
+
         return "users/login";
     }
 

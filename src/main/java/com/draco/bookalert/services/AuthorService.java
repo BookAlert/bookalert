@@ -8,14 +8,7 @@ import com.draco.bookalert.repositories.AuthorRepository;
 import com.draco.bookalert.repositories.BooksRepository;
 import com.draco.bookalert.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -51,8 +44,11 @@ public class AuthorService {
         userRepository.save(user);
         List<iTunesBook> iTunesBooks = iTunesService.getAuthorBooks(author.getName());
         for (iTunesBook iTunesBook : iTunesBooks) {
-            Book book = new Book(iTunesBook, savedAuthor);
-            booksRepository.save(book);
+            System.out.println(iTunesBook.getArtistName());
+            if (iTunesBook.getArtistName().contains(author.getName())) {
+                Book book = new Book(iTunesBook, savedAuthor);
+                booksRepository.save(book);
+            }
         }
     }
 

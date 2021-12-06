@@ -22,6 +22,16 @@ public class iTunesBook {
 
     private long trackId;
 
+    private String artistName;
+
+    public String getArtistName() {
+        return artistName;
+    }
+
+    public void setArtistName(String artistName) {
+        this.artistName = artistName;
+    }
+
     public long getTrackId() {
         return trackId;
     }
