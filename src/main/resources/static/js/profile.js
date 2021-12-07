@@ -5,6 +5,26 @@ $(() => {
         console.log("testing");
     });
 
+    /// ================== SAVE UPCOMING-TITLE METHOD(UserController)
+    $('body').on('click', '.save-upcoming-book',  function (event) {
+        event.preventDefault();
+         fetch("user/save-upcoming-title", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({id: $(this).data('book-id') })
+        }).then( () => {
+            $(this).closest('.upcoming-book-card').remove();
+            location.reload()
+        })
+        console.log($(this).data('book-id'))
+
+    })
+
+
+    /// ================== DELETE TITLE METHOD(UserController)
     $('body').on('click', '.delete-title', function () {
         fetch("user/delete-title", {
             headers: {
