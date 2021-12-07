@@ -63,8 +63,8 @@ $(() => {
             body: JSON.stringify({id: $(this).data('book-id') })
         }).then(()=> {
             $(this).closest('.new-release-card').remove();
+            window.location.reload();
         })
-        console.log($(this).data('book-id'))
     })
 
     $('body').on('click', '.mark-purchased', function () {
@@ -78,7 +78,6 @@ $(() => {
         }).then(()=> {
             $(this).closest('.new-release-card').remove();
         })
-        console.log($(this).data('book-id'))
     })
 
     $('body').on('click', '#demoButton', function () {
