@@ -6,7 +6,7 @@ $(() => {
     });
 
     $('body').on('click', '.delete-title', function () {
-        fetch("user/dismiss-new-release", {
+        fetch("user/delete-title", {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
