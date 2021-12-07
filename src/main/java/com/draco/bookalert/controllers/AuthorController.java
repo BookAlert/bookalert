@@ -2,6 +2,10 @@ package com.draco.bookalert.controllers;
 
  import com.draco.bookalert.models.Author;
 
+ import com.draco.bookalert.models.Book;
+ import com.draco.bookalert.models.User;
+ import com.draco.bookalert.repositories.BooksRepository;
+ import com.draco.bookalert.repositories.UserRepository;
  import com.draco.bookalert.services.AuthorService;
  import org.springframework.beans.factory.annotation.Autowired;
  import org.springframework.data.jpa.repository.Query;
@@ -16,6 +20,12 @@ package com.draco.bookalert.controllers;
  public class AuthorController {
      @Autowired
      private AuthorService authorService;
+
+     @Autowired
+     private BooksRepository booksRepository;
+
+     @Autowired
+     private UserRepository userDao;
 
 
 
@@ -36,6 +46,14 @@ package com.draco.bookalert.controllers;
          return "redirect:/profile";
      }
 
+    @ResponseBody
+    @PostMapping("/authors/mark-purchased")
+    public void markPurchased(@RequestBody Book bookToMark, Authentication authentication) {
+        User user = userDao.findByUsername(authentication.getName());
+        Book book = booksRepository.getById(bookToMark.getId());
+        user.getPurchasedBooks().add(book);
+        userDao.save(user);
+    }
 
 
 }
