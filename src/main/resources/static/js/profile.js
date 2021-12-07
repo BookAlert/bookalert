@@ -33,7 +33,7 @@ $(() => {
             method: "POST",
             body: JSON.stringify({id: $(this).data('book-id') })
         }).then(()=> {
-            $(this).closest('.new-release-card').remove();
+            $(this).closest('.upcoming-book-card').remove();
         })
         console.log($(this).data('book-id'))
     })
