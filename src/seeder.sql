@@ -7,6 +7,9 @@ INSERT INTO status (name) VALUES ('Saved');
 INSERT INTO status (name) VALUES ('Purchased');
 INSERT INTO status (name) VALUES ('Upcoming_Release');
 
+DELETE from authors Where ID = 5;
+DELETE from books where author_id = 5;
+DELETE FROM author_user where author_id =5;
 
 
 
