@@ -48,12 +48,6 @@ public class UserController {
         return "redirect:/login";
     }
 
-//    @PostMapping("/search")
-//    public String searchToAuthor(@RequestParam (name="authorSearchInput") long id, Model authorModel) {
-//        return "redirect:/authors/{id}";
-//}
-
-
 
 
     ///=================================== ENDPOINT TO LOGIN PAGE
@@ -69,12 +63,6 @@ public class UserController {
         return "users/profile";
     }
 
-//    @PostMapping("/profile")
-//    public String profilePage(Model model) {
-//        model.addAttribute("authors", authorRepository.findAll());
-//        model.addAttribute("books", booksRepository.findAll());
-//        return "users/profile";
-//    }
 
     /// =================== ENDPOINT TO INDIVIDUAL AUTHOR PAGE
     @GetMapping("/authors/{id}")
@@ -119,6 +107,15 @@ public class UserController {
     @ResponseBody
     @PostMapping("/user/save-book")
     public void saveBook(@RequestBody Book bookToSave, Authentication authentication) {
+        User user = userDao.findByUsername(authentication.getName());
+        Book book = booksRepository.getById(bookToSave.getId());
+        user.getSavedBooks().add(book);
+        userDao.save(user);
+    }
+
+    @ResponseBody
+    @PostMapping("/authors/save-book")
+    public void saveAuthorBook(@RequestBody Book bookToSave, Authentication authentication) {
         User user = userDao.findByUsername(authentication.getName());
         Book book = booksRepository.getById(bookToSave.getId());
         user.getSavedBooks().add(book);
