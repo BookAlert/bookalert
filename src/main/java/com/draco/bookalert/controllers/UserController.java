@@ -142,6 +142,7 @@ public class UserController {
     @PostMapping("/user/dismiss-new-release")
     public void dismiss(@RequestBody Book bookToRemove, Authentication authentication) {
         User user = userDao.findByUsername(authentication.getName());
+        System.out.println(user.getNewReleases().contains(bookToRemove));
         user.getNewReleases().remove(bookToRemove);
         userDao.save(user);
     }
@@ -152,6 +153,14 @@ public class UserController {
         User user = userDao.findByUsername(authentication.getName());
         Book book = booksRepository.getById(bookToSave.getId());
         user.getSavedBooks().add(book);
+        List<Book> books = new ArrayList<>();
+        for(Book book2 : user.getNewReleases()) {
+            if (!book2.equals(bookToSave)) {
+                books.add(book2);
+            }
+        }
+        user.setNewReleases(books);
+        user.getNewReleases().remove(book);
         userDao.save(user);
     }
 
