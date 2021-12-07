@@ -1,5 +1,6 @@
 package com.draco.bookalert.repositories;
 
+import com.draco.bookalert.models.Book;
 import com.draco.bookalert.models.BookUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
