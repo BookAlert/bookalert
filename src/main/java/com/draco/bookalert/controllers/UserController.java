@@ -116,7 +116,14 @@ public class UserController {
         user.setUpcomingBooks(books);
         userDao.save(user);
 
+    }
 
+    @ResponseBody
+    @PostMapping("/user/dismiss-upcoming-release")
+    public void dismissUpcomingRelease(@RequestBody Book bookToDismiss, Authentication authentication) {
+        User user = userDao.findByUsername(authentication.getName());
+        user.getUpcomingBooks().remove(bookToDismiss);
+        userDao.save(user);
     }
 
 

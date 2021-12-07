@@ -51,7 +51,7 @@
                     <div class="card p-1 text-center">
                         <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100" th:src="${book.artwork_url}"></a>
                         <p th:text="${book.release_date}"></p>
-                        <button type="button" class="btn btn-outline-danger btn-sm mb-2 dismiss-new-release" th:data-book-id="${book.id}">Dismiss</button>
+                        <button type="button" class="btn btn-outline-danger btn-sm mb-2 dismiss-upcoming-release" th:data-book-id="${book.id}">Dismiss</button>
                         <button type="button" class="btn btn-outline-primary btn-sm mb-2 save-upcoming-book" th:data-book-id="${book.id}">Save</button>
                         <a target="_blank" class="btn btn-outline-success btn-sm mb-2 purchase-book" th:href="${book.itunes_url}" role="button">Buy from iTunes</a>
                         <button type="button" class="btn btn-outline-info btn-sm mark-purchased" th:data-book-id="${book.id}">Purchased</button>

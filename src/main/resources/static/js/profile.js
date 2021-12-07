@@ -5,7 +5,7 @@ $(() => {
         console.log("testing");
     });
 
-    /// ================== SAVE UPCOMING-TITLE METHOD(UserController)
+    /// ================== SAVE UPCOMING-RELEASE METHOD(UserController)
     $('body').on('click', '.save-upcoming-book',  function (event) {
         event.preventDefault();
          fetch("user/save-upcoming-title", {
@@ -23,8 +23,25 @@ $(() => {
 
     })
 
+    //============== DISMISS UPCOMING RELEASE
+    $('body').on('click', '.dismiss-upcoming-release', function () {
+        fetch("user/dismiss-upcoming-release", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({id: $(this).data('book-id') })
+        }).then(()=> {
+            $(this).closest('.new-release-card').remove();
+        })
+        console.log($(this).data('book-id'))
+    })
 
-    /// ================== DELETE TITLE METHOD(UserController)
+
+
+
+    /// ================== DELETE FROM USER TITLE LIST METHOD(UserController)
     $('body').on('click', '.delete-title', function () {
         fetch("user/delete-title", {
             headers: {
@@ -39,20 +56,10 @@ $(() => {
         console.log($(this).data('book-id'))
     })
 
-    $('body').on('click', '.dismiss-new-release', function () {
-        fetch("user/dismiss-new-release", {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify({id: $(this).data('book-id') })
-        }).then(()=> {
-            $(this).closest('.new-release-card').remove();
-        })
-        console.log($(this).data('book-id'))
-    })
 
+
+
+/// ====================== SAVE NEW RELEASE
     $('body').on('click', '.save-book', function () {
         fetch("user/save-book", {
             headers: {
