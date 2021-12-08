@@ -38,6 +38,20 @@ $(() => {
         console.log($(this).data('book-id'))
     })
 
+//============== DISMISS NEW RELEASE
+    $('body').on('click', '.dismiss-new-release', function () {
+        fetch("user/dismiss-new-release", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({id: $(this).data('book-id') })
+        }).then(()=> {
+            $(this).closest('.new-release-card').remove();
+        })
+        console.log($(this).data('book-id'))
+    })
 
 
 

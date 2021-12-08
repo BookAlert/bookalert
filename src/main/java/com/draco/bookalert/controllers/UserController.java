@@ -139,7 +139,7 @@ public class UserController {
 
 
     @ResponseBody
-    @PostMapping("/user/dismiss-new-release")
+    @PostMapping("user/dismiss-new-release")
     public void dismiss(@RequestBody Book bookToRemove, Authentication authentication) {
         User user = userDao.findByUsername(authentication.getName());
         System.out.println(user.getNewReleases().contains(bookToRemove));
