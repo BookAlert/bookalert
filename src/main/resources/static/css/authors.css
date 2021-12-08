@@ -1,0 +1,27 @@
+.card::before{
+    position: absolute;
+    content: '';
+    background: #283593;
+    height: 28px;
+    width: 28px;
+}
+
+
+
+
+/*.cr {*/
+/*    width: 200px;*/
+/*    padding: 16px;*/
+/*    position: absolute;*/
+/*    text-align: center;*/
+/*    color: #f0f0f0;*/
+/*}*/
+/*.cr-sticky {*/
+/*    position: fixed;*/
+/*}*/
+
+/*.cr-top.cr-left{*/
+/*    transform: rotate(-45deg);*/
+/*}*/
+
+/*.cr-green     { background-color: #2c7; }*/
