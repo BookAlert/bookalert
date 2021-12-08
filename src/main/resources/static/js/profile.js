@@ -11,21 +11,21 @@ $(() => {
     // /// Carousel Handler
 
 
-    $('.slider-for').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        fade: true,
-        asNavFor: '.slider-nav'
-    });
-    $('.slider-nav').slick({
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        asNavFor: '.slider-for',
-        dots: true,
-        centerMode: true,
-        focusOnSelect: true
-    });
+    // $('.slider-for').slick({
+    //     slidesToShow: 1,
+    //     slidesToScroll: 1,
+    //     arrows: false,
+    //     fade: true,
+    //     asNavFor: '.slider-nav'
+    // });
+    // $('.slider-nav').slick({
+    //     slidesToShow: 4,
+    //     slidesToScroll: 1,
+    //     asNavFor: '.slider-for',
+    //     dots: true,
+    //     centerMode: true,
+    //     focusOnSelect: true
+    // });
 
 
     /// ================== SAVE UPCOMING-RELEASE METHOD(UserController)
@@ -71,6 +71,20 @@ $(() => {
             body: JSON.stringify({id: $(this).data('book-id') })
         }).then(()=> {
             $(this).closest('.upcoming-book-card').remove();
+        })
+    })
+
+    //================= MARK PURCHASED UPCOMING
+    $('body').on('click', '.mark-upcoming', function () {
+        fetch("user/purchased-upcoming", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({id: $(this).data('book-id') })
+        }).then(()=> {
+            $(this).closest('.new-release-card').remove();
         })
     })
 

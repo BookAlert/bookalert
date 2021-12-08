@@ -123,13 +123,21 @@ public class UserController {
     @PostMapping("/user/dismiss-upcoming-release")
     public void dismissUpcomingRelease(@RequestBody Book bookToDismiss, Authentication authentication) {
         User user = userDao.findByUsername(authentication.getName());
-        List<Book> book = user.getUpcomingBooks();
-        user.setUpcomingBooks(book);
         user.getUpcomingBooks().remove(bookToDismiss);
 
         userDao.save(user);
     }
 
+
+    @ResponseBody
+    @PostMapping("/user/purchased-upcoming")
+    public void purchasedStatusUpcoming(@RequestBody Book upcomingPurchase, Authentication authentication) {
+        User user = userDao.findByUsername(authentication.getName());
+        Book book = booksRepository.getById(upcomingPurchase.getId());
+        user.getPurchasedBooks().add(book);
+        userDao.save(user);
+
+    }
 
 
     ///===================== DELETE FROM USERS LIST
