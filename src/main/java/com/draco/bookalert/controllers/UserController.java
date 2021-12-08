@@ -3,6 +3,7 @@ package com.draco.bookalert.controllers;
 
 import com.draco.bookalert.models.Author;
 import com.draco.bookalert.models.Book;
+import com.draco.bookalert.models.BookUser;
 import com.draco.bookalert.models.User;
 import com.draco.bookalert.repositories.AuthorRepository;
 import com.draco.bookalert.repositories.BookUserRepository;
@@ -122,7 +123,10 @@ public class UserController {
     @PostMapping("/user/dismiss-upcoming-release")
     public void dismissUpcomingRelease(@RequestBody Book bookToDismiss, Authentication authentication) {
         User user = userDao.findByUsername(authentication.getName());
+        List<Book> book = user.getUpcomingBooks();
+        user.setUpcomingBooks(book);
         user.getUpcomingBooks().remove(bookToDismiss);
+
         userDao.save(user);
     }
 

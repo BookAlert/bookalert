@@ -104,7 +104,8 @@
         <div class="slick-slide"></div>
     </div>
 </div>
-<div class="slider slider-nav slick-initialized slick-slider slick-dotted" >
+
+<div class="row slider slider-nav " >
     <button type="button" class="slick-prev slick-arrow">Previous</button>
     <div class="slick-list draggable" th:each="book : ${books}">
         <div class="slick-track" >
@@ -112,13 +113,6 @@
         </div>
     </div>
     <button type="button" class="slick-next slick-arrow">Next</button>
-    <ul class="slick-dots">
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-    </ul>
 </div>
 
 
@@ -126,11 +120,10 @@
 <footer th:replace="partials/partials.html :: footer"></footer>
 <script src="/static/js/jquery-3.6.0.min.js"></script>
 <script src="/static/js/slick.js"></script>
-<script th:src="@{/js/profile.js}"></script>
 <script th:replace="partials/partials.html :: bootstrap-j-query"></script>
 <script th:replace="partials/partials.html :: popper-js"></script>
 <script th:replace="partials/partials.html :: bootstrap-js"></script>
-
+<script th:src="@{/js/profile.js}"></script>
 
 </body>
 </html>

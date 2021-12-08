@@ -1,6 +1,16 @@
 $(() => {
 
-    /// Carousel Handler
+
+
+    ///=================  FETCH DATA FOR AUTHOR
+    $('body').on('click', '#purchase', function () {
+        console.log("testing");
+    });
+
+
+    // /// Carousel Handler
+
+
     $('.slider-for').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -17,11 +27,6 @@ $(() => {
         focusOnSelect: true
     });
 
-
-    ///=================  FETCH DATA FOR AUTHOR
-    $('body').on('click', '#purchase', function () {
-        console.log("testing");
-    });
 
     /// ================== SAVE UPCOMING-RELEASE METHOD(UserController)
     $('body').on('click', '.save-upcoming-book',  function (event) {
@@ -67,7 +72,6 @@ $(() => {
         }).then(()=> {
             $(this).closest('.upcoming-book-card').remove();
         })
-        console.log($(this).data('book-id'))
     })
 
 //============== DISMISS NEW RELEASE
