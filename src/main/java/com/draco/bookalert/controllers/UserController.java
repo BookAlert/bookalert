@@ -148,6 +148,17 @@ public class UserController {
     }
 
     @ResponseBody
+    @PostMapping("user/dismiss-all-new-releases")
+    public void dismissAllNewReleases(@RequestBody Book books, Authentication authentication) {
+        User user = userDao.findByUsername(authentication.getName());
+        List<Book> booksToRemove = new ArrayList<>();
+        user.setNewReleases(new ArrayList<>());
+        user.getNewReleases().removeAll(booksToRemove);
+        userDao.save(user);
+    }
+
+
+    @ResponseBody
     @PostMapping("/user/save-book")
     public void saveBook(@RequestBody Book bookToSave, Authentication authentication) {
         User user = userDao.findByUsername(authentication.getName());

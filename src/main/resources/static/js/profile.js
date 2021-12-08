@@ -53,6 +53,19 @@ $(() => {
         console.log($(this).data('book-id'))
     })
 
+//============== DISMISS ALL NEW RELEASE
+    $('body').on('click', '.dismiss-all', function () {
+        fetch("user/dismiss-all-new-releases", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({id: $(this).data('book-id') })
+        }).then(()=> {
+            window.location.reload()
+        })
+    })
 
 
     /// ================== DELETE FROM USER TITLE LIST METHOD(UserController)
