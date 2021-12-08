@@ -58,6 +58,7 @@
                 possible modal component
             </h3>
         </div>
+        <div class="cr cr-top cr-left cr-sticky cr-green">
         <div class="d-flex flex-wrap flex-grow-1">
             <div class="author-book-card p-2" th:each="book : ${books}">
                     <div class="card p-1 text-center">
@@ -68,7 +69,7 @@
                         <a target="_blank" class="btn btn-outline-success btn-sm purchase-book" th:href="${book.itunes_url}" role="button">Buy from iTunes</a>
                         <button type="button" class="btn btn-outline-info btn-sm mark-purchased" th:data-book-id="${book.id}">Purchased</button>
                     </div>
-
+                 </div>
             </div>
         </div>
 
