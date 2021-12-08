@@ -139,13 +139,24 @@ public class UserController {
 
 
     @ResponseBody
-    @PostMapping("/user/dismiss-new-release")
+    @PostMapping("user/dismiss-new-release")
     public void dismiss(@RequestBody Book bookToRemove, Authentication authentication) {
         User user = userDao.findByUsername(authentication.getName());
         System.out.println(user.getNewReleases().contains(bookToRemove));
         user.getNewReleases().remove(bookToRemove);
         userDao.save(user);
     }
+
+    @ResponseBody
+    @PostMapping("user/dismiss-all-new-releases")
+    public void dismissAllNewReleases(@RequestBody Book books, Authentication authentication) {
+        User user = userDao.findByUsername(authentication.getName());
+        List<Book> booksToRemove = new ArrayList<>();
+        user.setNewReleases(new ArrayList<>());
+        user.getNewReleases().removeAll(booksToRemove);
+        userDao.save(user);
+    }
+
 
     @ResponseBody
     @PostMapping("/user/save-book")
