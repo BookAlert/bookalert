@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head th:replace="partials/partials.html :: head('Home Page')">
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" href="/static/css/slick.css"/>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" href="/static/css/slick-theme.css"/>
+
     <title>Welcome!</title>
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
@@ -16,22 +21,21 @@
             <div class="carousel-inner">
                 <div class="carousel-item carousel-image-1 active">
                     <div class="container">
-                        <div class="carousel-caption d-none d-sm-block text-right mb-5">
-                            <h1 class="display-3">Heading One</h1>
-                            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Aliquam assumenda exercitationem facilis itaque quas, voluptatibus.</p>
-                            <a href="#" class="btn btn-outline-danger btn-lg">Sign Up Now</a>
+                        <div class="carousel-caption d-none d-sm-block text-center mb-5">
+                            <h1 class="display-3">Use your membership for in-depth searching!</h1>
+                            <p class="lead">BookAlert members get exclusive access to all titles and authors they choose to find.
+                                Not a member? Everyone is welcome and use your membership right away!</p>
+                            <a th:href="@{/sign-up}" class="btn btn-outline-danger btn-lg">Sign Up Now</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="carousel-item carousel-image-2">
                     <div class="container">
-                        <div class="carousel-caption d-none d-sm-block mb-5">
-                            <h1 class="display-3">Heading Two</h1>
-                            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Aliquam assumenda exercitationem facilis itaque quas, voluptatibus.</p>
-                            <a href="#" class="btn btn-outline-info btn-lg">Learn More!</a>
+                        <div class="carousel-caption d-none d-sm-block text-right mb-5">
+                            <h1 class="display-3">Already a member?</h1>
+                            <p class="lead">Explore new releases, recent titles, and more</p>
+                            <a th:href="@{/login}" class="btn btn-outline-info btn-lg">Learn More!</a>
                         </div>
                     </div>
                 </div>
@@ -39,10 +43,10 @@
                 <div class="carousel-item carousel-image-3">
                     <div class="container">
                         <div class="carousel-caption d-none d-sm-block text-left mb-5">
-                            <h1 class="display-3">Heading Three</h1>
-                            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Aliquam assumenda exercitationem facilis itaque quas, voluptatibus.</p>
-                            <a href="#" class="btn btn-outline-dark btn-lg">About Us</a>
+                            <h1 class="display-3">The BookAlert Story</h1>
+                            <p class="lead">
+                                We love books! So much, we created an application for them.</p>
+                            <a th:href="@{/about}" class="btn btn-outline-dark btn-lg">About Us</a>
                         </div>
                     </div>
                 </div>
@@ -64,17 +68,17 @@
             <div class="col-md-4 mb-4 text-centered">
                 <i class="fas fa-book-open fa-3x mb-2"></i>
                 <h3>Search your favorites</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <p>Find authors and titles for readers of all ages.</p>
             </div>
             <div class="col-md-4 mb-4 text-centered">
                 <i class="fas fa-list-ul fa-3x mb-2"></i>
                 <h3>Make A List</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <p>A library of your own, designed to spur discovery; we've created a few features to help you keep what you find and love most!.</p>
             </div>
             <div class="col-md-4 mb-4 text-centered">
                 <i class="fas fa-exclamation fa-3x mb-2"></i>
                 <h3>Stay Current</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <p>First and foremost, this is YOUR library! After you discover what you love, we'll keep you updated.</p>
             </div>
         </div>
     </div>
@@ -87,21 +91,39 @@
             <div class="col">
                 <div class="container p-5">
                     <h1>Are You Ready To Get Started?</h1>
-                    <p class="d-none d-md-block">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Deserunt esse magni nesciunt officiis perferendis tempora?</p>
+                    <p class="d-none d-md-block">Discover your next favorite read or author! Explore a selection of new releases, trending titles, and classics curated just for you.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+<!-- Carousel Book Slider-->
+<div class="slider slider-for slick-initialized slick-slider">
+    <div class="slick-track">
+        <div class="slick-slide"></div>
+    </div>
+</div>
+
+<div class="row slider slider-nav " >
+    <button type="button" class="slick-prev slick-arrow">Previous</button>
+    <div class="slick-list draggable" th:each="book : ${books}">
+        <div class="slick-track" >
+            <img class="slick-slide" th:src="${image}" th:each="image : ${book.artwork_url}">
+        </div>
+    </div>
+    <button type="button" class="slick-next slick-arrow">Next</button>
+</div>
+
+
 
 <footer th:replace="partials/partials.html :: footer"></footer>
-
+<script src="/static/js/jquery-3.6.0.min.js"></script>
+<script src="/static/js/slick.js"></script>
 <script th:replace="partials/partials.html :: bootstrap-j-query"></script>
 <script th:replace="partials/partials.html :: popper-js"></script>
 <script th:replace="partials/partials.html :: bootstrap-js"></script>
-
+<script th:src="@{/js/profile.js}"></script>
 
 </body>
 </html>

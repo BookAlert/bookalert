@@ -1,9 +1,32 @@
 $(() => {
 
+
+
     ///=================  FETCH DATA FOR AUTHOR
     $('body').on('click', '#purchase', function () {
         console.log("testing");
     });
+
+
+    // /// Carousel Handler
+
+
+    // $('.slider-for').slick({
+    //     slidesToShow: 1,
+    //     slidesToScroll: 1,
+    //     arrows: false,
+    //     fade: true,
+    //     asNavFor: '.slider-nav'
+    // });
+    // $('.slider-nav').slick({
+    //     slidesToShow: 4,
+    //     slidesToScroll: 1,
+    //     asNavFor: '.slider-for',
+    //     dots: true,
+    //     centerMode: true,
+    //     focusOnSelect: true
+    // });
+
 
     /// ================== SAVE UPCOMING-RELEASE METHOD(UserController)
     $('body').on('click', '.save-upcoming-book',  function (event) {
@@ -49,7 +72,20 @@ $(() => {
         }).then(()=> {
             $(this).closest('.upcoming-book-card').remove();
         })
-        console.log($(this).data('book-id'))
+    })
+
+    //================= MARK PURCHASED UPCOMING
+    $('body').on('click', '.mark-upcoming', function () {
+        fetch("user/purchased-upcoming", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({id: $(this).data('book-id') })
+        }).then(()=> {
+            $(this).closest('.new-release-card').remove();
+        })
     })
 
 //============== DISMISS NEW RELEASE
