@@ -1,3 +1,13 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh
+}
+
+main {
+    flex: 1 0 auto;
+}
+
 #demoButton {
     height: 100px;
     width: 100px;
@@ -7,9 +17,9 @@
     right: 0;
 }
 
-#authorLibrary {
-    width: 420px;
-}
+/*#authorLibrary {*/
+/*    width: 420px;*/
+/*}*/
 
 .new-release-card {
     height: 430px;

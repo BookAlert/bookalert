@@ -1,70 +1,108 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head th:replace="partials/partials.html :: head('Profile')">
     <title>User Profile</title>
 
 <body>
-<!--<script src=https://code.jquery.com/jquery-3.6.0.min.js></script>-->
-    <nav th:replace="partials/partials.html :: navbar"></nav>
-    <h1 class="text-center">Welcome to your profile!</h1>
 
-    <div class="d-flex">
-        <div id="authorLibrary">
-            <h3>Your Authors</h3>
+<main>
+    <nav th:replace="partials/partials.html :: navbar"></nav>
+    <h1 class="text-center">Welcome to your profile <span th:text="${#authentication.name}">User</span>!</h1>
+
+    <div class="card card-accent-dark mb-3" id="authorLibrary" style="max-width: 15rem;">
+        <div class="card-header text-center">Your Authors</div>
+        <div class="card-body text-dark">
             <ul th:each="author : ${authors}">
                 <a th:href="@{'/authors/' + ${author.id}}"><li th:text="${author.name}"></li></a>
             </ul>
         </div>
-        <section>
-            <h3>Your Saved Titles</h3>
-            <div class="d-flex flex-wrap flex-grow-1">
-                <div class="saved-book-card" th:each="book : ${savedBooks}">
-                    <div class="card p-1 text-center">
-                        <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100" th:src="${book.artwork_url}"></a>
-                        <p th:text="${book.release_date}"></p>
-                        <button type="button" class="btn btn-outline-danger btn-sm mb-2 delete-title" th:data-book-id="${book.id}">Delete</button>
-                        <a target="_blank" class="btn btn-outline-success btn-sm mb-2 purchase-book" th:href="${book.itunes_url}" role="button">Buy from iTunes</a>
-                        <button type="button" class="btn btn-outline-info btn-sm mark-purchased" th:data-book-id="${book.id}">Purchased</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section>
-            <h3>New Releases to our library</h3>
-            <div class="d-flex flex-wrap flex-grow-1">
-                <!--bootstrap card with 3 horizontal images-->
-                <div class="new-release-card p-2" th:each="book : ${newReleases}">
-                    <div class="card p-1 text-center">
-                        <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100" th:src="${book.artwork_url}"></a>
-                        <p th:text="${book.release_date}"></p>
-                        <button type="button" class="btn btn-outline-danger btn-sm mb-2 dismiss-new-release" th:data-book-id="${book.id}">Dismiss</button>
-                        <button type="button" class="btn btn-outline-primary btn-sm mb-2 save-book" th:data-book-id="${book.id}">Save</button>
-                        <a target="_blank" class="btn btn-outline-success btn-sm mb-2 purchase-book" th:href="${book.itunes_url}" role="button">Buy from iTunes</a>
-                        <button type="button" class="btn btn-outline-info btn-sm mark-purchased" th:data-book-id="${book.id}">Purchased</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section>
-            <h3>Upcoming Releases</h3>
-            <div class="d-flex flex-wrap flex-grow-1">
-                <!--bootstrap card with 3 horizontal images-->
-                <div class="upcoming-book-card p-2" th:each="book : ${upcomingReleases}">
-                    <div class="card p-1 text-center">
-                        <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100" th:src="${book.artwork_url}"></a>
-                        <p th:text="${book.release_date}"></p>
-                        <button type="button" class="btn btn-outline-danger btn-sm mb-2 dismiss-upcoming-release" th:data-book-id="${book.id}">Dismiss</button>
-                        <button type="button" class="btn btn-outline-primary btn-sm mb-2 save-upcoming-book" th:data-book-id="${book.id}">Save</button>
-                        <a target="_blank" class="btn btn-outline-success btn-sm mb-2 purchase-book" th:href="${book.itunes_url}" role="button">Buy from iTunes</a>
-                        <button type="button" class="btn btn-outline-info btn-sm mark-upcoming" th:data-book-id="${book.id}">Purchased</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
     </div>
-<button type="button" class="btn btn-outline-danger btn-sm dismiss-all">Dismiss All New Releases</button>
-<hr>
+
+
+   <div class="container mb-5 justify-content-center">
+
+       <ul class="nav nav-tabs" id="myTab" role="tablist">
+           <li class="nav-item">
+               <a class="nav-link active" id="saved-tab" data-toggle="tab" href="#saved" role="tab" aria-controls="home" aria-selected="true"><span class="badge badge-pill badge-secondary">1 </span> Saved Titles
+               </a>
+           </li>
+           <li class="nav-item">
+               <a class="nav-link" id="new-tab" data-toggle="tab" href="#newReleases" role="tab" aria-controls="profile" aria-selected="false"><span class="badge badge-pill badge-secondary">2 </span> New Releases
+               </a>
+           </li>
+           <li class="nav-item">
+               <a class="nav-link" id="upcoming-tab" data-toggle="tab" href="#upcomingRelease" role="tab" aria-controls="contact" aria-selected="false"><span class="badge badge-pill badge-secondary">3 </span> Upcoming Releases
+               </a>
+           </li>
+       </ul>
+
+       <div class="tab-content" id="myTabContent">
+           <div class="tab-pane fade show active" id="saved" role="tabpanel" aria-labelledby="home-tab">
+               <div class="card">
+                   <section>
+                       <h3 class="text-center mt-2 mb-5">Your Saved Titles</h3>
+                       <div class="d-flex flex-wrap flex-grow-1">
+                           <div class="saved-book-card" th:each="book : ${savedBooks}">
+                               <div class="card p-1 text-center">
+                                   <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100" th:src="${book.artwork_url}"></a>
+                                   <p th:text="${book.release_date}"></p>
+                                   <button type="button" class="btn btn-outline-danger btn-sm mb-2 delete-title" th:data-book-id="${book.id}">Delete</button>
+                                   <a target="_blank" class="btn btn-outline-success btn-sm mb-2 purchase-book" th:href="${book.itunes_url}" role="button">Buy from iTunes</a>
+                                   <button type="button" class="btn btn-outline-info btn-sm mark-purchased" th:data-book-id="${book.id}">Purchased</button>
+                               </div>
+                           </div>
+                       </div>
+                   </section>
+               </div>
+           </div>
+           <div class="tab-pane fade" id="newReleases" role="tabpanel" aria-labelledby="profile-tab">
+               <div class="card">
+                   <section>
+                       <h3 class="text-center mt-2 mb-5">New Releases to your library</h3>
+                       <div class="d-flex flex-wrap flex-grow-1">
+                           <!--bootstrap card with 3 horizontal images-->
+                           <div class="new-release-card p-2" th:each="book : ${newReleases}">
+                               <div class="card p-1 text-center">
+                                   <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100" th:src="${book.artwork_url}"></a>
+                                   <p th:text="${book.release_date}"></p>
+                                   <button type="button" class="btn btn-outline-danger btn-sm mb-2 dismiss-new-release" th:data-book-id="${book.id}">Dismiss</button>
+                                   <button type="button" class="btn btn-outline-primary btn-sm mb-2 save-book" th:data-book-id="${book.id}">Save</button>
+                                   <a target="_blank" class="btn btn-outline-success btn-sm mb-2 purchase-book" th:href="${book.itunes_url}" role="button">Buy from iTunes</a>
+                                   <button type="button" class="btn btn-outline-info btn-sm mark-purchased" th:data-book-id="${book.id}">Purchased</button>
+                               </div>
+                           </div>
+                       </div>
+                   </section>
+                   <div class="row justify-content-center">
+                       <button type="button" class="btn btn-outline-danger btn-sm-center dismiss-all">Dismiss All New Releases</button>
+                   </div>
+               </div>
+           </div>
+           <div class="tab-pane fade" id="upcomingRelease" role="tabpanel" aria-labelledby="contact-tab">
+               <div class="card">
+                   <section>
+                       <h3 class="text-center mt-2 mb-5">Upcoming Releases</h3>
+                       <div class="d-flex flex-wrap flex-grow-1">
+                           <!--bootstrap card with 3 horizontal images-->
+                           <div class="upcoming-book-card p-2" th:each="book : ${upcomingReleases}">
+                               <div class="card p-1 text-center">
+                                   <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100" th:src="${book.artwork_url}"></a>
+                                   <p th:text="${book.release_date}"></p>
+                                   <button type="button" class="btn btn-outline-danger btn-sm mb-2 dismiss-upcoming-release" th:data-book-id="${book.id}">Dismiss</button>
+                                   <button type="button" class="btn btn-outline-primary btn-sm mb-2 save-upcoming-book" th:data-book-id="${book.id}">Save</button>
+                                   <a target="_blank" class="btn btn-outline-success btn-sm mb-2 purchase-book" th:href="${book.itunes_url}" role="button">Buy from iTunes</a>
+                                   <button type="button" class="btn btn-outline-info btn-sm mark-upcoming" th:data-book-id="${book.id}">Purchased</button>
+                               </div>
+                           </div>
+                       </div>
+                   </section>
+               </div>
+           </div>
+       </div>
+    </div>
+
+
+</main>
 <footer th:replace="partials/partials.html :: footer"></footer>
 <button id="demoButton" type="button"></button>
 <script th:replace="partials/partials.html :: bootstrap-j-query"></script>

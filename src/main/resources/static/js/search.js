@@ -17,8 +17,7 @@ $(() => {
         const html = results.map(result => `
             
             <div class="author-search-result" data-name="${result.artistName}"> <i class="fas fa-plus mr-2" id="search"></i>
-            <a href="/authors/{id}">
-            ${result.artistName}</a></div>
+            <a>${result.artistName}</a></div>
             
           `).join("")
         $('#authorResults').html(html)
