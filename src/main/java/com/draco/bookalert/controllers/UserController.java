@@ -54,7 +54,7 @@ public class UserController {
 
 
 
-    ///=================================== ENDPOINT TO LOGIN PAGE
+    ///=================================== ENDPOINT TO Profile PAGE
 
     @GetMapping("/profile")
     public String showProfile(Model model, Authentication authentication) {
