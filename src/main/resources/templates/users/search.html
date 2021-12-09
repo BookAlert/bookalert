@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
+<link rel="stylesheet" href="searchStyling.css">
 <head th:replace="partials/partials.html :: head('Search Page')">
     <title>Search!</title>
-
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
-
+<img src="/bookshelf.jpeg" alt="bookshelf" class="bookshelf">
         <div class="col-md-4">
             <h3><label for="authorSearchInput" class="form-label">Search by Author</label></h3>
             <input th:action="@{/authors/{id}}" th:method="POST" type="text" name="authorSearchInput" id="authorSearchInput" class="form-control is-valid" placeholder="Enter an author's name" >
             <div class="valid-feedback">
                 Looks good!
             </div>
-            <div class="col-12">
+            <div class="offset-md-3 col-md-3 offset-lg-0 col-lg-6">
                 <button class="btn btn-primary" type="button" id="authorSearch">Search Authors</button>
             </div>
             <div id="authorResults">
@@ -30,7 +30,7 @@
     </div>
 </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3 col-lg-6">
             <h3><label for="titleSearchInput" class="form-label">Search by Title</label></h3>
             <input type="text" id="titleSearchInput" class="form-control is-valid"  placeholder="Enter a book title" >
             <div class="valid-feedback">

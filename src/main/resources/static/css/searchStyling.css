@@ -32,3 +32,9 @@
 /*    margin-left: 200px;*/
 /*    margin-right: 100px;*/
 /*}*/
+
+body {
+    /*background: url("bookshelf.jpeg");*/
+    /*background-size: cover;*/
+    background-color: saddlebrown;
+}
