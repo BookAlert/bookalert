@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -94,6 +95,7 @@ public class UserController {
     public String authorPage(Model model) {
         model.addAttribute("authors", authorRepository.findAll());
         model.addAttribute("books", booksRepository.findAll());
+//       model.addAttribute("releaseDate", new Date());
         return "authors/authors";
     }
 
