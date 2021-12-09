@@ -87,6 +87,24 @@ public class User {
     )
     private List<Book> purchasedBooks;
 
+    @WhereJoinTable(clause = "status_id = 4")
+    @SQLInsert(sql = "insert into book_user (user_id, book_id, status_id) values (?, ?, 4)")
+    @ManyToMany
+    @JoinTable(
+            name="book_user",
+            joinColumns ={@JoinColumn(name="user_id")},
+            inverseJoinColumns = {@JoinColumn(name="book_id")}
+    )
+    private List<Book> upcomingBooks;
+
+    public List<Book> getUpcomingBooks() {
+        return upcomingBooks;
+    }
+
+    public void setUpcomingBooks(List<Book> upcomingBooks) {
+        this.upcomingBooks = upcomingBooks;
+    }
+
     public List<Book> getPurchasedBooks() {
         return purchasedBooks;
     }

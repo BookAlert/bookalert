@@ -2,7 +2,9 @@ package com.draco.bookalert.controllers;
 
 
 import com.draco.bookalert.models.User;
+import com.draco.bookalert.repositories.BooksRepository;
 import com.draco.bookalert.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HomeController {
 
+    @Autowired
+    private BooksRepository booksRepository;
 
     ////===================================  ENDPOINT FOR HOME PAGE  ====
     @GetMapping("/")
-    public String landingPage() {
+    public String landingPage(Model viewModel) {
+        viewModel.addAttribute("books", booksRepository.findAll());
         return "users/home";
     }
 

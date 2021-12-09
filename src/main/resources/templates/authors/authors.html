@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials/partials.html :: head('Home Page')">
+<!--    <script src="https://kit.fontawesome.com/9f18d3c3fa.js" crossorigin="anonymous"></script>-->
     <meta charset="UTF-8">
     <title>Author</title>
 </head>
@@ -28,7 +29,6 @@
 </style>
 
 <body>
-<script src=https://code.jquery.com/jquery-3.6.0.min.js></script>
 <main>
 <h1>Author</h1>
     <div class="b-example-divider"></div>
@@ -52,34 +52,33 @@
     </div>
 
     <section>
-        <div>
-            <h3>
-                Bestsellers
-                possible modal component
-            </h3>
-        </div>
         <div class="d-flex flex-wrap flex-grow-1">
-            <div class="new-release-card p-2" th:each="book : ${books}">
-                    <div class="card p-1 text-center">
-                        <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100" th:src="${book.artwork_url}"></a>
-                        <p th:text="${book.release_date}"></p>
-                        <button type="button" class="btn btn-outline-danger btn-sm dismiss-new-release" th:data-book-id="${book.id}">Dismiss</button>
-                        <button type="button" class="btn btn-outline-primary btn-sm save-book" th:data-book-id="${book.id}">Save</button>
-                        <a target="_blank" class="btn btn-outline-success btn-sm purchase-book" th:href="${book.itunes_url}" role="button">Buy from iTunes</a>
-                        <button type="button" class="btn btn-outline-info btn-sm mark-purchased" th:data-book-id="${book.id}">Purchased</button>
-                    </div>
+                     <div class="author-book-card p-2" th:each="book : ${books}">
+                      <div class="card book-image p-1 text-center ribbon ribbon-top-left"><span>Purchased</span>
+                           <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100" th:src="${book.artwork_url}"></a>
+                            <p th:text="${book.release_date}"></p>
+                                <div style="display: inline-block">
+                                    <button type="button" class="btn btn-outline-primary save-book" th:data-book-id="${book.id}"><i class="far fa-bookmark fa-2x"></i></button>
+                                    <button type="button" class="btn btn-outline-info mark-purchased" th:data-book-id="${book.id}"><i class="fas fa-shopping-bag fa-2x"></i></button>
+                                    <a target="_blank" class="btn btn-outline-success purchase-book" th:href="${book.itunes_url}" role="button"><i class="fab fa-itunes fa-2x"></i></a>
+                                 </div>
+<!--                          <button type="button" class="btn btn-outline-primary btn-sm save-book" th:data-book-id="${book.id}">Save</button>-->
+<!--                             <a target="_blank" class="btn btn-outline-success btn-sm purchase-book" th:href="${book.itunes_url}" role="button">Buy from iTunes</a>-->
+<!--                            <button type="button" class="btn btn-outline-info btn-sm mark-purchased" th:data-book-id="${book.id}">Purchased</button>-->
+                        </div>
+                     </div>
 
-            </div>
-        </div>
+             </div>
 
     </section>
-
 </main>
 
-
+<footer th:replace="partials/partials.html :: footer"></footer>
 <script th:replace="partials/partials.html :: bootstrap-j-query"></script>
 <script th:replace="partials/partials.html :: popper-js"></script>
 <script th:replace="partials/partials.html :: bootstrap-js"></script>
+<script th:src="@{/js/author.js}"></script>
+<script th:replace="partials/partials.html :: font-awesome-js"></script>
 
 
 </body>

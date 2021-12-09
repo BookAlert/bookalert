@@ -14,4 +14,14 @@ public class iTunesAuthor {
     public void setArtistName(String artistName) {
         this.artistName = artistName;
     }
+
+    private boolean isAdded;
+
+    public boolean isAdded() {
+        return isAdded;
+    }
+
+    public void setAdded(boolean added) {
+        isAdded = added;
+    }
 }
