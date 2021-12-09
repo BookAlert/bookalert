@@ -1,10 +1,12 @@
 package com.draco.bookalert.models;
 
 import com.draco.bookalert.models.itunes.iTunesBook;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -22,7 +24,8 @@ public class Book {
     private String description;
 
     @Column
-    private Timestamp release_date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date release_date;
 
 
     @ManyToMany
@@ -69,7 +72,7 @@ public class Book {
         return Objects.hash(id);
     }
 
-    public Book(long id, String title, String description, Timestamp release_date, List<Genre> genres, String itunes_url, String artwork_url, Author author) {
+    public Book(long id, String title, String description, Date release_date, List<Genre> genres, String itunes_url, String artwork_url, Author author) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -83,7 +86,7 @@ public class Book {
     public Book(iTunesBook book, Author author) {
         this.title = book.getTrackName();
         this.description = book.getDescription();
-        this.release_date =  Timestamp.from(Instant.parse(book.getReleaseDate()));;
+        this.release_date =  Date.from(Instant.parse(book.getReleaseDate()));;
 //        this.genres = null;
         this.itunes_url = book.getTrackViewUrl();
         this.artwork_url = book.getArtworkUrl100().replace("100x100bb", "300x300bb");
@@ -116,11 +119,11 @@ public class Book {
         this.description = description;
     }
 
-    public Timestamp getRelease_date() {
+    public Date getRelease_date() {
         return release_date;
     }
 
-    public void setRelease_date(Timestamp release_date) {
+    public void setRelease_date(Date release_date) {
         this.release_date = release_date;
     }
 

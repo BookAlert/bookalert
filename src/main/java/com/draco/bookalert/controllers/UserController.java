@@ -58,8 +58,10 @@ public class UserController {
 
     @GetMapping("/profile")
     public String showProfile(Model model, Authentication authentication) {
-
         User user = userDao.findByUsername(authentication.getName());
+        if(user == null) {
+            return "redirect:login";
+        }
         model.addAttribute("authors", user.getAuthors());
         model.addAttribute("newReleases", user.getNewReleases());
         List<Book> allNewReleases = booksRepository.findUpcomingReleases();
