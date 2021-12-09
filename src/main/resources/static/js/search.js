@@ -16,8 +16,7 @@ $(() => {
     function buildSearchResults(results) {
         const html = results.map(result => `
             
-
-            <div class="author-search-result" data-name="${result.artistName}"> <i class="fas fa-plus mr-2" id="search"></i>
+            <div class="author-search-result" data-name="${result.artistName}"> <i class="fas fa-plus mr-2 add-author" id="search"></i>
             <a>${result.artistName}</a></div>
 
             

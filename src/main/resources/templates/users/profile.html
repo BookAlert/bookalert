@@ -17,6 +17,8 @@
        <div class="card card-accent-dark mb-3" id="authorLibrary" style="max-width: 15rem;">
            <div class="card-header text-center">Your Authors</div>
            <div class="card-body text-dark">
+               <th:block th:if="${#lists.isEmpty(authors)}" class="lead">List of Authors is empty, <a th:href="@{/search}">search</a> authors and add to your list!</th:block>
+
                <ul th:each="author : ${authors}">
                    <a th:href="@{'/authors/' + ${author.id}}"><li th:text="${author.name}"></li></a>
                </ul>
@@ -42,9 +44,13 @@
            <div class="tab-pane fade show active" id="saved" role="tabpanel" aria-labelledby="home-tab">
                <div class="card">
                    <section>
-                       <h3 class="text-center mt-2 mb-5">Your Saved Titles</h3>
+                       <h3 class="text-center mt-2 mb-2 card-header">Your Saved Titles</h3>
+                       <th:block th:if="${#lists.isEmpty(savedBooks)}" class="lead">You don't have any titles yet,
+                           <a th:href="@{/search}">search</a> and add to your list!</th:block>
+
                        <div class="d-flex flex-wrap flex-grow-1">
                            <div class="saved-book-card" th:each="book : ${savedBooks}">
+
                                <div class="card p-1 text-center">
                                    <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100" th:src="${book.artwork_url}"></a>
                                    <p th:text="${book.release_date}"></p>
@@ -60,11 +66,11 @@
            <div class="tab-pane fade" id="newReleases" role="tabpanel" aria-labelledby="profile-tab">
                <div class="card">
                    <section>
-                       <h3 class="text-center mt-2 mb-5">New Releases to your library</h3>
+                       <h3 class="text-center mt-2 mb-2 card-header">New Releases to your library</h3>
                        <div class="d-flex flex-wrap flex-grow-1">
                            <!--bootstrap card with 3 horizontal images-->
                            <div class="new-release-card p-2" th:each="book : ${newReleases}">
-                               <div class="card p-1 text-center">
+                               <div class="card p-1 text-center mb-3">
                                    <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100" th:src="${book.artwork_url}"></a>
                                    <p th:text="${book.release_date}"></p>
                                    <button type="button" class="btn btn-outline-danger btn-sm mb-2 dismiss-new-release" th:data-book-id="${book.id}">Dismiss</button>
@@ -83,11 +89,11 @@
            <div class="tab-pane fade" id="upcomingRelease" role="tabpanel" aria-labelledby="contact-tab">
                <div class="card">
                    <section>
-                       <h3 class="text-center mt-2 mb-5">Upcoming Releases</h3>
+                       <h3 class="text-center mt-2 mb-2 card-header">Upcoming Releases</h3>
                        <div class="d-flex flex-wrap flex-grow-1">
                            <!--bootstrap card with 3 horizontal images-->
                            <div class="upcoming-book-card p-2" th:each="book : ${upcomingReleases}">
-                               <div class="card p-1 text-center">
+                               <div class="card p-1 text-center ">
                                    <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100" th:src="${book.artwork_url}"></a>
                                    <p th:text="${book.release_date}"></p>
                                    <button type="button" class="btn btn-outline-danger btn-sm mb-2 dismiss-upcoming-release" th:data-book-id="${book.id}">Dismiss</button>
