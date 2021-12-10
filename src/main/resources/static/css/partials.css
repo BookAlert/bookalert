@@ -52,10 +52,10 @@
 /*ABOUT PAGE STYLING*/
 
     /*TEAM CARDS*/
-    img {
+    #team {
         margin-top: -50px;
     }
-    .card:hover {
+    #team-card:hover {
         background: lightblue;
         color:#fff;
     }
