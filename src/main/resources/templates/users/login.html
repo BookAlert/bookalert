@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<link rel="stylesheet" href="/css/login.css">
 <head th:replace="partials/partials.html :: head('Login Page')">
     <title>Login</title>
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
-
+<div class="container-fluid">
 <main>
     <h1 class="lead text-center">Log In</h1>
 
@@ -41,9 +42,11 @@
                 <button class="btn btn-primary" type="submit">Login</button>
             </div>
         </form>
-
     </div>
 </main>
+</div>
+
+
 <footer th:replace="partials/partials.html :: footer"></footer>
 <script th:replace="partials/partials.html :: bootstrap-j-query"></script>
 <script th:replace="partials/partials.html :: popper-js"></script>
