@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/partials.html :: head('Search Page')">
+<link rel="stylesheet" href="/css/searchStyling.css">
+<head th:replace="partials/partials.html :: head('Search Page')"></head>
     <title>Search!</title>
 
-<body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
+<div class="container-fluid">
 
-        <div class="col-md-4">
-            <h3><label for="authorSearchInput" class="form-label">Search by Author</label></h3>
-            <input th:action="@{/authors/{id}}" th:method="POST" type="text" name="authorSearchInput" id="authorSearchInput" class="form-control is-valid" placeholder="Enter an author's name" >
+    <div class="row">
+
+        <div class="col-lg-6 col-12" style="padding-left: 150px; padding-top: 100px">
+            <h3 class="search-by-author" style="width: 500px; color: white"><label for="authorSearchInput" class="form-label">Search by Author</label></h3>
+            <input th:action="@{/authors/{id}}" th:method="POST" type="text" name="authorSearchInput" id="authorSearchInput" style="width: 500px" class="form-control is-valid" placeholder="Enter an author's name" >
             <div class="valid-feedback">
                 Looks good!
             </div>
-            <div class="col-12">
-                <button class="btn btn-primary" type="button" id="authorSearch">Search Authors</button>
+
+            <div class="author-button">
+                <button class="btn btn-secondary" style="border-color: black " type="button" id="authorSearch">Search Authors</button>
             </div>
             <div id="authorResults">
-<!--                onClick="location.href='/authors/{id}'" th:object="${user}" th:if="${!user.exists}"-->
-<!--                <div class="nonUserSearch" th:object="${user}" th:if="${!user.exists}"></div>-->
+
             </div>
         </div>
 <div>
@@ -31,19 +34,21 @@
     </div>
 </div>
 
-        <div class="col-md-4">
-            <h3><label for="titleSearchInput" class="form-label">Search by Title</label></h3>
-            <input type="text" id="titleSearchInput" class="form-control is-valid"  placeholder="Enter a book title" >
+        <div class="col-lg-6 col-12" style="padding-left: 50px; padding-top: 100px">
+            <h3 class="search-by-title" style="width: 500px; color: white"><label for="titleSearchInput" class="form-label" >Search by Title</label></h3>
+            <input type="text" id="titleSearchInput" style="width: 500px" class="form-control is-valid"  placeholder="Enter a book title" >
             <div class="valid-feedback">
                 Looks good!
             </div>
-            <div class="col-12">
-                <button class="btn btn-primary" type="button" id="titleSearch">Search Title</button>
+            <div class="title-button">
+                <button class="btn btn-secondary" style="padding-left: 30px; padding-right: 30px; border-color: black" type="button" id="titleSearch">Search Title</button>
             </div>
             <div id="titleResults" class="row container">
 
             </div>
         </div>
+    </div>
+</div>
 <script th:src="@{/js/iziToast.min.js}"></script>
 <script th:replace="partials/partials.html :: bootstrap-j-query"></script>
 <script th:replace="partials/partials.html :: popper-js"></script>
@@ -53,5 +58,5 @@
 
 
 
-</body>
+
 </html>
