@@ -1,13 +1,6 @@
 $(() => {
 
-    //================================================================== TYPED.js effect
-    let typed = new Typed(".typed", {
-        strings: ["Ooooops, NO WAY JOSE!"," We've seemed to hit the wrong page!"],
-        typeSpeed: 70,
-        loop: true,
-        startDelay: 1000,
-        showCursor: false
-    });
+
 
 
     ///=================  FETCH DATA FOR AUTHOR
