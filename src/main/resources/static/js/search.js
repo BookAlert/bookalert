@@ -1,4 +1,15 @@
 $(() => {
+
+    //================================================================== TYPED.js effect
+    let typed = new Typed(".typed", {
+        strings: ["Ooooops, NO WAY JOSE!"," We've seemed to hit the wrong page!"],
+        typeSpeed: 70,
+        loop: true,
+        startDelay: 1000,
+        showCursor: false
+    });
+
+
     ///=================  FETCH DATA FOR AUTHOR
     $('body').on('click', '#authorSearch', function () {
         console.log("testing");
@@ -11,6 +22,8 @@ $(() => {
             .then(response => response.json())
             .then(buildSearchResults)
     })
+
+
 
 //================  FUNCTION TO MAP AUTHOR RESULTS TO HTML
     function buildSearchResults(results) {
@@ -55,10 +68,6 @@ $(() => {
 
 
 
-        //==================================click event for iziToast==================
-    // $('#search').click(function () {
-    //
-    // });
 
     //=================  FETCH DATA FOR TITLES/BOOKS
     $('#titleSearch').on('click',  function(){
