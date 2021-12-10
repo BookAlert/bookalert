@@ -6,20 +6,37 @@ $(() => {
         var url = new URL('author-suggestions', window.location.origin)
 
         url.search = new URLSearchParams({search: text}).toString();
+        Promise.all([
+            fetch(url)
+                .then(response => response.json()),
+            fetch("user/authors")
+                .then(response => response.json())
+        ]).then(buildSearchResults);
 
-        fetch(url)
-            .then(response => response.json())
-            .then(buildSearchResults)
     })
 
+    function renderCorrectIcon(resultId, userSavedIds) {
+        // in condition, needs to be true only if resultId is in userSavedIds; if this is true, return a string for a checkmark icon, otherwirse return string for plus icon
+        let icon = '<i class="fas fa-check mr-2 add-author" id="search"></i>';
+        for(let i = 0; i < resultId.length; i++) {
+            if(resultId[i] === userSavedIds[i]) {
+                icon = '<i class="fas fa-check mr-2 add-author" id="search"></i>';
+            } else {
+                icon = '<i class="fas fa-plus mr-2 add-author" id="search"></i>';
+            }
+        }
+        return icon;
+    }
+
 //================  FUNCTION TO MAP AUTHOR RESULTS TO HTML
-    function buildSearchResults(results) {
+    //call function instead of i tag
+    function buildSearchResults([ results, authorsList ]) {
         const html = results.map(result => `
             
-            <div class="author-search-result" data-name="${result.artistName}"> <i class="fas fa-plus mr-2 add-author" id="search"></i>
+            <div class="author-search-result" data-name="${result.artistName}"> ${renderCorrectIcon()} 
             <a>${result.artistName}</a></div>
 
-            
+
           `).join("")
         $('#authorResults').html(html)
     }
@@ -52,6 +69,7 @@ $(() => {
             })
         })
     })
+
 
 
 

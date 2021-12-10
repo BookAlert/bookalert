@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class UserController {
@@ -209,5 +210,11 @@ public class UserController {
         userDao.save(user);
     }
 
+    @ResponseBody
+    @GetMapping("/user/authors")
+    public List<Long> authorList(Authentication authentication) {
+        User user = userDao.findByUsername(authentication.getName());
+        return user.getAuthors().stream().map(Author::getId).collect(Collectors.toList());
+    }
 
 }
