@@ -7,7 +7,8 @@
 .container-fluid {
     background: url("../img/dewey.jpg");
     background-size: cover;
-    padding-bottom: 1000px;
+    padding-bottom: 450px;
+
 }
 
 body {
@@ -33,4 +34,8 @@ html {
 
 .search-by-author {
     padding-left: 140px;
+}
+
+#authorSearchInput {
+
 }
