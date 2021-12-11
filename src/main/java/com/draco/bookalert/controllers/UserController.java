@@ -212,9 +212,9 @@ public class UserController {
 
     @ResponseBody
     @GetMapping("/user/authors")
-    public List<Long> authorList(Authentication authentication) {
+    public List<String> authorList(Authentication authentication) {
         User user = userDao.findByUsername(authentication.getName());
-        return user.getAuthors().stream().map(Author::getId).collect(Collectors.toList());
+        return user.getAuthors().stream().map(Author::getName).collect(Collectors.toList());
     }
 
 }
