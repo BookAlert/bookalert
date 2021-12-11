@@ -1,8 +1,5 @@
 $(() => {
 
-
-
-
     ///=================  FETCH DATA FOR AUTHOR
     $('body').on('click', '#authorSearch', function () {
         console.log("testing");
@@ -47,6 +44,8 @@ $(() => {
 
           `).join("")
         $('#authorResults').html(html)
+        //$('#authorResults').hide()
+        //$('#authorResults').slideDown("slow")
     }
 
     //==================  POST RESULTS OF AUTHOR SEARCH W/ EVENT HANDLER
@@ -66,7 +65,7 @@ $(() => {
                 title: 'Success',
                 message: 'Successfully added author!',
                 position: 'center',
-                timeout: 5000
+                timeout: 1500
             })
             button.classList.remove('fa-plus')
             button.classList.remove('add-author')
@@ -79,7 +78,7 @@ $(() => {
                 title: 'Failure',
                 message: 'Author exists!',
                 position: 'center',
-                timeout: 5000
+                timeout: 1500
 
             })
         })

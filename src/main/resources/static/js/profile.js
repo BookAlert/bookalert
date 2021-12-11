@@ -40,7 +40,6 @@ $(() => {
             body: JSON.stringify({id: $(this).data('book-id') })
         }).then( () => {
             $(this).closest('.upcoming-book-card').remove();
-            location.reload()
         })
         console.log($(this).data('book-id'))
 
@@ -113,7 +112,6 @@ $(() => {
             method: "POST",
             body: JSON.stringify({id: $(this).data('book-id') })
         }).then(()=> {
-            window.location.reload()
         })
     })
 
@@ -167,10 +165,39 @@ $(() => {
     $('body').on('click', '#demoButton', function () {
         fetch("/fake-new-releases", {method: "POST"})
             .then(()=> {
-            window.location.reload();
+            // window.location.reload();
         })
     })
 
+    $('body').on('click', '.nav-link', function () {
+        renderPane($(this)[0].id.split('-')[0])
+    })
+
+    let saved = [];
+    let savedLength = 0;
+
+    let newBooks = [];
+    let newBooksLength = 0;
+
+    let upcoming = [];
+    let upcomingLength = 0;
+
+
+
+    function renderPane(paneName) {
+        switch (paneName) {
+            case 'saved' :
+
+                console.log('rebuild saved list')
+                break;
+            case 'new' :
+                console.log('rebuild new list')
+                break;
+            case 'upcoming' :
+                console.log('rebuild upcoming list')
+                break;
+        }
+    }
 
 
 
