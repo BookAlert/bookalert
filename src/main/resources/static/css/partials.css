@@ -51,6 +51,16 @@
 
 /*ABOUT PAGE STYLING*/
 
+    /*TEAM CARDS*/
+    #team {
+        margin-top: -50px;
+    }
+    #team-card:hover {
+        background: lightblue;
+        color:#fff;
+    }
+
+
 .image-1 {
     background: url("../img/img12.jpeg");
     background-size: cover;

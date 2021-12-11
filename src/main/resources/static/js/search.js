@@ -1,4 +1,8 @@
 $(() => {
+
+
+
+
     ///=================  FETCH DATA FOR AUTHOR
     $('body').on('click', '#authorSearch', function () {
         console.log("testing");
@@ -84,10 +88,6 @@ $(() => {
 
 
 
-        //==================================click event for iziToast==================
-    // $('#search').click(function () {
-    //
-    // });
 
     //=================  FETCH DATA FOR TITLES/BOOKS
     $('#titleSearch').on('click',  function(){

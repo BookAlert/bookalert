@@ -22,4 +22,8 @@ $(() => {
         })
     })
     console.log($(this).data('book-id'))
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 })
