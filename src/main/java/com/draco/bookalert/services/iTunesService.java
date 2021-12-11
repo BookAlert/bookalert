@@ -20,7 +20,7 @@ public class iTunesService {
     @Autowired
     RestTemplate restTemplate;
 
-    public ArrayList<iTunesAuthor> getProductList(String search) {
+    public ArrayList<iTunesAuthor> getAuthorList(String search) {
 
         return restTemplate.getForEntity("https://itunes.apple.com/search?term=" + search + "&media=ebook&entity=ebookAuthor&attribute=authorTerm&limit=20", iTunesAuthorSearchResponse.class).getBody().getResults();
 

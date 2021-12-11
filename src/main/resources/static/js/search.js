@@ -10,22 +10,41 @@ $(() => {
         var url = new URL('author-suggestions', window.location.origin)
 
         url.search = new URLSearchParams({search: text}).toString();
+        Promise.all([
+            fetch(url)
+                .then(response => response.json()),
+            fetch("user/authors")
+                .then(response => response.json())
+        ]).then(buildSearchResults);
 
-        fetch(url)
-            .then(response => response.json())
-            .then(buildSearchResults)
     })
 
+    function renderCorrectIcon(author, userSavedAuthorNames) {
+        // in condition, needs to be true only if resultId is in userSavedIds; if this is true, return a string for a checkmark icon, otherwirse return string for plus icon
+        let icon = '<i class="fas fa-check mr-2 add-author" id="search"></i>';
+        // for(let i = 0; i < resultId.length; i++) {
+
+            if(userSavedAuthorNames.includes(author.artistName)) {
+                icon = '<i class="fas fa-check mr-2 add-author-button-checked" id="search"></i>';
+            } else {
+                icon = '<i class="fas fa-plus mr-2 add-author add-author-button" id="search"></i>';
+            }
+        return icon;
+
+    }
 
 
 //================  FUNCTION TO MAP AUTHOR RESULTS TO HTML
-    function buildSearchResults(results) {
+    //call function instead of i tag
+    function buildSearchResults([ results, authorsList ]) {
+        console.log(results)
+        console.log(authorsList)
         const html = results.map(result => `
             
-            <div class="author-search-result" data-name="${result.artistName}"> <i class="fas fa-plus mr-2 add-author" id="search"></i>
+            <div class="author-search-result" data-name="${result.artistName}"> ${renderCorrectIcon(result, authorsList)} 
             <a>${result.artistName}</a></div>
 
-            
+
           `).join("")
         $('#authorResults').html(html)
     }
@@ -33,7 +52,8 @@ $(() => {
     //==================  POST RESULTS OF AUTHOR SEARCH W/ EVENT HANDLER
     $('body').on('click', '.author-search-result', function () {
         const authorName = $(this).data("name");
-
+        let button = $(this)[0].children[0]
+        console.log($(this))
         fetch("add-author", {
             headers: {
                 'Accept': 'application/json',
@@ -48,6 +68,12 @@ $(() => {
                 position: 'center',
                 timeout: 5000
             })
+            button.classList.remove('fa-plus')
+            button.classList.remove('add-author')
+            button.classList.add('fa-check')
+            button.classList.remove('add-author-button')
+            button.classList.add('add-author-button-checked')
+
         }).catch(() => {
             iziToast.fail({
                 title: 'Failure',
@@ -58,6 +84,7 @@ $(() => {
             })
         })
     })
+
 
 
 
