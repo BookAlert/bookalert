@@ -30,23 +30,6 @@ $(() => {
     // });
 
 
-    /// ================== SAVE UPCOMING-RELEASE METHOD(UserController)
-    $('body').on('click', '.save-upcoming-book',  function (event) {
-        event.preventDefault();
-         fetch("user/save-upcoming-title", {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify({id: $(this).data('book-id') })
-        }).then( () => {
-            loadUpcomingReleases();
-            loadSavedBooks();
-        })
-
-    })
-
     //============== DISMISS NEW RELEASE
     $('body').on('click', '.dismiss-new-release', function () {
         fetch("user/dismiss-new-release", {
@@ -58,23 +41,11 @@ $(() => {
             body: JSON.stringify({id: $(this).data('book-id') })
         }).then(()=> {
             loadNewReleases();
-        })
-    })
-
-
-    //================= MARK PURCHASED UPCOMING
-    $('body').on('click', '.mark-upcoming', function () {
-        fetch("user/purchased-upcoming", {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify({id: $(this).data('book-id') })
-        }).then(()=> {
             loadUpcomingReleases();
         })
     })
+
+
 
 //============== DISMISS NEW RELEASE
     $('body').on('click', '.dismiss-new-release', function () {
@@ -156,7 +127,8 @@ $(() => {
     $('body').on('click', '#demoButton', function () {
         fetch("/fake-new-releases", {method: "POST"})
             .then(()=> {
-            // window.location.reload();
+                loadNewReleases();
+                loadUpcomingReleases();
         })
     })
 

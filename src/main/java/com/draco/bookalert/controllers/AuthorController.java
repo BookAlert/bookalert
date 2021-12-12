@@ -49,15 +49,6 @@ package com.draco.bookalert.controllers;
      }
 
     @ResponseBody
-    @PostMapping("/authors/mark-purchased")
-    public void markPurchased(@RequestBody Book bookToMark, Authentication authentication) {
-        User user = userDao.findByUsername(authentication.getName());
-        Book book = booksRepository.getById(bookToMark.getId());
-        user.getPurchasedBooks().add(book);
-        userDao.save(user);
-    }
-
-    @ResponseBody
     @GetMapping("/authors/user-authors")
     public List<Author> userAuthors(@RequestBody Author author, Authentication authentication) {
          User user = userDao.findByUsername(authentication.getName());

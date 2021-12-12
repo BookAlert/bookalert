@@ -1,6 +1,6 @@
 $(() => {
     $('body').on('click', '.save-book', function () {
-        fetch("/authors/save-book", {
+        fetch("/user/save-book", {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -9,10 +9,9 @@ $(() => {
             body: JSON.stringify({id: $(this).data('book-id') })
         })
     })
-    console.log($(this).data('book-id'))
 
     $('body').on('click', '.mark-purchased', function () {
-        fetch("/authors/mark-purchased", {
+        fetch("/user/mark-purchased", {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -21,7 +20,6 @@ $(() => {
             body: JSON.stringify({id: $(this).data('book-id') })
         })
     })
-    console.log($(this).data('book-id'))
 
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()

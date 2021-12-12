@@ -2,10 +2,11 @@
     <h3 class="mb-2">Upcoming Releases</h3>
     <div class="d-flex flex-wrap flex-grow-1">
         <!--bootstrap card with 3 horizontal images-->
-        <div class="upcoming-book-card p-2" th:each="book : ${upcomingReleases}">
+        <div class="book-card p-2" th:each="book : ${upcomingReleases}">
             <div class="card p-1 text-center ">
-                <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100"
-                                                           th:src="${book.artwork_url}"></a>
+                <a th:href="@{'/book/' + ${book.id}}">
+                    <img class="book-cover" th:src="${book.artwork_url}">
+                </a>
                 <p th:text="${{#dates.format(book.release_date, 'MM-yyyy-dd')}}"
                    class="lead"></p>
                 <button type="button"
@@ -13,13 +14,13 @@
                         th:data-book-id="${book.id}"><i class="far fa-trash-alt fa-lg"></i>
                 </button>
                 <button type="button"
-                        class="btn btn-outline-primary btn-sm mb-2 save-upcoming-book"
+                        class="btn btn-outline-primary btn-sm mb-2 save-book"
                         th:data-book-id="${book.id}"><i class="far fa-bookmark fa-lg"></i>
                 </button>
                 <a target="_blank" class="btn btn-outline-success btn-sm mb-2 purchase-book"
                    th:href="${book.itunes_url}" role="button"><i
                         class="fab fa-itunes fa-lg"></i></a>
-                <button type="button" class="btn btn-outline-info btn-sm mark-upcoming"
+                <button type="button" class="btn btn-outline-info btn-sm mark-purchased"
                         th:data-book-id="${book.id}"><i class="fas fa-shopping-bag fa-lg"></i>
                 </button>
             </div>

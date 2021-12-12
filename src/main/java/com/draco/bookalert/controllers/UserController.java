@@ -144,16 +144,6 @@ public class UserController {
         userDao.save(user);
     }
 
-    @ResponseBody
-    @PostMapping("/user/purchased-upcoming")
-    public void purchasedStatusUpcoming(@RequestBody Book upcomingPurchase, Authentication authentication) {
-        User user = userDao.findByUsername(authentication.getName());
-        Book book = booksRepository.getById(upcomingPurchase.getId());
-        user.getPurchasedBooks().add(book);
-        userDao.save(user);
-
-    }
-
 
     ///===================== DELETE FROM USERS LIST
     @ResponseBody
@@ -178,9 +168,12 @@ public class UserController {
     @PostMapping("user/dismiss-all-new-releases")
     public void dismissAllNewReleases(Authentication authentication) {
         User user = userDao.findByUsername(authentication.getName());
-        List<Book> booksToRemove = new ArrayList<>();
-        user.setNewReleases(new ArrayList<>());
-        user.getNewReleases().removeAll(booksToRemove);
+        long now = System.currentTimeMillis();
+        List<Book> newReleases = user.getNewReleases()
+                .stream()
+                .filter(book -> book.getRelease_date().getTime() <= now)
+                .collect(Collectors.toList());
+        user.getNewReleases().removeAll(newReleases);
         userDao.save(user);
     }
 
@@ -191,25 +184,14 @@ public class UserController {
         User user = userDao.findByUsername(authentication.getName());
         Book book = booksRepository.getById(bookToSave.getId());
         user.getSavedBooks().add(book);
-        List<Book> books = new ArrayList<>();
-        for(Book book2 : user.getNewReleases()) {
-            if (!book2.equals(bookToSave)) {
-                books.add(book2);
-            }
-        }
-        user.setNewReleases(books);
-        user.getNewReleases().remove(book);
+        List<Book> updatedNewReleases = user.getNewReleases()
+                .stream()
+                .filter(newRelease -> newRelease.getId() != book.getId())
+                .collect(Collectors.toList());
+        user.setNewReleases(updatedNewReleases);
         userDao.save(user);
     }
 
-    @ResponseBody
-    @PostMapping("/authors/save-book")
-    public void saveAuthorBook(@RequestBody Book bookToSave, Authentication authentication) {
-        User user = userDao.findByUsername(authentication.getName());
-        Book book = booksRepository.getById(bookToSave.getId());
-        user.getSavedBooks().add(book);
-        userDao.save(user);
-    }
 
     @ResponseBody
     @PostMapping("/user/mark-purchased")
@@ -217,6 +199,7 @@ public class UserController {
         User user = userDao.findByUsername(authentication.getName());
         Book book = booksRepository.getById(bookToMark.getId());
         user.getPurchasedBooks().add(book);
+        user.getNewReleases().remove(book);
         userDao.save(user);
     }
 
