@@ -1,20 +1,17 @@
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh
+body.profile-body {
+    background-size: cover;
+    height: 100%;
+    padding-top: 58px;
+    background: url(../img/big-library.jpg) no-repeat;
 }
 
-main {
-    flex: 1 0 auto;
-}
 
 #profilePage {
-    top: 0;
-    left: 0;
+    /*top: 0;*/
+    /*left: 0;*/
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8) url("../img/img12.jpeg");
-
+    padding-bottom: 450px;
 }
 
 #demoButton {
@@ -26,19 +23,12 @@ main {
     right: 0;
 }
 
-.new-release-card {
-    height: 430px;
-    width: 150px;
-}
+/*.book-card {*/
+/*    height: 430px;*/
+/*    width: 150px;*/
+/*}*/
 
-/* Saved books section*/
-.saved-book-card {
-    height: 430px;
-    width: 150px;
-}
-
-.upcoming-book-card {
-    height: 430px;
-    width: 150px;
+img.book-cover {
+    height: 250px;
 }
 

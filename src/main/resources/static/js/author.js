@@ -1,7 +1,6 @@
 $(() => {
-    //==========SAVE-BOOK HANDLER
     $('body').on('click', '.save-book', function () {
-        fetch("/authors/save-book", {
+        fetch("/user/save-book", {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -31,7 +30,7 @@ $(() => {
     // console.log($(this).data('book-id'))
     //==========MARK PURCHASED HANDLER
     $('body').on('click', '.mark-purchased', function () {
-        fetch("/authors/mark-purchased", {
+        fetch("/user/mark-purchased", {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -53,20 +52,10 @@ $(() => {
                 timeout: 3000
             })
         })
-        // console.log($(this).data('book-id'))
     })
+    console.log($(this).data('book-id'))
 
-    // $(function(){
-    //     $("#purchase-button").on("click", function(){
-    //
-    //     });
-    // })
-    // $('#purchased-button').on('click', function() {
-    //     // $(this).hide(); // does not run a DOM query
-    //     $('#purchased-text').hide() // runs a DOM query
-    // });
     $(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-
+        $('[data-toggle="tooltip"]').tooltip()
     })
 })

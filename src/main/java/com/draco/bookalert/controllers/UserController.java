@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class UserController {
@@ -64,20 +65,48 @@ public class UserController {
             return "redirect:login";
         }
         model.addAttribute("authors", user.getAuthors());
-        model.addAttribute("newReleases", user.getNewReleases());
-        List<Book> allNewReleases = booksRepository.findUpcomingReleases();
-        List<Book> userNewReleases = new ArrayList<>();
-        for(Book book : allNewReleases) {
-            Author author = book.getAuthor();
-            if(user.getAuthors().contains(author)) {
-                userNewReleases.add(book);
-            }
-        }
-        model.addAttribute("upcomingReleases", userNewReleases);
-        model.addAttribute("savedBooks",user.getSavedBooks());
-
-        // TODO model.addAttribute("recentReleases", booksRepository.findRecentReleases());
         return "users/profile";
+    }
+
+    @GetMapping("/profile/saved-books")
+    public String getSavedBooks(Model model, Authentication authentication) {
+        User user = userDao.findByUsername(authentication.getName());
+        if(user == null) {
+            return "redirect:login";
+        }
+        model.addAttribute("savedBooks",user.getSavedBooks());
+        return "users/profile-saved-books";
+    }
+
+    @GetMapping("/profile/new-releases")
+    public String getNewReleases(Model model, Authentication authentication) {
+        User user = userDao.findByUsername(authentication.getName());
+        if(user == null) {
+            return "redirect:login";
+        }
+        long now = System.currentTimeMillis();
+        List<Book> newReleases = user.getNewReleases()
+                .stream()
+                .filter(book -> book.getRelease_date().getTime() <= now)
+                .collect(Collectors.toList());
+
+        model.addAttribute("newReleases", newReleases);
+        return "users/profile-new-releases";
+    }
+
+    @GetMapping("/profile/upcoming-releases")
+    public String getUpcomingReleases(Model model, Authentication authentication) {
+        User user = userDao.findByUsername(authentication.getName());
+        if(user == null) {
+            return "redirect:login";
+        }
+        long now = System.currentTimeMillis();
+        List<Book> upcomingReleases = user.getNewReleases()
+                .stream()
+                .filter(book -> book.getRelease_date().getTime() > now)
+                .collect(Collectors.toList());
+        model.addAttribute("upcomingReleases", upcomingReleases);
+        return "users/profile-upcoming-releases";
     }
 
 
@@ -111,36 +140,8 @@ public class UserController {
         User user = userDao.findByUsername(authentication.getName());
         Book book = booksRepository.getById(upcomingTitle.getId());
         user.getSavedBooks().add(book);
-        List<Book> books = new ArrayList<>();
-        for(Book upcomingBook : user.getUpcomingBooks()) {
-            if(!upcomingBook.equals(upcomingTitle)) {
-               books.add(upcomingBook);
-            }
-
-        }
-        user.setUpcomingBooks(books);
+        user.getNewReleases().remove(book);
         userDao.save(user);
-
-    }
-
-    @ResponseBody
-    @PostMapping("/user/dismiss-upcoming-release")
-    public void dismissUpcomingRelease(@RequestBody Book bookToDismiss, Authentication authentication) {
-        User user = userDao.findByUsername(authentication.getName());
-        user.getUpcomingBooks().remove(bookToDismiss);
-
-        userDao.save(user);
-    }
-
-
-    @ResponseBody
-    @PostMapping("/user/purchased-upcoming")
-    public void purchasedStatusUpcoming(@RequestBody Book upcomingPurchase, Authentication authentication) {
-        User user = userDao.findByUsername(authentication.getName());
-        Book book = booksRepository.getById(upcomingPurchase.getId());
-        user.getPurchasedBooks().add(book);
-        userDao.save(user);
-
     }
 
 
@@ -165,11 +166,14 @@ public class UserController {
 
     @ResponseBody
     @PostMapping("user/dismiss-all-new-releases")
-    public void dismissAllNewReleases(@RequestBody Book books, Authentication authentication) {
+    public void dismissAllNewReleases(Authentication authentication) {
         User user = userDao.findByUsername(authentication.getName());
-        List<Book> booksToRemove = new ArrayList<>();
-        user.setNewReleases(new ArrayList<>());
-        user.getNewReleases().removeAll(booksToRemove);
+        long now = System.currentTimeMillis();
+        List<Book> newReleases = user.getNewReleases()
+                .stream()
+                .filter(book -> book.getRelease_date().getTime() <= now)
+                .collect(Collectors.toList());
+        user.getNewReleases().removeAll(newReleases);
         userDao.save(user);
     }
 
@@ -180,25 +184,14 @@ public class UserController {
         User user = userDao.findByUsername(authentication.getName());
         Book book = booksRepository.getById(bookToSave.getId());
         user.getSavedBooks().add(book);
-        List<Book> books = new ArrayList<>();
-        for(Book book2 : user.getNewReleases()) {
-            if (!book2.equals(bookToSave)) {
-                books.add(book2);
-            }
-        }
-        user.setNewReleases(books);
-        user.getNewReleases().remove(book);
+        List<Book> updatedNewReleases = user.getNewReleases()
+                .stream()
+                .filter(newRelease -> newRelease.getId() != book.getId())
+                .collect(Collectors.toList());
+        user.setNewReleases(updatedNewReleases);
         userDao.save(user);
     }
 
-    @ResponseBody
-    @PostMapping("/authors/save-book")
-    public void saveAuthorBook(@RequestBody Book bookToSave, Authentication authentication) {
-        User user = userDao.findByUsername(authentication.getName());
-        Book book = booksRepository.getById(bookToSave.getId());
-        user.getSavedBooks().add(book);
-        userDao.save(user);
-    }
 
     @ResponseBody
     @PostMapping("/user/mark-purchased")
@@ -206,8 +199,15 @@ public class UserController {
         User user = userDao.findByUsername(authentication.getName());
         Book book = booksRepository.getById(bookToMark.getId());
         user.getPurchasedBooks().add(book);
+        user.getNewReleases().remove(book);
         userDao.save(user);
     }
 
+    @ResponseBody
+    @GetMapping("/user/authors")
+    public List<String> authorList(Authentication authentication) {
+        User user = userDao.findByUsername(authentication.getName());
+        return user.getAuthors().stream().map(Author::getName).collect(Collectors.toList());
+    }
 
 }
