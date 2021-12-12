@@ -34,7 +34,7 @@ $(() => {
             method: "POST",
             body: JSON.stringify({id: $(this).data('book-id')})
         }).then(() => {
-            $(this).removeClass('purchased-text');
+            $('#purchased-text').css('visibility', 'visible');
         }).then(() => {
             iziToast.info({
                 title: 'Purchased',

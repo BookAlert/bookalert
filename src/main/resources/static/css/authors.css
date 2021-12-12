@@ -62,7 +62,7 @@
     background-color: #3498db;
 }
 
-.purchased-text{
+#purchased-text{
    visibility: hidden;
 }
 
