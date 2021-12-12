@@ -1,3 +1,15 @@
+html, body, main {
+    height: 100%;
+}
+
+main {
+    overflow-y: auto;
+}
+
+body {
+    padding-top: 58px;
+
+}
 
 /*HOME PAGE STYLING*/
 .navbar .nav-link {
@@ -51,6 +63,19 @@
 
 /*ABOUT PAGE STYLING*/
 
+/*TEAM CARDS*/
+#team {
+    margin-top: -50px;
+}
+#team-card:hover {
+    background: lightblue;
+    color:#fff;
+}
+
+.custom-bar-color {
+    background: rgba(255, 255, 255, .95) !important;
+}
+
 .image-1 {
     background: url("../img/img12.jpeg");
     background-size: cover;
@@ -60,23 +85,47 @@
     background-size: cover;
 }
 
-.image-head-1{
-    background: url("../img/aboutBackground.png");
-    background-size: cover;
+.overlay {
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: -1;
 }
 
-.image-head-2{
-    background: url("../img/aboutBackground.png");
-    background-size: cover;
+.btn-xs {
+    padding: 0 4px;
+    font-size: 10px;
+    height: 17px;
 }
 
-.image-head-3{
-    background: url("../img/aboutBackground.png");
-    background-size: cover;
-}
+/*button {*/
+/*    text-transform: uppercase;*/
+/*}*/
+/*.image-head-1{*/
+/*    background: url("../img/aboutBackground.png");*/
+/*    background-size: cover;*/
+/*}*/
 
-.image-head-4{
-    background: url("../img/aboutBackground.png");
-    background-size: cover;
-}
+/*.image-head-2{*/
+/*    background: url("../img/aboutBackground.png");*/
+/*    background-size: cover;*/
+/*}*/
 
+/*.image-head-3{*/
+/*    background: url("../img/aboutBackground.png");*/
+/*    background-size: cover;*/
+/*}*/
+
+/*.image-head-4{*/
+/*    background: url("../img/aboutBackground.png");*/
+/*    background-size: cover;*/
+/*}*/
+
+/*#main-footer {*/
+/*    position: fixed;*/
+/*    bottom: 0;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*}*/

@@ -16,6 +16,8 @@ package com.draco.bookalert.controllers;
  import org.springframework.stereotype.Controller;
  import org.springframework.web.bind.annotation.*;
 
+ import java.util.List;
+
 @Controller
  public class AuthorController {
      @Autowired
@@ -47,14 +49,12 @@ package com.draco.bookalert.controllers;
      }
 
     @ResponseBody
-    @PostMapping("/authors/mark-purchased")
-    public void markPurchased(@RequestBody Book bookToMark, Authentication authentication) {
-        User user = userDao.findByUsername(authentication.getName());
-        Book book = booksRepository.getById(bookToMark.getId());
-        user.getPurchasedBooks().add(book);
-        userDao.save(user);
+    @GetMapping("/authors/user-authors")
+    public List<Author> userAuthors(@RequestBody Author author, Authentication authentication) {
+         User user = userDao.findByUsername(authentication.getName());
+         List<Author> usersAuthorList = user.getAuthors();
+         return usersAuthorList;
     }
-
 
 }
 

@@ -1,6 +1,8 @@
 $(() => {
 
-
+    loadSavedBooks();
+    loadNewReleases();
+    loadUpcomingReleases();
 
     ///=================  FETCH DATA FOR AUTHOR
     $('body').on('click', '#purchase', function () {
@@ -28,23 +30,6 @@ $(() => {
     // });
 
 
-    /// ================== SAVE UPCOMING-RELEASE METHOD(UserController)
-    $('body').on('click', '.save-upcoming-book',  function (event) {
-        event.preventDefault();
-         fetch("user/save-upcoming-title", {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify({id: $(this).data('book-id') })
-        }).then( () => {
-            $(this).closest('.upcoming-book-card').remove();
-            location.reload()
-        })
-        console.log($(this).data('book-id'))
-
-    })
 
     //============== DISMISS NEW RELEASE
     $('body').on('click', '.dismiss-new-release', function () {
@@ -56,35 +41,8 @@ $(() => {
             method: "POST",
             body: JSON.stringify({id: $(this).data('book-id') })
         }).then(()=> {
-            $(this).closest('.new-release-card').remove();
-        })
-    })
-
-    //============== DISMISS UPCOMING RELEASE
-    $('body').on('click', '.dismiss-upcoming-release', function () {
-        fetch("user/dismiss-upcoming-release", {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify({id: $(this).data('book-id') })
-        }).then(()=> {
-            $(this).closest('.upcoming-book-card').remove();
-        })
-    })
-
-    //================= MARK PURCHASED UPCOMING
-    $('body').on('click', '.mark-upcoming', function () {
-        fetch("user/purchased-upcoming", {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify({id: $(this).data('book-id') })
-        }).then(()=> {
-            $(this).closest('.new-release-card').remove();
+            loadNewReleases();
+            loadUpcomingReleases();
         })
     })
 
@@ -98,7 +56,7 @@ $(() => {
             method: "POST",
             body: JSON.stringify({id: $(this).data('book-id') })
         }).then(()=> {
-            $(this).closest('.new-release-card').remove();
+            loadNewReleases();
         })
         console.log($(this).data('book-id'))
     })
@@ -111,9 +69,8 @@ $(() => {
                 'Content-Type': 'application/json'
             },
             method: "POST",
-            body: JSON.stringify({id: $(this).data('book-id') })
         }).then(()=> {
-            window.location.reload()
+            loadNewReleases();
         })
     })
 
@@ -128,7 +85,7 @@ $(() => {
             method: "POST",
             body: JSON.stringify({id: $(this).data('book-id') })
         }).then(()=> {
-            $(this).closest('.saved-book-card').remove();
+            loadSavedBooks();
         })
         console.log($(this).data('book-id'))
     })
@@ -146,8 +103,9 @@ $(() => {
             method: "POST",
             body: JSON.stringify({id: $(this).data('book-id') })
         }).then(()=> {
-            $(this).closest('.new-release-card').remove();
-            window.location.reload();
+            loadSavedBooks();
+            loadNewReleases();
+            loadUpcomingReleases();
         })
     })
 
@@ -160,18 +118,39 @@ $(() => {
             method: "POST",
             body: JSON.stringify({id: $(this).data('book-id') })
         }).then(()=> {
-            $(this).closest('.new-release-card').remove();
+            loadSavedBooks();
+            loadNewReleases();
+            loadUpcomingReleases();
         })
     })
 
     $('body').on('click', '#demoButton', function () {
         fetch("/fake-new-releases", {method: "POST"})
             .then(()=> {
-            window.location.reload();
+                loadNewReleases();
+                loadUpcomingReleases();
         })
     })
 
+    function loadSavedBooks() {
+        fetch("/profile/saved-books")
+            .then((res) => res.text())
+            .then((res) => $('#profileSavedBooks').html(res))
+    }
 
+    function loadNewReleases() {
+        fetch("/profile/new-releases")
+            .then((res) => res.text())
+            .then((res) => $('#profileNewReleases').html(res))
+    }
 
+    function loadUpcomingReleases() {
+        fetch("/profile/upcoming-releases")
+            .then((res) => res.text())
+            .then((res) => $('#profileUpcomingReleases').html(res))
+    }
 
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 })

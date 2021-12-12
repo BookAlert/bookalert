@@ -18,31 +18,31 @@
 
     <div class="container">
 
-        <form class="row g-3" th:action="@{/login}" method="POST" >
-
+        <form class="row g-3 float-right ml-2" th:action="@{/login}" method="POST" >
             <div class="col-md-4">
                 <label for="validationServerUsername" class="form-label">Username</label>
                 <div class="input-group has-validation">
                     <span class="input-group-text" id="inputGroupPrepend3">@</span>
-                    <input type="text" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" name="username">
-                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                        Please enter your username.
-                    </div>
+                    <input type="text" class="form-control" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" name="username">
                 </div>
             </div>
             <div class="col-md-6">
                 <label for="validationServer03" class="form-label">Password</label>
-                <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="password" >
-                <div id="validationServer03Feedback" class="invalid-feedback">
-                    Please enter your password.
-                </div>
+                <input type="text" class="form-control" id="validationServer03" aria-describedby="validationServer03Feedback" name="password" >
             </div>
 
-            <div class="col-12">
+            <div class="col-12" style="margin-top:10px;">
                 <button class="btn btn-primary" type="submit">Login</button>
             </div>
         </form>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> f53abafad0cef2824790a1c6d85c67a530550d1b
     </div>
+
+
 </main>
 </div>
 
