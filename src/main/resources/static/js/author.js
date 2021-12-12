@@ -8,10 +8,6 @@ $(() => {
             method: "POST",
             body: JSON.stringify({id: $(this).data('book-id')})
         }).then(() => {
-            $(this).each(document.getElementById('#purchased-text'))
-                .css('visibility', 'visible')
-            console.log(this)
-        }).then(() => {
             iziToast.success({
                 title: 'Success',
                 message: 'Successfully saved book!',
@@ -38,6 +34,8 @@ $(() => {
             method: "POST",
             body: JSON.stringify({id: $(this).data('book-id')})
         }).then(() => {
+            $(this).removeClass('purchased-text');
+        }).then(() => {
             iziToast.info({
                 title: 'Purchased',
                 message: 'You own this book',
@@ -58,4 +56,6 @@ $(() => {
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
+
+
 })
