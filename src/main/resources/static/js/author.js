@@ -9,6 +9,10 @@ $(() => {
             method: "POST",
             body: JSON.stringify({id: $(this).data('book-id')})
         }).then(() => {
+            $(this).each(document.getElementById('#purchased-text'))
+                .css('visibility', 'visible')
+            console.log(this)
+        }).then(() => {
             iziToast.success({
                 title: 'Success',
                 message: 'Successfully saved book!',
@@ -52,12 +56,15 @@ $(() => {
         // console.log($(this).data('book-id'))
     })
 
-    $(function(){
-        $("#purchase-button").on("click", function(){
-            $("#purchased-text").css("visibility", "visible");
-        });
-    })
-
+    // $(function(){
+    //     $("#purchase-button").on("click", function(){
+    //
+    //     });
+    // })
+    // $('#purchased-button').on('click', function() {
+    //     // $(this).hide(); // does not run a DOM query
+    //     $('#purchased-text').hide() // runs a DOM query
+    // });
     $(function () {
         $('[data-toggle="tooltip"]').tooltip();
 
