@@ -9,6 +9,8 @@ import com.draco.bookalert.repositories.BooksRepository;
 import com.draco.bookalert.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -40,16 +42,17 @@ public class AuthorService {
     private void addNewAuthor(Author author, User user) {
         Author savedAuthor = authorRepository.save(author);
 
-        user.getAuthors().add(savedAuthor);
-        userRepository.save(user);
+        List<Book> books = new ArrayList<>();
         List<iTunesBook> iTunesBooks = iTunesService.getAuthorBooks(author.getName());
         for (iTunesBook iTunesBook : iTunesBooks) {
-            System.out.println(iTunesBook.getArtistName());
             if (iTunesBook.getArtistName().contains(author.getName())) {
                 Book book = new Book(iTunesBook, savedAuthor);
-                booksRepository.save(book);
+                book = booksRepository.save(book);
+                books.add(book);
             }
         }
+        savedAuthor.setBooks(books);
+        addAuthorToUser(user, savedAuthor);
     }
 
     private void addExistingAuthor(Author author, User user) {
@@ -61,9 +64,24 @@ public class AuthorService {
             }
         }
         if(existingUserAuthor == null) {
-            user.getAuthors().add(author);
-            userRepository.save(user);
+            addAuthorToUser(user, author);
         }
+    }
+
+    private void addAuthorToUser(User user, Author author) {
+        user.getAuthors().add(author);
+        userRepository.save(user);
+
+        long now = System.currentTimeMillis();
+        if (user.getNewReleases() == null){
+            user.setNewReleases(new ArrayList<>());
+        }
+        author.getBooks().forEach(book -> {
+            if (book.getRelease_date().getTime() > now){
+                user.getNewReleases().add(book);
+            }
+        });
+        userRepository.save(user);
     }
 
 

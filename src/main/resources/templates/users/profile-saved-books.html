@@ -1,0 +1,30 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">-->
+
+<section>
+    <h3 class="mb-2">Your Saved Titles</h3>
+    <th:block th:if="${#lists.isEmpty(savedBooks)}" class="lead">You don't have any titles yet,
+        <a th:href="@{/search}">search</a> and add to your list!
+    </th:block>
+
+    <div class="d-flex flex-wrap flex-grow-1">
+        <div class="saved-book-card" th:each="book : ${savedBooks}"><span>Purchased</span>
+
+            <div class="card p-1 text-center">
+                <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100"
+                                                           th:src="${book.artwork_url}"></a>
+                <p th:text="${{#dates.format(book.release_date, 'MM-yyyy-dd')}}" class="lead"></p>
+                <button type="button" class="btn btn-outline-danger btn-sm mb-2 delete-title"
+                        th:data-book-id="${book.id}"><i class="far fa-trash-alt fa-lg"></i></button>
+                <a target="_blank" class="btn btn-outline-success btn-sm mb-2 purchase-book"
+                   th:href="${book.itunes_url}" role="button"><i
+                        class="fab fa-itunes fa-lg"></i></a>
+                <button type="button" class="btn btn-outline-info btn-sm mark-purchased"
+                        th:data-book-id="${book.id}"><i class="fas fa-shopping-bag fa-lg"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--</html>-->

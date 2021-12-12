@@ -14,9 +14,6 @@ public interface BooksRepository extends JpaRepository<Book, Long> {
     List<Book> findBookByAuthor(Author author);
     List<Book> findBookByAuthorId(long author);
 
-    @Query("select s from Book s where s.release_date > current_timestamp")
-    List<Book> findUpcomingReleases();
-
 //    @Query("select s from Book s where s.release_date > current_timestamp - DAY(60)")
 //    List<Book> findRecentReleases();
 

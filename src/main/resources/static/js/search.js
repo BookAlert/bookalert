@@ -64,7 +64,7 @@ $(() => {
             iziToast.success({
                 title: 'Success',
                 message: 'Successfully added author!',
-                position: 'center',
+                position: 'bottomRight',
                 timeout: 1500
             })
             button.classList.remove('fa-plus')
