@@ -159,21 +159,6 @@ $(() => {
 
     })
 
-    function getTitle(id) {
-        return fetch(`https://itunes.apple.com/lookup?id=${id}`).then(response => response.json().then(result => {
-            let book = result.results[0];
-
-            return {
-                externalId: book.trackId,
-                title: book.trackCensoredName,
-                description: book.description,
-                release_date: book.releaseDate,
-                itunes_url: book.trackViewUrl,
-                artwork_url: book.artworkUrl100.replace('100x100bb', '300x300bb')
-            }
-        }))
-
-    }
 })
 
 
