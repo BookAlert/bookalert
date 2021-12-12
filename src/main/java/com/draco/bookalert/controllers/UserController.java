@@ -112,21 +112,23 @@ public class UserController {
 
     /// =================== ENDPOINT TO INDIVIDUAL AUTHOR PAGE
     @GetMapping("/authors/{id}")
-    public String authorId(@PathVariable long id, Model authorModel) {
+    public String authorId(@PathVariable long id, Model authorModel, Authentication authentication) {
+        User user = userDao.findByUsername(authentication.getName());
         Author author = authorRepository.getById(id);
         authorModel.addAttribute("author", authorRepository.getById(id));
         authorModel.addAttribute("books", booksRepository.findBookByAuthor(author));
+        authorModel.addAttribute("purchasedBookIds", user.getPurchasedBooks().stream().map(Book::getId).collect(Collectors.toList()));
         return "authors/authors";
     }
 
 
-    @PostMapping("/authors/{id}")
-    public String authorPage(Model model) {
-        model.addAttribute("authors", authorRepository.findAll());
-        model.addAttribute("books", booksRepository.findAll());
-//       model.addAttribute("releaseDate", new Date());
-        return "authors/authors";
-    }
+//    @PostMapping("/authors/{id}")
+//    public String authorPage(Model model) {
+//        model.addAttribute("authors", authorRepository.findAll());
+//        model.addAttribute("books", booksRepository.findAll());
+////       model.addAttribute("releaseDate", new Date());
+//        return "authors/authors";
+//    }
 
     @GetMapping("/book/{id}")
     public String bookPage(@PathVariable long id, Model model) {

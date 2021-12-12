@@ -2,54 +2,47 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <link rel="stylesheet" href="/css/searchStyling.css">
 <head th:replace="partials/partials.html :: head('Search Page')"></head>
-    <title>Search!</title>
-<body>
+    <title>Search</title>
+<body class="search-page">
+<div class="overlay position-fixed"></div>
 <nav th:replace="partials/partials.html :: navbar"></nav>
-<div class="container-fluid">
-
-    <div class="row">
-
-        <div class="col-lg-6 col-12" style="padding-left: 150px; padding-top: 250px">
-            <h3 class="search-by-author" style="width: 500px; color: white"><label for="authorSearchInput" class="form-label">Search by Author</label></h3>
-            <input th:action="@{/authors/{id}}" th:method="POST" type="text" name="authorSearchInput" id="authorSearchInput" style="width: 500px" class="form-control is-valid" placeholder="Enter an author's name">
-<!--            th:style="{color: yellow}"-->
-            <div class="valid-feedback">
-                Looks good!
+    <main class="container container-fluid pt-5">
+        <div class="row">
+            <div class="col-lg-6 col-12 px-5">
+                <h3 class="text-light search-by-author text-center" >Search by Author</h3>
+                <div class="input-group mb-3">
+                    <input  th:action="@{/authors/{id}}"
+                            th:method="POST"
+                            type="text"
+                            class="text-light form-control border-light bg-transparent"
+                            id="authorSearchInput"
+                            placeholder="Enter an author's name"
+                            aria-label="Enter an author's name">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-light" type="button" id="authorSearch">Search Authors</button>
+                    </div>
+                </div>
+                <div id="authorResults"></div>
             </div>
 
-            <div class="author-button">
-                <button class="btn btn-secondary" style="border-color: black " type="button" id="authorSearch">Search Authors</button>
-            </div>
-            <div id="authorResults">
-
-            </div>
-        </div>
-<div>
-    <div class="errorMsg" th:if="${param.exists}">
-        <p>Author currently exists</p>
-    </div>
-</div>
-<div>
-    <div class="errorMsg" th:if="${param.saved}">
-        <p>Author has been added</p>
-    </div>
-</div>
-
-        <div class="col-lg-6 col-12" style="padding-left: 50px; padding-top: 250px">
-            <h3 class="search-by-title" style="width: 500px; color: white"><label for="titleSearchInput" class="form-label" >Search by Title</label></h3>
-            <input type="text" id="titleSearchInput" style="width: 500px" class="form-control is-valid"  placeholder="Enter a book title" >
-            <div class="valid-feedback">
-                Looks good!
-            </div>
-            <div class="title-button">
-                <button class="btn btn-secondary" style="padding-left: 30px; padding-right: 30px; border-color: black" type="button" id="titleSearch">Search Title</button>
-            </div>
-            <div id="titleResults" class="row container">
-
+            <div class="col-lg-6 col-12 px-5" >
+                <h3 class="text-light search-by-title text-center">Search by Title</h3>
+                <div class="input-group mb-3">
+                    <input  th:action="@{/authors/{id}}"
+                            th:method="POST"
+                            type="text"
+                            class="text-light form-control border-light bg-transparent"
+                            id="titleSearchInput"
+                            placeholder="Enter a book title"
+                            aria-label="Enter a book title">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-light" type="button" id="titleSearch">Search Title</button>
+                    </div>
+                </div>
+                <div id="titleResults" class="row container"></div>
             </div>
         </div>
-    </div>
-</div>
+    </main>
 
 <footer th:replace="partials/partials.html :: footer"></footer>
 <script th:src="@{/js/iziToast.min.js}"></script>

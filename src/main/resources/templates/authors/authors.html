@@ -56,6 +56,10 @@
                       <div class="card book-image p-1 text-center ribbon ribbon-top-left"><span id="purchased-text">Purchased</span>
                            <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100" th:src="${book.artwork_url}"></a>
                             <p th:text="${{#dates.format(book.release_date, 'MM-yyyy-dd')}}" class="lead"></p>
+                        
+                      
+
+
                                 <div style="display: inline-block">
                                     <button id="save-button" type="button"  class="btn btn-outline-primary save-book" data-toggle="tooltip" data-placement="bottom" title="Save Book" th:data-book-id="${book.id}"><i class="far fa-bookmark fa-2x"></i></button>
                                     <button type="button" id="purchased-button" class="btn btn-outline-info mark-purchased" data-toggle="tooltip" data-placement="bottom" title="Mark Purchased" th:data-book-id="${book.id}"><i class="fas fa-shopping-bag fa-2x"></i></button>

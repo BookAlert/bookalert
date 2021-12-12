@@ -33,26 +33,27 @@ $(() => {
 
 //================  FUNCTION TO MAP AUTHOR RESULTS TO HTML
     //call function instead of i tag
+    // <span>${renderCorrectIcon(result, authorsList)}</span>
     function buildSearchResults([ results, authorsList ]) {
-        console.log(results)
-        console.log(authorsList)
-        const html = results.map(result => `
-            
-            <div class="author-search-result" data-name="${result.artistName}"> ${renderCorrectIcon(result, authorsList)} 
-            <a>${result.artistName}</a></div>
-
-
-          `).join("")
+        const html = results.map(result => {
+            const isAdded = authorsList.includes(result.artistName)
+            return `
+                <div class="d-flex" >
+                    <span class="text-light align-self-center mr-2">${result.artistName}</span>
+                    <button class="btn btn-xs btn-outline-light align-self-center author-search-result"
+                            data-name="${result.artistName}"
+                            ${ isAdded ? 'disabled': '' }>
+                        ${isAdded ? 'ADDED' : 'ADD'}
+                    </button>
+                </div>
+          `
+        }).join("")
         $('#authorResults').html(html)
-        //$('#authorResults').hide()
-        //$('#authorResults').slideDown("slow")
     }
 
     //==================  POST RESULTS OF AUTHOR SEARCH W/ EVENT HANDLER
     $('body').on('click', '.author-search-result', function () {
         const authorName = $(this).data("name");
-        let button = $(this)[0].children[0]
-        console.log($(this))
         fetch("add-author", {
             headers: {
                 'Accept': 'application/json',
@@ -67,11 +68,13 @@ $(() => {
                 position: 'bottomRight',
                 timeout: 1500
             })
-            button.classList.remove('fa-plus')
-            button.classList.remove('add-author')
-            button.classList.add('fa-check')
-            button.classList.remove('add-author-button')
-            button.classList.add('add-author-button-checked')
+            // button.classList.remove('fa-plus')
+            // button.classList.remove('add-author')
+            // button.classList.add('fa-check')
+            // button.classList.remove('add-author-button')
+            // button.classList.add('add-author-button-checked')
+            this.textContent = 'ADDED'
+            this.setAttribute('disabled', 'true')
 
         }).catch(() => {
             iziToast.fail({
@@ -108,26 +111,27 @@ $(() => {
     function buildTitleResults(results) {
         console.log(results)
 
-        let html = results.map(result =>
-        `
-        <div>
-            <img alt="image" data-src="${result.artworkUrl100} hidden" src="${result.artworkUrl100}">
-           <div class="card">
-                <div class="card-body">
-                    <h2 class="card-title" data-title="${result.trackName}" >${result.trackName}</h2>
-                        <p class="card-text lead" data-description="${result.description}">
-                            <small>${result.description}</small>
-                        </p>
-                    <span  data-date="${result.releaseDate}">${result.releaseDate}</span>
-                    <a data-href="${result.trackViewUrl}">${result.trackViewUrl}</a>
+        let html = results.map(result => {
+            result.artworkUrl100 = result.artworkUrl100.replace('100x100bb', '300x300bb')
+            return `
+                <div>
+                    <img alt="image" data-src="${result.artworkUrl100} hidden" src="${result.artworkUrl100}">
+                   <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title" data-title="${result.trackName}" >${result.trackName}</h2>
+                                <p class="card-text lead" data-description="${result.description}">
+                                    <small>${result.description}</small>
+                                </p>
+                            <span  data-date="${result.releaseDate}">${result.releaseDate}</span>
+                            <a data-href="${result.trackViewUrl}">${result.trackViewUrl}</a>
+                        </div>
+                        <button class="btn btn-outline-info title-search-result" type="submit" data-name="${result.artistName}">Add Author</button>
+        
+                    </div>
                 </div>
-                <button class="btn btn-outline-info title-search-result" type="submit" data-name="${result.artistName}">Add Author</button>
+            `
+        }).join("")
 
-            </div>
-        </div>
-            
-            
-          `).join("")
 
         $('#titleResults').html(html)
     }
@@ -165,7 +169,7 @@ $(() => {
                 description: book.description,
                 release_date: book.releaseDate,
                 itunes_url: book.trackViewUrl,
-                artwork_url: book.artworkUrl100
+                artwork_url: book.artworkUrl100.replace('100x100bb', '300x300bb')
             }
         }))
 
