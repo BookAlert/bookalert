@@ -23,19 +23,12 @@ body.profile-body {
     right: 0;
 }
 
-.new-release-card {
-    height: 430px;
-    width: 150px;
-}
+/*.book-card {*/
+/*    height: 430px;*/
+/*    width: 150px;*/
+/*}*/
 
-/* Saved books section*/
-.saved-book-card {
-    height: 430px;
-    width: 150px;
-}
-
-.upcoming-book-card {
-    height: 430px;
-    width: 150px;
+img.book-cover {
+    height: 250px;
 }
 

@@ -31,19 +31,19 @@
         <div class="flex-grow-1 px-4" style="max-width: 1200px">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="saved-tab" data-toggle="tab" href="#saved" role="tab"
+                    <a class="nav-link active" id="saved-tab" data-toggle="tab" href="#profileSavedBooks" role="tab"
                        aria-controls="home" aria-selected="true">
                         <span class="badge badge-pill badge-secondary">1 </span> Saved Titles
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="new-tab" data-toggle="tab" href="#newReleases" role="tab"
+                    <a class="nav-link" id="new-tab" data-toggle="tab" href="#profileNewReleases" role="tab"
                        aria-controls="profile" aria-selected="false">
                         <span class="badge badge-pill badge-secondary">2 </span> New Releases
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="upcoming-tab" data-toggle="tab" href="#upcomingRelease" role="tab"
+                    <a class="nav-link" id="upcoming-tab" data-toggle="tab" href="#profileUpcomingReleases" role="tab"
                        aria-controls="contact" aria-selected="false">
                         <span class="badge badge-pill badge-secondary">3 </span> Upcoming Releases
                     </a>
@@ -51,97 +51,17 @@
             </ul>
 
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active bg-light rounded-bottom" id="saved" role="tabpanel"
+                <div class="tab-pane fade show active bg-light rounded-bottom"
+                     id="profileSavedBooks"
+                     role="tabpanel"
                      aria-labelledby="home-tab">
-                    <section>
-                        <h3 class="mb-2">Your Saved Titles</h3>
-                        <th:block th:if="${#lists.isEmpty(savedBooks)}" class="lead">You don't have any titles yet,
-                            <a th:href="@{/search}">search</a> and add to your list!
-                        </th:block>
-
-                        <div class="d-flex flex-wrap flex-grow-1">
-                            <div class="saved-book-card" th:each="book : ${savedBooks}"><span>Purchased</span>
-
-                                <div class="card p-1 text-center">
-                                    <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100"
-                                                                               th:src="${book.artwork_url}"></a>
-                                    <p th:text="${{#dates.format(book.release_date, 'MM-yyyy-dd')}}" class="lead"></p>
-                                    <button type="button" class="btn btn-outline-danger btn-sm mb-2 delete-title"
-                                            th:data-book-id="${book.id}"><i class="far fa-trash-alt fa-lg"></i></button>
-                                    <a target="_blank" class="btn btn-outline-success btn-sm mb-2 purchase-book"
-                                       th:href="${book.itunes_url}" role="button"><i
-                                            class="fab fa-itunes fa-lg"></i></a>
-                                    <button type="button" class="btn btn-outline-info btn-sm mark-purchased"
-                                            th:data-book-id="${book.id}"><i class="fas fa-shopping-bag fa-lg"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
                 </div>
-                <div class="tab-pane fade bg-light rounded-bottom" id="newReleases" role="tabpanel" aria-labelledby="profile-tab">
-                        <section>
-                            <h3 class="mb-2">New Releases to your library</h3>
-                            <div class="d-flex flex-wrap flex-grow-1">
-                                <!--bootstrap card with 3 horizontal images-->
-                                <div class="new-release-card p-2" th:each="book : ${newReleases}">
-                                    <div class="card p-1 text-center mb-3">
-                                        <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100"
-                                                                                   th:src="${book.artwork_url}"></a>
-                                        <p th:text="${{#dates.format(book.release_date, 'MM-yyyy-dd')}}"
-                                           class="lead"></p>
-                                        <button type="button"
-                                                class="btn btn-outline-danger btn-sm mb-2 dismiss-new-release"
-                                                th:data-book-id="${book.id}"><i class="far fa-trash-alt fa-lg"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-outline-primary btn-sm mb-2 save-book"
-                                                th:data-book-id="${book.id}"><i class="far fa-bookmark fa-lg"></i>
-                                        </button>
-                                        <a target="_blank" class="btn btn-outline-success btn-sm mb-2 purchase-book"
-                                           th:href="${book.itunes_url}" role="button"><i
-                                                class="fab fa-itunes fa-lg"></i></a>
-                                        <button type="button" class="btn btn-outline-info btn-sm mark-purchased"
-                                                th:data-book-id="${book.id}"><i class="fas fa-shopping-bag fa-lg"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <div class="row justify-content-center">
-                            <button type="button" class="btn btn-outline-danger btn-sm-center dismiss-all">Dismiss All
-                                New Releases
-                            </button>
-                        </div>
+
+                <div class="tab-pane fade bg-light rounded-bottom" id="profileNewReleases" role="tabpanel" aria-labelledby="profile-tab">
+
                 </div>
-                <div class="tab-pane fade bg-light rounded-bottom" id="upcomingRelease" role="tabpanel" aria-labelledby="contact-tab">
-                        <section>
-                            <h3 class="mb-2">Upcoming Releases</h3>
-                            <div class="d-flex flex-wrap flex-grow-1">
-                                <!--bootstrap card with 3 horizontal images-->
-                                <div class="upcoming-book-card p-2" th:each="book : ${upcomingReleases}">
-                                    <div class="card p-1 text-center ">
-                                        <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100"
-                                                                                   th:src="${book.artwork_url}"></a>
-                                        <p th:text="${{#dates.format(book.release_date, 'MM-yyyy-dd')}}"
-                                           class="lead"></p>
-                                        <button type="button"
-                                                class="btn btn-outline-danger btn-sm mb-2 dismiss-upcoming-release"
-                                                th:data-book-id="${book.id}"><i class="far fa-trash-alt fa-lg"></i>
-                                        </button>
-                                        <button type="button"
-                                                class="btn btn-outline-primary btn-sm mb-2 save-upcoming-book"
-                                                th:data-book-id="${book.id}"><i class="far fa-bookmark fa-lg"></i>
-                                        </button>
-                                        <a target="_blank" class="btn btn-outline-success btn-sm mb-2 purchase-book"
-                                           th:href="${book.itunes_url}" role="button"><i
-                                                class="fab fa-itunes fa-lg"></i></a>
-                                        <button type="button" class="btn btn-outline-info btn-sm mark-upcoming"
-                                                th:data-book-id="${book.id}"><i class="fas fa-shopping-bag fa-lg"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
+                <div class="tab-pane fade bg-light rounded-bottom" id="profileUpcomingReleases" role="tabpanel" aria-labelledby="contact-tab">
+
                 </div>
             </div>
         </div>
