@@ -54,8 +54,8 @@
         <div class="d-flex flex-wrap flex-grow-1">
                      <div class="author-book-card p-2" th:each="book : ${books}">
                       <div class="card book-image p-1 text-center ribbon ribbon-top-left"><span>Purchased</span>
-                           <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100" th:src="${book.artwork_url}"></a>
-                            <p th:text="${{#dates.format(book.release_date, 'MM-yyyy-dd')}}" class="lead"></p>
+                           <a th:href="@{'/book/' + ${book.id}}"><img class="book-cover" th:src="${book.artwork_url}"></a>
+                            <p th:text="${{#dates.format(book.release_date, 'MM/dd/YYYY')}}" class="lead"></p>
                                 <div style="display: inline-block">
                                     <button type="button" class="btn btn-outline-primary save-book" data-toggle="tooltip" data-placement="bottom" title="Save Book" th:data-book-id="${book.id}"><i class="far fa-bookmark fa-2x"></i></button>
                                     <button type="button" class="btn btn-outline-info mark-purchased" data-toggle="tooltip" data-placement="bottom" title="Mark Purchased" th:data-book-id="${book.id}"><i class="fas fa-shopping-bag fa-2x"></i></button>
