@@ -30,6 +30,24 @@ $(() => {
     // });
 
 
+    /// ================== SAVE UPCOMING-RELEASE METHOD(UserController)
+    $('body').on('click', '.save-upcoming-book',  function (event) {
+        event.preventDefault();
+         fetch("user/save-upcoming-title", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({id: $(this).data('book-id') })
+        }).then( () => {
+            $(this).closest('.upcoming-book-card').remove();
+            location.reload()
+        })
+        console.log($(this).data('book-id'))
+
+    })
+
     //============== DISMISS NEW RELEASE
     $('body').on('click', '.dismiss-new-release', function () {
         fetch("user/dismiss-new-release", {
@@ -45,7 +63,33 @@ $(() => {
         })
     })
 
+    //============== DISMISS UPCOMING RELEASE
+    $('body').on('click', '.dismiss-upcoming-release', function () {
+        fetch("user/dismiss-upcoming-release", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({id: $(this).data('book-id') })
+        }).then(()=> {
+            $(this).closest('.upcoming-book-card').remove();
+        })
+    })
 
+    //================= MARK PURCHASED UPCOMING
+    $('body').on('click', '.mark-upcoming', function () {
+        fetch("user/purchased-upcoming", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({id: $(this).data('book-id') })
+        }).then(()=> {
+            $(this).closest('.new-release-card').remove();
+        })
+    })
 
 //============== DISMISS NEW RELEASE
     $('body').on('click', '.dismiss-new-release', function () {
@@ -59,6 +103,7 @@ $(() => {
         }).then(()=> {
             loadNewReleases();
         })
+        console.log($(this).data('book-id'))
     })
 
 //============== DISMISS ALL NEW RELEASE
@@ -150,4 +195,7 @@ $(() => {
             .then((res) => $('#profileUpcomingReleases').html(res))
     }
 
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 })

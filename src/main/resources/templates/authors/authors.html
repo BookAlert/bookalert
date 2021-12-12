@@ -53,12 +53,16 @@
     <section>
         <div class="d-flex flex-wrap flex-grow-1">
                      <div class="author-book-card p-2" th:each="book : ${books}">
-                      <div class="card book-image p-1 text-center ribbon ribbon-top-left"><span>Purchased</span>
-                           <a th:href="@{'/book/' + ${book.id}}"><img class="book-cover" th:src="${book.artwork_url}"></a>
-                            <p th:text="${{#dates.format(book.release_date, 'MM/dd/YYYY')}}" class="lead"></p>
+                      <div class="card book-image p-1 text-center ribbon ribbon-top-left"><span id="purchased-text">Purchased</span>
+                           <a th:href="@{'/book/' + ${book.id}}"><img class="mw-100 mh-100" th:src="${book.artwork_url}"></a>
+                            <p th:text="${{#dates.format(book.release_date, 'MM-yyyy-dd')}}" class="lead"></p>
+                        
+                      
+
+
                                 <div style="display: inline-block">
-                                    <button type="button" class="btn btn-outline-primary save-book" data-toggle="tooltip" data-placement="bottom" title="Save Book" th:data-book-id="${book.id}"><i class="far fa-bookmark fa-2x"></i></button>
-                                    <button type="button" class="btn btn-outline-info mark-purchased" data-toggle="tooltip" data-placement="bottom" title="Mark Purchased" th:data-book-id="${book.id}"><i class="fas fa-shopping-bag fa-2x"></i></button>
+                                    <button id="save-button" type="button"  class="btn btn-outline-primary save-book" data-toggle="tooltip" data-placement="bottom" title="Save Book" th:data-book-id="${book.id}"><i class="far fa-bookmark fa-2x"></i></button>
+                                    <button type="button" id="purchased-button" class="btn btn-outline-info mark-purchased" data-toggle="tooltip" data-placement="bottom" title="Mark Purchased" th:data-book-id="${book.id}"><i class="fas fa-shopping-bag fa-2x"></i></button>
                                     <a target="_blank" class="btn btn-outline-success purchase-book" data-toggle="tooltip" data-placement="bottom" title="Purchase on itunes" th:href="${book.itunes_url}" role="button"><i class="fab fa-itunes fa-2x"></i></a>
                                  </div>
 <!--                          <button type="button" class="btn btn-outline-primary btn-sm save-book" th:data-book-id="${book.id}">Save</button>-->
@@ -73,6 +77,7 @@
 </main>
 
 <footer th:replace="partials/partials.html :: footer"></footer>
+<script th:src="@{/js/iziToast.min.js}"></script>
 <script th:replace="partials/partials.html :: bootstrap-j-query"></script>
 <script th:replace="partials/partials.html :: popper-js"></script>
 <script th:replace="partials/partials.html :: bootstrap-js"></script>
