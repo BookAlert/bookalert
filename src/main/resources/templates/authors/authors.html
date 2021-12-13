@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/partials.html :: head('Home Page')">
+<head th:replace="partials/partials.html :: head('BookAlert Author')">
 <!--    <script src="https://kit.fontawesome.com/9f18d3c3fa.js" crossorigin="anonymous"></script>-->
     <meta charset="UTF-8">
     <title>Author</title>
@@ -34,14 +34,14 @@
 
     <div class="container col-xxl-8 px-4 py-5">
         <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-            <div class="col-10 col-sm-8 col-lg-6">
+            <div class="col col-sm-8">
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-12 text-center">
                 <h1 class="display-5 fw-bold lh-1 mb-3" th:text="${author.name}"></h1>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                    <a  class="btn btn-primary btn-lg px-4 me-md-2" th:href="@{/profile}">Back</a>
+                <div class="gap-2 text-center">
+                    <a  class="btn btn-primary btn-lg px-4 me-md-1 mb-1" th:href="@{/profile}">Back</a>
                     <form th:action="@{'/authors/' + ${author.id} + '/delete'}" th:method="POST">
-                        <button type="submit" class="btn btn-outline-danger btn-lg px-4">Delete</button>
+                        <button type="submit" class="btn btn-danger btn-lg px-3 me-md-1">Delete</button>
                     </form>
 
                 </div>
