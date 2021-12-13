@@ -51,9 +51,9 @@ $(() => {
             })
         })
     })
-    console.log($(this).data('book-id'))
+    // console.log($(this).data('book-id'))
 
-    $('body').on('click', '')
+    // $('body').on('click', '')
 
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
