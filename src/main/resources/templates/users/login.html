@@ -3,11 +3,13 @@
 <link rel="stylesheet" href="/css/login.css">
 <head th:replace="partials/partials.html :: head('Login Page')">
     <title>Login</title>
-<body>
+<body class="log-in-page" style="padding-top: 100px">
+<div class="overlay position-fixed"></div>
 <nav th:replace="partials/partials.html :: navbar"></nav>
-<div class="container-fluid">
-<main>
-    <h1 class="lead text-center">Log In</h1>
+<main class="container container-fluid pt-5">
+    <div class="row">
+
+    <h1 class=""col-lg-8 offset-lg-2"" style="color: white">Log In</h1>
 
     <div th:if="${param.error}">
         Invalid Username and Password.
@@ -18,33 +20,29 @@
 
     <div class="container">
 
-        <form class="row g-3 float-right ml-2" th:action="@{/login}" method="POST" >
-            <div class="col-md-4">
-                <label for="validationServerUsername" class="form-label">Username</label>
+        <form class="row g-3 float-md-none ml-2" th:action="@{/login}" method="POST" >
+            <div class="col-md-6">
+                <label for="validationServerUsername" class="form-label" style="color: white">Username</label>
                 <div class="input-group has-validation">
-                    <span class="input-group-text" id="inputGroupPrepend3">@</span>
-                    <input type="text" class="form-control" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" name="username">
+                    <input type="text" class="text-light form-control border-light bg-transparent" id="validationServerUsername" placeholder="Enter your Username"
+                           aria-label="Enter your Username" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" name="username">
                 </div>
             </div>
             <div class="col-md-6">
-                <label for="validationServer03" class="form-label">Password</label>
-                <input type="text" class="form-control" id="validationServer03" aria-describedby="validationServer03Feedback" name="password" >
+                <label for="validationServer03" class="form-label" style="color: white">Password</label>
+                <input type="text" class="text-light form-control border-light bg-transparent" id="validationServer03" placeholder="Enter your Password"  aria-label="Enter your Password" aria-describedby="inputGroupPrepend3 validationServerPasswordFeedback"
+                       name="password">
             </div>
 
             <div class="col-12" style="margin-top:10px;">
-                <button class="btn btn-primary" type="submit">Login</button>
+                <button class="btn btn-outline-light" type="submit">Login</button>
             </div>
         </form>
-<<<<<<< HEAD
-=======
 
-
->>>>>>> f53abafad0cef2824790a1c6d85c67a530550d1b
     </div>
-
-
+    </div>
 </main>
-</div>
+
 
 
 <footer th:replace="partials/partials.html :: footer"></footer>
