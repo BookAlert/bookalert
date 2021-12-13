@@ -1,3 +1,14 @@
+
+body.sign-up-page {
+    background: url("../img/curvedhallway.jpg") center/cover;
+    background-repeat: no-repeat;
+}
+
+.sign-up-page ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white !important;
+    opacity: 1;
+}
+
 /*#sign-up-bg {*/
 /*    background: url("../img/curvedhallway.jpg");*/
 
@@ -11,3 +22,4 @@
 html {
     height: 100%;
 }
+>>>>>>> main
