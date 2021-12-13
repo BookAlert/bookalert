@@ -6,7 +6,7 @@
 <body class="profile-body">
 <div class="overlay position-fixed"></div>
 
-<main id="profilePage">
+<main>
     <nav th:replace="partials/partials.html :: navbar"></nav>
     <h1 class="text-center text-light">Welcome to your profile <span th:text="${#authentication.name}">User</span>!</h1>
 
@@ -57,20 +57,38 @@
                      aria-labelledby="home-tab">
                 </div>
 
-                <div class="tab-pane fade bg-light rounded-bottom" id="profileNewReleases" role="tabpanel" aria-labelledby="profile-tab">
-
+                <div class="tab-pane fade bg-light rounded-bottom"
+                     id="profileNewReleases"
+                     role="tabpanel"
+                     aria-labelledby="profile-tab">
                 </div>
-                <div class="tab-pane fade bg-light rounded-bottom" id="profileUpcomingReleases" role="tabpanel" aria-labelledby="contact-tab">
 
-                </div>
-            </div>
-        </div>
+                <div class="tab-pane fade bg-light rounded-bottom"
+                     id="profileUpcomingReleases"
+                     role="tabpanel"
+                     aria-labelledby="contact-tab">
+               </div>
+           </div>
+           <div class="tab-pane fade" id="newReleases" role="tabpanel" aria-labelledby="profile-tab">
+               <div class="card">
 
+                   <div class="row justify-content-center">
+                       <button type="button" class="btn btn-outline-danger btn-sm-center dismiss-all">Dismiss All New Releases</button>
+                   </div>
+               </div>
+           </div>
+           <div class="tab-pane fade" id="upcomingRelease" role="tabpanel" aria-labelledby="contact-tab">
+               <div class="card">
+
+               </div>
+           </div>
+       </div>
     </div>
 
 
 </main>
 <footer th:replace="partials/partials.html :: footer"></footer>
+<script th:src="@{/js/iziToast.min.js}"></script>
 <button id="demoButton" type="button"></button>
 <script th:replace="partials/partials.html :: bootstrap-j-query"></script>
 <script th:replace="partials/partials.html :: popper-js"></script>

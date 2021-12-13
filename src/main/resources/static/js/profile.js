@@ -30,6 +30,7 @@ $(() => {
     // });
 
 
+
     //============== DISMISS NEW RELEASE
     $('body').on('click', '.dismiss-new-release', function () {
         fetch("user/dismiss-new-release", {
@@ -45,8 +46,6 @@ $(() => {
         })
     })
 
-
-
 //============== DISMISS NEW RELEASE
     $('body').on('click', '.dismiss-new-release', function () {
         fetch("user/dismiss-new-release", {
@@ -59,6 +58,7 @@ $(() => {
         }).then(()=> {
             loadNewReleases();
         })
+        console.log($(this).data('book-id'))
     })
 
 //============== DISMISS ALL NEW RELEASE
@@ -150,4 +150,7 @@ $(() => {
             .then((res) => $('#profileUpcomingReleases').html(res))
     }
 
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 })
