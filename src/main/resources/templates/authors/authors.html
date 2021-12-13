@@ -61,7 +61,7 @@
                            </a>
                             <p th:text="${{#dates.format(book.release_date, 'MM/dd/YYYY')}}" class="lead"></p>
 
-                          <div class="d-flex justify-content-center mb-2">
+                          <div class="d-flex justify-content-center mb-3">
                               <button type="button" class="btn btn-link btn-xs save-book align-self-center" data-toggle="tooltip" data-placement="right" title="Save Book" th:data-book-id="${book.id}"><i class="far fa-bookmark fa-lg"></i></button>
                               <button type="button" class="btn btn-link btn-xs mark-purchased align-self-center"  data-toggle="tooltip" data-placement="right" title="Mark Purchased" th:data-book-id="${book.id}"><i class="fas fa-shopping-bag fa-lg"></i></button>
                               <a target="_blank" class="btn btn-link btn-xs purchase-book align-self-center" data-toggle="tooltip" data-placement="right" title="Purchase on iTunes" th:href="${book.itunes_url}" role="button"><i class="fab fa-itunes fa-lg"></i></a>

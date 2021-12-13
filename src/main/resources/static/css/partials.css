@@ -19,6 +19,11 @@ body {
     padding-right: 1rem !important;
 }
 
+.btn-link {
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
 .navbar .nav-item.active {
     border-left: #444 3px solid;
 }

@@ -12,7 +12,7 @@
       <h1 class="display-5 fw-bold lh-1 mb-3" th:text="${book.title}"></h1>
       <img th:src="${book.artwork_url}">
       <br>
-    <a th:href="${book.itunes_url}">Purchase from iTunes</a>
+    <a target="_blank" th:href="${book.itunes_url}">Purchase from iTunes</a>
       <br>
       <div th:remove="tag" th:utext="${book.description}"></div>
       <br>

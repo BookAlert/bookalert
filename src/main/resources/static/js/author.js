@@ -12,14 +12,14 @@ $(() => {
             iziToast.success({
                 title: 'Success',
                 message: 'Successfully saved book!',
-                position: 'topRight',
+                position: 'topCenter',
                 timeout: 1500
             });
         }).catch(() => {
             iziToast.fail({
                 title: 'Failure',
                 message: 'Book exists!',
-                position: 'center',
+                position: 'topCenter',
                 timeout: 1500
             })
         })
@@ -39,14 +39,14 @@ $(() => {
             iziToast.info({
                 title: 'Purchased',
                 message: 'You own this book',
-                position: 'topLeft',
+                position: 'topCenter',
                 timeout: 1500
             });
         }).catch(() => {
             iziToast.fail({
                 title: 'Failure',
                 message: 'Failed',
-                position: 'center',
+                position: 'topCenter',
                 timeout: 1500
             })
         })
