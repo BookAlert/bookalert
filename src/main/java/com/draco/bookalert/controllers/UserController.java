@@ -212,4 +212,10 @@ public class UserController {
         return user.getAuthors().stream().map(Author::getName).collect(Collectors.toList());
     }
 
+    @ResponseBody
+    @GetMapping("/user/getPurchased")
+    public List<Book> getPurchased(Authentication authentication) {
+        User user = userDao.findByUsername(authentication.getName());
+        return user.getPurchasedBooks();
+    }
 }
