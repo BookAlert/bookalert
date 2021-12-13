@@ -11,10 +11,10 @@
 
     <h1 class="text-center" style="color: white; text-align: center">Log In</h1>
 
-    <div th:if="${param.error}">
+    <div th:if="${param.error}" class="text-center" style="color: palevioletred">
         Invalid Username and Password.
     </div>
-    <div th:if="${param.logout}">
+    <div th:if="${param.logout}" class="text-center" style="color: lightskyblue">
         You have been logged out.
     </div>
 
@@ -52,27 +52,27 @@
 <script th:replace="partials/partials.html :: popper-js"></script>
 <script th:replace="partials/partials.html :: bootstrap-js"></script>
 
-<script>
-   // Example starter JavaScript for disabling form submissions if there are invalid fields...
-    (function () {
-        'use strict'
+<!--<script>-->
+<!--   // Example starter JavaScript for disabling form submissions if there are invalid fields...-->
+<!--    (function () {-->
+<!--        'use strict'-->
 
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.querySelectorAll('.needs-validation')
+<!--        // Fetch all the forms we want to apply custom Bootstrap validation styles to-->
+<!--        var forms = document.querySelectorAll('.needs-validation')-->
 
-        // Loop over them and prevent submission
-        Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
+<!--        // Loop over them and prevent submission-->
+<!--        Array.prototype.slice.call(forms)-->
+<!--            .forEach(function (form) {-->
+<!--                form.addEventListener('submit', function (event) {-->
+<!--                    if (!form.checkValidity()) {-->
+<!--                        event.preventDefault()-->
+<!--                        event.stopPropagation()-->
+<!--                    }-->
 
-                    form.classList.add('was-validated')
-                }, false)
-            })
-    })()
+<!--                    form.classList.add('was-validated')-->
+<!--                }, false)-->
+<!--            })-->
+<!--    })()-->
 </script>
 </body>
 </html>
