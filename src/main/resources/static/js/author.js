@@ -8,18 +8,19 @@ $(() => {
             method: "POST",
             body: JSON.stringify({id: $(this).data('book-id')})
         }).then(() => {
+            $(this).closest('.author-book-card').find('.saved-text').toggleClass('d-none').toggleClass('d-block');
             iziToast.success({
                 title: 'Success',
                 message: 'Successfully saved book!',
                 position: 'topRight',
-                timeout: 3000
+                timeout: 1500
             });
         }).catch(() => {
             iziToast.fail({
                 title: 'Failure',
                 message: 'Book exists!',
                 position: 'center',
-                timeout: 3000
+                timeout: 1500
             })
         })
     })
@@ -34,20 +35,19 @@ $(() => {
             method: "POST",
             body: JSON.stringify({id: $(this).data('book-id')})
         }).then(() => {
-            $('#purchased-text').css('visibility', 'visible');
-        }).then(() => {
+            $(this).closest('.author-book-card').find('.purchased-text').toggleClass('d-none').toggleClass('d-block');
             iziToast.info({
                 title: 'Purchased',
                 message: 'You own this book',
                 position: 'topLeft',
-                timeout: 5000
+                timeout: 1500
             });
         }).catch(() => {
             iziToast.fail({
                 title: 'Failure',
                 message: 'Failed',
                 position: 'center',
-                timeout: 3000
+                timeout: 1500
             })
         })
     })
