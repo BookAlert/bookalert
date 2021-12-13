@@ -7,9 +7,9 @@
 <div class="overlay position-fixed"></div>
 <nav th:replace="partials/partials.html :: navbar"></nav>
 <main class="container container-fluid pt-5">
-    <div class="row">
+    <div class="column">
 
-    <h1 class="col-lg-8 offset-lg-2" style="color: white">Log In</h1>
+    <h1 class="text-center" style="color: white; text-align: center">Log In</h1>
 
     <div th:if="${param.error}">
         Invalid Username and Password.
@@ -18,23 +18,25 @@
         You have been logged out.
     </div>
 
-    <div class="container">
+    <div class="container" style="width: 50%;">
 
         <form class="row g-3 float-md-none ml-2" th:action="@{/login}" method="POST" >
-            <div class="col-md-6">
-                <label for="validationServerUsername" class="form-label" style="color: white">Username</label>
-                <div class="input-group has-validation">
-                    <input type="text" class="text-light form-control border-light bg-transparent" id="validationServerUsername" placeholder="Enter your Username"
+            <div class="col-md-12">
+                <div class="username-styling">
+                <label for="validationServerUsername" class="form-label text-center" style="color: white">Username</label>
+            </div>
+                <div>
+                    <input type="text" class="text-light form-control border-light bg-transparent text-center" id="validationServerUsername" placeholder="Enter your Username"
                            aria-label="Enter your Username" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" name="username">
                 </div>
             </div>
-            <div class="col-md-6">
-                <label for="validationServer03" class="form-label" style="color: white">Password</label>
-                <input type="text" class="text-light form-control border-light bg-transparent" id="validationServer03" placeholder="Enter your Password"  aria-label="Enter your Password" aria-describedby="inputGroupPrepend3 validationServerPasswordFeedback"
+            <div class="col-md-12">
+                <label for="validationServer03" class="form-label mt-2" style="color: white">Password</label>
+                <input type="text" class="text-light form-control border-light bg-transparent text-center" id="validationServer03" placeholder="Enter your Password"  aria-label="Enter your Password" aria-describedby="inputGroupPrepend3 validationServerPasswordFeedback"
                        name="password">
             </div>
 
-            <div class="col-12" style="margin-top:10px;">
+            <div class="col-12 text-center mt-4">
                 <button class="btn btn-outline-light" type="submit">Login</button>
             </div>
         </form>
