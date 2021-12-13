@@ -7,11 +7,13 @@
                 <a class="d-flex" th:href="@{'/book/' + ${book.id}}" style="background: red;">
                     <img class="book-cover align-self-center" th:src="${book.artwork_url}">
                 </a>
-                <p th:text="${{#dates.format(book.release_date, 'MM-yyyy-dd')}}" class="lead"></p>
-                <button type="button" class="btn btn-outline-danger btn-sm mb-2 dismiss-new-release" th:data-book-id="${book.id}"><i class="far fa-trash-alt fa-lg"></i></button>
-                <button type="button" class="btn btn-outline-primary btn-sm mb-2 save-book" data-toggle="tooltip" data-placement="right" title="Save Book" th:data-book-id="${book.id}"><i class="far fa-bookmark fa-lg"></i></button>
-                <a target="_blank" class="btn btn-outline-success btn-sm mb-2 purchase-book" data-toggle="tooltip" data-placement="right" title="Purchase on iTunes" th:href="${book.itunes_url}" role="button"><i class="fab fa-itunes fa-lg"></i></a>
-                <button type="button" class="btn btn-outline-info btn-sm mark-purchased" data-toggle="tooltip" data-placement="right" title="Mark Purchased" th:data-book-id="${book.id}"><i class="fas fa-shopping-bag fa-lg"></i></button>
+                <p th:text="${{#dates.format(book.release_date, 'MM/dd/YYYY')}}" class="lead"></p>
+                <div class="d-flex">
+                    <button type="button" class="btn btn-link btn-xs mb-2 dismiss-new-release" th:data-book-id="${book.id}"><i class="far fa-trash-alt fa-lg"></i></button>
+                    <button type="button" class="btn btn-link btn-xs mb-2 save-book" data-toggle="tooltip" data-placement="right" title="Save Book" th:data-book-id="${book.id}"><i class="far fa-bookmark fa-lg"></i></button>
+                    <a target="_blank" class="btn btn-link btn-xs mb-2 purchase-book" data-toggle="tooltip" data-placement="right" title="Purchase on iTunes" th:href="${book.itunes_url}" role="button"><i class="fab fa-itunes fa-lg"></i></a>
+                    <button type="button" class="btn btn-link btn-xs mark-purchased"  data-toggle="tooltip" data-placement="right" title="Mark Purchased" th:data-book-id="${book.id}"><i class="fas fa-shopping-bag fa-lg"></i></button>
+                </div>
             </div>
         </div>
     </div>
