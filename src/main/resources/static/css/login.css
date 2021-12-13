@@ -1,0 +1,11 @@
+body.log-in-page {
+    background: url("../img/curved-library.png") center/cover;
+    background-repeat: no-repeat;
+}
+
+.log-in-page ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white !important;
+    opacity: 1;
+}
+
+
