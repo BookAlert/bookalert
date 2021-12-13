@@ -21,6 +21,8 @@ $(() => {
         })
     })
 
+    $('body').on('click', '')
+
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
