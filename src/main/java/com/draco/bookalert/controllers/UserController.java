@@ -65,6 +65,7 @@ public class UserController {
             return "redirect:login";
         }
         model.addAttribute("authors", user.getAuthors());
+        model.addAttribute("user", user);
         return "users/profile";
     }
 
@@ -118,6 +119,7 @@ public class UserController {
         authorModel.addAttribute("author", authorRepository.getById(id));
         authorModel.addAttribute("books", booksRepository.findBookByAuthor(author));
         authorModel.addAttribute("purchasedBookIds", user.getPurchasedBooks().stream().map(Book::getId).collect(Collectors.toList()));
+        authorModel.addAttribute("savedBookIds", user.getSavedBooks().stream().map(Book::getId).collect(Collectors.toList()));
         return "authors/authors";
     }
 
@@ -212,10 +214,4 @@ public class UserController {
         return user.getAuthors().stream().map(Author::getName).collect(Collectors.toList());
     }
 
-    @ResponseBody
-    @GetMapping("/user/getPurchased")
-    public List<Book> getPurchased(Authentication authentication) {
-        User user = userDao.findByUsername(authentication.getName());
-        return user.getPurchasedBooks();
-    }
 }

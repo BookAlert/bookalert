@@ -17,7 +17,9 @@
             </div>
         </div>
     </div>
+    <th:block th:if="${!#lists.isEmpty(newReleases)}">
+        <div class="row justify-content-center">
+            <button type="button" class="btn btn-outline-danger btn-sm-center dismiss-all">Dismiss All New Releases</button>
+        </div>
+    </th:block>
 </section>
-<div class="row justify-content-center">
-    <button type="button" class="btn btn-outline-danger btn-sm-center dismiss-all">Dismiss All New Releases</button>
-</div>

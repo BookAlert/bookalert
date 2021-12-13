@@ -112,7 +112,7 @@ $(() => {
         console.log(results)
 
         let html = results.map(result => {
-            result.artworkUrl100 = result.artworkUrl100.replace('100x100bb', '300x300bb')
+            result.artworkUrl100 = result.artworkUrl100.replace('100x100bb', '400x400bb')
             return `
                 <div>
                     <img alt="image" data-src="${result.artworkUrl100} hidden" src="${result.artworkUrl100}">
@@ -122,10 +122,9 @@ $(() => {
                                 <p class="card-text lead" data-description="${result.description}">
                                     <small>${result.description}</small>
                                 </p>
-                            <span  data-date="${result.releaseDate}">${result.releaseDate}</span>
-                            <a data-href="${result.trackViewUrl}">${result.trackViewUrl}</a>
+                            <a target="_blank" href="${result.trackViewUrl}">Buy from iTunes</a>
                         </div>
-                        <button class="btn btn-outline-info title-search-result" type="submit" data-name="${result.artistName}">Add Author</button>
+                        <button class="btn btn-outline-secondary title-search-result" type="submit" data-name="${result.artistName}">Add Author</button>
         
                     </div>
                 </div>

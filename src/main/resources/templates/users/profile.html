@@ -8,7 +8,7 @@
 
 <main>
     <nav th:replace="partials/partials.html :: navbar"></nav>
-    <h1 class="text-center text-light">Welcome to your profile <span th:text="${#authentication.name}">User</span>!</h1>
+    <h1 class="text-center text-light">Welcome to your profile <span th:text="${user.first_name}">User</span>!</h1>
 
 
     <div class="mb-5 justify-content-center d-flex">
@@ -67,19 +67,6 @@
                      id="profileUpcomingReleases"
                      role="tabpanel"
                      aria-labelledby="contact-tab">
-               </div>
-           </div>
-           <div class="tab-pane fade" id="newReleases" role="tabpanel" aria-labelledby="profile-tab">
-               <div class="card">
-
-                   <div class="row justify-content-center">
-                       <button type="button" class="btn btn-outline-danger btn-sm-center dismiss-all">Dismiss All New Releases</button>
-                   </div>
-               </div>
-           </div>
-           <div class="tab-pane fade" id="upcomingRelease" role="tabpanel" aria-labelledby="contact-tab">
-               <div class="card">
-
                </div>
            </div>
        </div>
