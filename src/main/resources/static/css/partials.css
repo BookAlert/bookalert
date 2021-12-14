@@ -105,6 +105,13 @@ body {
     height: 17px;
 }
 
+.overflow-y-auto {
+    overflow-y: auto;
+}
+
+.tighten-line-height {
+    line-height: 1.25;
+}
 /*button {*/
 /*    text-transform: uppercase;*/
 /*}*/
