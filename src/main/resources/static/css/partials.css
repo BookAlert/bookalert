@@ -112,32 +112,12 @@ body {
 .tighten-line-height {
     line-height: 1.25;
 }
-/*button {*/
-/*    text-transform: uppercase;*/
-/*}*/
-/*.image-head-1{*/
-/*    background: url("../img/aboutBackground.png");*/
-/*    background-size: cover;*/
-/*}*/
 
-/*.image-head-2{*/
-/*    background: url("../img/aboutBackground.png");*/
-/*    background-size: cover;*/
-/*}*/
+.rounded-top-righht {
+    border-top-right-radius: 5px !important;
+    border-top-left-radius: 5px !important;
+}
 
-/*.image-head-3{*/
-/*    background: url("../img/aboutBackground.png");*/
-/*    background-size: cover;*/
-/*}*/
-
-/*.image-head-4{*/
-/*    background: url("../img/aboutBackground.png");*/
-/*    background-size: cover;*/
-/*}*/
-
-/*#main-footer {*/
-/*    position: fixed;*/
-/*    bottom: 0;*/
-/*    left: 0;*/
-/*    right: 0;*/
-/*}*/
+button {
+    text-transform: uppercase;
+}
