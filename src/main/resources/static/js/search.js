@@ -68,11 +68,6 @@ $(() => {
                 position: 'bottomRight',
                 timeout: 1500
             })
-            // button.classList.remove('fa-plus')
-            // button.classList.remove('add-author')
-            // button.classList.add('fa-check')
-            // button.classList.remove('add-author-button')
-            // button.classList.add('add-author-button-checked')
             this.textContent = 'ADDED'
             this.setAttribute('disabled', 'true')
 
@@ -98,9 +93,12 @@ $(() => {
 
         url.search = new URLSearchParams({search: text}).toString();
 
-        fetch(url)
-            .then(response => response.json())
-            .then(buildTitleResults)
+        Promise.all([
+            fetch(url)
+                .then(response => response.json()),
+            fetch("user/authors")
+                .then(response => response.json())
+        ]).then(buildTitleResults);
     })
 
 
@@ -108,10 +106,11 @@ $(() => {
 
 
     //================ FUNCTION TO MAP TITLE RESULTS TO HTML
-    function buildTitleResults(results) {
+    function buildTitleResults([ results, authorsList ]) {
         console.log(results)
 
         let html = results.map(result => {
+            const isAdded = authorsList.includes(result.artistName)
             result.artworkUrl100 = result.artworkUrl100.replace('100x100bb', '200x200bb')
             return `
                 <div class="card bg-transparent border-light mb-3">
@@ -124,7 +123,7 @@ $(() => {
                         </div>
                         <div class="text-right">
                             <a class="btn btn-outline-light btn-sm" target="_blank" href="${result.trackViewUrl}">Buy from iTunes</a>
-                            <button class="btn btn-outline-light btn-sm title-search-result" type="submit" data-name="${result.artistName}">Add Author</button>
+                            <button class="btn btn-outline-light btn-sm title-search-result" type="submit" data-name="${result.artistName}" ${ isAdded ? 'disabled': '' }>${isAdded ? 'Author Added' : 'Add Author'}</button>
                         </div>
                     </div>
                 </div>
@@ -151,7 +150,24 @@ $(() => {
             body: JSON.stringify({
                 name:authorName
             })
+        }).then( () => {
+            iziToast.success({
+                title: 'Success',
+                message: 'Successfully added author!',
+                position: 'bottomRight',
+                timeout: 1500
+            })
+            this.textContent = 'Author Added'
+            this.setAttribute('disabled', 'true')
 
+        }).catch(() => {
+            iziToast.fail({
+                title: 'Failure',
+                message: 'Author exists!',
+                position: 'center',
+                timeout: 1500
+
+            })
         })
 
     })
