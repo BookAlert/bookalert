@@ -49,8 +49,8 @@
     </div>
     <div class="col-md-8" style="padding-left: 125px">
         <label for="password" class="form-label text-center mt-2" style="color: white">Password</label>
-        <input th:field="*{password}" type="text" class="text-light form-control border-light bg-transparent text-center" style="width: 300px" id="password" placeholder="Create a Password"
-               aria-label="Create a Password" aria-describedby="validationServer04Feedback" required>
+        <input th:field="*{password}" type="password" class="text-light form-control border-light bg-transparent text-center" style="width: 300px" id="password" placeholder="Create a Password"
+               aria-label="Create a Password" aria-describedby="validationServer04Feedback" required minlength="8">
         <div id="validationServer04Feedback" class="invalid-feedback">
             Please provide a valid password.
         </div>
@@ -58,8 +58,8 @@
 
     <div class="col-md-8" style="padding-left: 125px">
         <label for="confirmPassword" class="form-label text-center mt-2" style="color: white">Confirm Password</label>
-        <input type="text" class="text-light form-control border-light bg-transparent text-center style=" style="width: 300px" id="confirmPassword" placeholder="Confirm your Password"
-               aria-label="Confirm your Password" aria-describedby="validationServer05Feedback" required>
+        <input type="password" class="text-light form-control border-light bg-transparent text-center style=" style="width: 300px" id="confirmPassword" placeholder="Confirm your Password"
+               aria-label="Confirm your Password" aria-describedby="validationServer05Feedback" required minlength="8">
         <div id="validationServer05Feedback" class="invalid-feedback">
             Please provide a valid password.
         </div>
