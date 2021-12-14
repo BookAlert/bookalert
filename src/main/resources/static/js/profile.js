@@ -135,22 +135,29 @@ $(() => {
     function loadSavedBooks() {
         fetch("/profile/saved-books")
             .then((res) => res.text())
-            .then((res) => $('#profileSavedBooks').html(res))
+            .then((res) => {
+                $('#profileSavedBooks').html(res)
+                $('[data-toggle="tooltip"]').tooltip()
+            })
     }
 
     function loadNewReleases() {
         fetch("/profile/new-releases")
             .then((res) => res.text())
-            .then((res) => $('#profileNewReleases').html(res))
+            .then((res) => {
+                $('#profileNewReleases').html(res)
+                $('[data-toggle="tooltip"]').tooltip()
+            })
     }
 
     function loadUpcomingReleases() {
         fetch("/profile/upcoming-releases")
             .then((res) => res.text())
-            .then((res) => $('#profileUpcomingReleases').html(res))
+            .then((res) => {
+                $('#profileUpcomingReleases').html(res)
+                $('[data-toggle="tooltip"]').tooltip()
+            })
     }
 
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
+
 })

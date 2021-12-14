@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
-<head th:replace="partials/partials.html :: head('Profile')">
+<head th:replace="partials/partials.html :: head('BookAlert User Profile')">
     <title>User Profile</title>
 
 <body class="profile-body">
@@ -8,21 +8,21 @@
 
 <main>
     <nav th:replace="partials/partials.html :: navbar"></nav>
-    <h1 class="text-center text-light">Welcome to your profile <span th:text="${user.first_name}">User</span>!</h1>
+    <h1 class="text-center text-light m-5">Welcome to your profile, <span th:text="${user.first_name}">User</span>!</h1>
 
 
     <div class="mb-5 justify-content-center d-flex">
         <div class="px-4">
-            <div class="card card-accent-dark mb-3" id="authorLibrary" style="width: 240px;">
-                <div class="card-header text-center">Your Authors</div>
-                <div class="card-body text-dark">
+            <div class="card bg-transparent border-light text-light mb-3" id="authorLibrary" style="width: 240px;">
+                <div class="card-body">
+                    <h4 class="">Author Library</h4>
                     <th:block th:if="${#lists.isEmpty(authors)}" class="lead">List of Authors is empty, <a
                             th:href="@{/search}">search</a> authors and add to your list!
                     </th:block>
 
-                    <div th:each="author : ${authors}">
-                        <a th:href="@{'/authors/' + ${author.id}}" th:text="${author.name}"></a>
-                        <hr>
+                    <div th:each="author, iterator : ${authors}">
+                        <a class="text-uppercase text-light" th:href="@{'/authors/' + ${author.id}}" th:text="${author.name}"></a>
+                        <hr th:if="!${iterator.last}" class="my-0">
                     </div>
                 </div>
             </div>
@@ -30,40 +30,40 @@
 
         <div class="flex-grow-1 px-4" style="max-width: 1200px">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="saved-tab" data-toggle="tab" href="#profileSavedBooks" role="tab"
+                <li class="nav-item profile-nav">
+                    <a class="nav-link active profile-nav-item" id="saved-tab" data-toggle="tab" href="#profileSavedBooks" role="tab"
                        aria-controls="home" aria-selected="true">
-                        <span class="badge badge-pill badge-secondary">1 </span> Saved Titles
+                        <span class="badge badge-pill badge-secondary"></span> Saved Titles
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="new-tab" data-toggle="tab" href="#profileNewReleases" role="tab"
+                <li class="nav-item profile-nav">
+                    <a class="nav-link profile-nav-item" id="new-tab" data-toggle="tab" href="#profileNewReleases" role="tab"
                        aria-controls="profile" aria-selected="false">
-                        <span class="badge badge-pill badge-secondary">2 </span> New Releases
+                        <span class="badge badge-pill badge-secondary"></span> New Releases
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="upcoming-tab" data-toggle="tab" href="#profileUpcomingReleases" role="tab"
+                <li class="nav-item profile-nav">
+                    <a class="nav-link profile-nav-item" id="upcoming-tab" data-toggle="tab" href="#profileUpcomingReleases" role="tab"
                        aria-controls="contact" aria-selected="false">
-                        <span class="badge badge-pill badge-secondary">3 </span> Upcoming Releases
+                        <span class="badge badge-pill badge-secondary"></span> Upcoming Releases
                     </a>
                 </li>
             </ul>
 
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active bg-light rounded-bottom"
+                <div class="tab-pane fade show active bg-transparent border border-light rounded-bottom rounded-top-right"
                      id="profileSavedBooks"
                      role="tabpanel"
                      aria-labelledby="home-tab">
                 </div>
 
-                <div class="tab-pane fade bg-light rounded-bottom"
+                <div class="tab-pane fade bg-transparent border border-light rounded-bottom rounded-top-right"
                      id="profileNewReleases"
                      role="tabpanel"
                      aria-labelledby="profile-tab">
                 </div>
 
-                <div class="tab-pane fade bg-light rounded-bottom"
+                <div class="tab-pane fade bg-transparent border border-light rounded-bottom rounded-top-right"
                      id="profileUpcomingReleases"
                      role="tabpanel"
                      aria-labelledby="contact-tab">

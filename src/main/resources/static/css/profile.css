@@ -13,12 +13,29 @@ body.profile-body {
     right: 0;
 }
 
-/*.book-card {*/
-/*    height: 430px;*/
-/*    width: 150px;*/
-/*}*/
-
 img.book-cover {
     height: 250px;
 }
 
+.nav-tabs .profile-nav .profile-nav-item {
+    /*background-color: #79b0d7;*/
+    color: #FFF;
+}
+
+.nav-tabs .profile-nav .profile-nav-item.active {
+    background-color: rgb(247,248,249);
+    color: #044d9b;
+}
+
+/*.tab-content {*/
+/*    border: 1px solid #dee2e6;*/
+/*    border-top: transparent;*/
+/*    padding: 15px;*/
+/*}*/
+
+/*.tab-content .tab-pane {*/
+/*    background-color: #FFF;*/
+/*    color: #0080FF;*/
+/*    min-height: 200px;*/
+/*    height: auto;*/
+/*}*/

@@ -68,11 +68,6 @@ $(() => {
                 position: 'bottomRight',
                 timeout: 1500
             })
-            // button.classList.remove('fa-plus')
-            // button.classList.remove('add-author')
-            // button.classList.add('fa-check')
-            // button.classList.remove('add-author-button')
-            // button.classList.add('add-author-button-checked')
             this.textContent = 'ADDED'
             this.setAttribute('disabled', 'true')
 
@@ -98,9 +93,12 @@ $(() => {
 
         url.search = new URLSearchParams({search: text}).toString();
 
-        fetch(url)
-            .then(response => response.json())
-            .then(buildTitleResults)
+        Promise.all([
+            fetch(url)
+                .then(response => response.json()),
+            fetch("user/authors")
+                .then(response => response.json())
+        ]).then(buildTitleResults);
     })
 
 
@@ -108,30 +106,29 @@ $(() => {
 
 
     //================ FUNCTION TO MAP TITLE RESULTS TO HTML
-    function buildTitleResults(results) {
+    function buildTitleResults([ results, authorsList ]) {
         console.log(results)
 
         let html = results.map(result => {
-            result.artworkUrl100 = result.artworkUrl100.replace('100x100bb', '400x400bb')
+            const isAdded = authorsList.includes(result.artistName)
+            result.artworkUrl100 = result.artworkUrl100.replace('100x100bb', '200x200bb')
             return `
-                <div>
-                    <img alt="image" data-src="${result.artworkUrl100} hidden" src="${result.artworkUrl100}">
-                   <div class="card">
-                        <div class="card-body">
-                            <h2 class="card-title" data-title="${result.trackName}" >${result.trackName}</h2>
-                                <p class="card-text lead" data-description="${result.description}">
-                                    <small>${result.description}</small>
-                                </p>
-                            <a target="_blank" href="${result.trackViewUrl}">Buy from iTunes</a>
+                <div class="card bg-transparent border-light mb-3">
+                    <div class="card-body p-2">
+                        <h4 class="text-light mb-0" data-title="${result.trackName}" >${result.trackName}</h4>
+                        <div class="font-italic text-light mb-1">by ${result.artistName}</div>
+                        <div class="d-flex title-card-contents mb-2">
+                            <img class="rounded border border-light" alt="image" data-src="${result.artworkUrl100} hidden" src="${result.artworkUrl100}">
+                            <small class="overflow-y-auto flex-grow-1 px-2 text-justify text-light tighten-line-height">${result.description}</small>
                         </div>
-                        <button class="btn btn-outline-secondary title-search-result" type="submit" data-name="${result.artistName}">Add Author</button>
-        
+                        <div class="text-right">
+                            <a class="btn btn-outline-light btn-sm" target="_blank" href="${result.trackViewUrl}">Buy from iTunes</a>
+                            <button class="btn btn-outline-light btn-sm title-search-result" type="submit" data-name="${result.artistName}" ${ isAdded ? 'disabled': '' }>${isAdded ? 'Author Added' : 'Add Author'}</button>
+                        </div>
                     </div>
                 </div>
             `
         }).join("")
-
-
         $('#titleResults').html(html)
     }
 
@@ -153,7 +150,24 @@ $(() => {
             body: JSON.stringify({
                 name:authorName
             })
+        }).then( () => {
+            iziToast.success({
+                title: 'Success',
+                message: 'Successfully added author!',
+                position: 'bottomRight',
+                timeout: 1500
+            })
+            this.textContent = 'Author Added'
+            this.setAttribute('disabled', 'true')
 
+        }).catch(() => {
+            iziToast.fail({
+                title: 'Failure',
+                message: 'Author exists!',
+                position: 'center',
+                timeout: 1500
+
+            })
         })
 
     })

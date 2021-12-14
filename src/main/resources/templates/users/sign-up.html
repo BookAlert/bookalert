@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <link rel="stylesheet" href="/css/sign-in.css">
-<head th:replace="partials/partials.html :: head('Sign-Up Page')">
+<head th:replace="partials/partials.html :: head('BookAlert Sign-Up')">
     <title>Please sign up!</title>
 <body class="sign-up-page" style="padding-top: 100px">
 <div class="overlay position-fixed"></div>
@@ -45,8 +45,10 @@
     </div>
     <div class="col-md-8" style="padding-left: 125px">
         <label for="password" class="form-label text-center mt-2" style="color: white">Password</label>
+
         <input th:field="*{password}" type="text" class="text-light form-control border-light bg-dark text-center" style="opacity: 60%; width: 300px" id="password" placeholder="Create a Password"
-               aria-label="Create a Password" aria-describedby="validationServer04Feedback" required>
+               aria-label="Create a Password" aria-describedby="validationServer04Feedback" required minlength="8">
+
         <div id="validationServer04Feedback" class="invalid-feedback">
             Please provide a valid password.
         </div>
@@ -54,8 +56,9 @@
 
     <div class="col-md-8" style="padding-left: 125px">
         <label for="confirmPassword" class="form-label text-center mt-2" style="color: white">Confirm Password</label>
+
         <input type="text" class="text-light form-control border-light bg-dark text-center" style="opacity: 60%; width: 300px" id="confirmPassword" placeholder="Confirm your Password"
-               aria-label="Confirm your Password" aria-describedby="validationServer05Feedback" required>
+               aria-label="Confirm your Password" aria-describedby="validationServer05Feedback" required minlength="8">
         <div id="validationServer05Feedback" class="invalid-feedback">
             Please provide a valid password.
         </div>

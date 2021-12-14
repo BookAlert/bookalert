@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"  lang="en">
 <link rel="stylesheet" href="/css/login.css">
-<head th:replace="partials/partials.html :: head('Login Page')">
+<head th:replace="partials/partials.html :: head('BookAlert Login')">
     <title>Login</title>
 <body class="log-in-page" style="padding-top: 100px">
 <div class="overlay position-fixed"></div>
@@ -32,8 +32,7 @@
             </div>
             <div class="col-md-12">
                 <label for="validationServer03" class="form-label mt-2" style="color: white">Password</label>
-                <input type="text" class="text-light form-control border-light bg-dark text-center" style="opacity: 60%" id="validationServer03" placeholder="Enter your Password"  aria-label="Enter your Password" aria-describedby="inputGroupPrepend3 validationServerPasswordFeedback"
-                       name="password">
+                <input type="text" class="text-light form-control border-light bg-dark text-center" style="opacity: 60%" id="validationServer03" placeholder="Enter your Password"  aria-label="Enter your Password" aria-describedby="inputGroupPrepend3 validationServerPasswordFeedback" name="password">
             </div>
 
             <div class="col-12 text-center mt-4">
@@ -45,34 +44,10 @@
     </div>
 </main>
 
-
-
 <footer th:replace="partials/partials.html :: footer"></footer>
 <script th:replace="partials/partials.html :: bootstrap-j-query"></script>
 <script th:replace="partials/partials.html :: popper-js"></script>
 <script th:replace="partials/partials.html :: bootstrap-js"></script>
 
-<!--<script>-->
-<!--   // Example starter JavaScript for disabling form submissions if there are invalid fields...-->
-<!--    (function () {-->
-<!--        'use strict'-->
-
-<!--        // Fetch all the forms we want to apply custom Bootstrap validation styles to-->
-<!--        var forms = document.querySelectorAll('.needs-validation')-->
-
-<!--        // Loop over them and prevent submission-->
-<!--        Array.prototype.slice.call(forms)-->
-<!--            .forEach(function (form) {-->
-<!--                form.addEventListener('submit', function (event) {-->
-<!--                    if (!form.checkValidity()) {-->
-<!--                        event.preventDefault()-->
-<!--                        event.stopPropagation()-->
-<!--                    }-->
-
-<!--                    form.classList.add('was-validated')-->
-<!--                }, false)-->
-<!--            })-->
-<!--    })()-->
-</script>
 </body>
 </html>

@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <link rel="stylesheet" href="/css/searchStyling.css">
-<head th:replace="partials/partials.html :: head('Search Page')"></head>
+<head th:replace="partials/partials.html :: head('BookAlert Search')"></head>
 <title>Search</title>
 <body class="search-page">
 <div class="overlay position-fixed"></div>
 <nav th:replace="partials/partials.html :: navbar"></nav>
 <main class="container container-fluid pt-5">
     <div class="row">
+        <div class="col-12">
+            <h2 class="text-light text-center mb-3">Add Authors to Your Library</h2>
+        </div>
         <div class="col-lg-6 col-12 px-5">
-            <h3 class="text-light search-by-author text-center" >Search by Author</h3>
+            <h3 class="text-light search-by-author text-center" >Search for Author by Name</h3>
             <div class="input-group mb-3">
                 <input  th:action="@{/authors/{id}}"
                         th:method="POST"
@@ -19,14 +22,14 @@
                         placeholder="Enter an author's name"
                         aria-label="Enter an author's name">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="authorSearch">Search Authors</button>
+                    <button class="btn btn-outline-light" type="button" id="authorSearch">Search</button>
                 </div>
             </div>
             <div id="authorResults"></div>
         </div>
 
         <div class="col-lg-6 col-12 px-5" >
-            <h3 class="text-light search-by-title text-center">Search by Title</h3>
+            <h3 class="text-light search-by-title text-center">Search for Author by Book</h3>
             <div class="input-group mb-3">
                 <input  th:action="@{/authors/{id}}"
                         th:method="POST"
@@ -36,10 +39,10 @@
                         placeholder="Enter a book title"
                         aria-label="Enter a book title">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="titleSearch">Search Title</button>
+                    <button class="btn btn-outline-light" type="button" id="titleSearch">Search</button>
                 </div>
             </div>
-            <div id="titleResults" class="row container"></div>
+            <div id="titleResults" class="overflow-y-auto"></div>
         </div>
     </div>
 </main>
