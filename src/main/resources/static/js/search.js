@@ -112,22 +112,28 @@ $(() => {
         console.log(results)
 
         let html = results.map(result => {
-            result.artworkUrl100 = result.artworkUrl100.replace('100x100bb', '400x400bb')
+            result.artworkUrl100 = result.artworkUrl100.replace('100x100bb', '300x300bb')
             return `
-                <div>
-                    <img alt="image" data-src="${result.artworkUrl100} hidden" src="${result.artworkUrl100}">
-                   <div class="card">
-                        <div class="card-body">
-                            <h2 class="card-title" data-title="${result.trackName}" >${result.trackName}</h2>
-                                <p class="card-text lead" data-description="${result.description}">
-                                    <small>${result.description}</small>
-                                </p>
-                            <a target="_blank" href="${result.trackViewUrl}">Buy from iTunes</a>
+               <div class="card mb-3">
+                   <div class="row no-gutters">
+                       <div class="col-md-4 col-lg-6">
+                            <img alt="image" data-src="${result.artworkUrl100} hidden" src="${result.artworkUrl100}">
                         </div>
-                        <button class="btn btn-outline-secondary title-search-result" type="submit" data-name="${result.artistName}">Add Author</button>
-        
+                            <div class="col-md-8 col-lg-6">
+                                <div class="card-body">
+                                    <h3 class="card-title" data-title="${result.trackName}" >${result.trackName}</h3>
+                                    <div class="title-card">
+                                        <p class="card-text lead overflow-auto" data-description="${result.description}">
+                                            <small>${result.description}</small>
+                                        </p>
+                                        </div>
+                                    <a target="_blank" href="${result.trackViewUrl}">Buy from iTunes</a>
+                                  <button class="btn btn-outline-secondary title-search-result" type="submit" data-name="${result.artistName}">Add Author</button>
+                                </div>
+                             </div>
                     </div>
-                </div>
+            </div>
+                
             `
         }).join("")
 
