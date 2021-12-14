@@ -44,3 +44,14 @@
     font-size: 25px;
     height: 100px;
 }
+
+div{
+    border: 2px solid black;
+
+}
+
+.title-card{
+    height: 500px;
+    width: 500px;
+    overflow-y: scroll;
+}

@@ -78,7 +78,7 @@ body {
 }
 
 .custom-bar-color {
-    background: rgba(255, 255, 255, .80) !important;
+    background: rgba(255, 255, 255, 1) !important;
 }
 
 .image-1 {
