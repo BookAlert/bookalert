@@ -45,11 +45,10 @@
     height: 100px;
 }
 
-/*div{*/
-/*    border: 2px solid black;*/
-
-/*}*/
-
 .title-card-contents {
     height: 200px;
+}
+
+.ned {
+    margin-top: 80px;
 }

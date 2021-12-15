@@ -24,7 +24,7 @@
                         <div class="carousel-caption d-none d-sm-block text-center mb-5">
                             <h1 class="display-3">Use your membership for in-depth searching!</h1>
                             <p class="lead">BookAlert members get exclusive access to all titles and authors they choose to find.
-                                Not a member? Everyone is welcome and use your membership right away!</p>
+                                Not a member? Everyone is welcome! Sign up, and use your membership right away!</p>
                             <a th:href="@{/sign-up}" class="btn btn-danger btn-lg">Sign Up Now</a>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                     <div class="container">
                         <div class="carousel-caption d-none d-sm-block text-right mb-5">
                             <h1 class="display-3">Already a member?</h1>
-                            <p class="lead">Explore new releases, recent titles, and more</p>
+                            <p class="lead">Explore new releases, recent titles, and more!</p>
                             <a th:href="@{/login}" class="btn btn-info btn-lg">Learn More!</a>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                         <div class="carousel-caption d-none d-sm-block text-left mb-5">
                             <h1 class="display-3">The BookAlert Story</h1>
                             <p class="lead">
-                                We love books! So much, we created an application for them.</p>
+                                We love books as much as you do, so we've created a site to help you keep track of them!</p>
                             <a th:href="@{/about}" class="btn btn-light btn-lg">About Us</a>
                         </div>
                     </div>
@@ -73,12 +73,12 @@
             <div class="col-md-4 mb-4 text-centered">
                 <i class="fas fa-list-ul fa-3x mb-2"></i>
                 <h3>Make A List</h3>
-                <p>A library of your own, designed to spur discovery; we've created a few features to help you keep what you find and love most!.</p>
+                <p>View your very own library designed to spur discovery. We've created a few features to help you keep track of what you find and love most!</p>
             </div>
             <div class="col-md-4 mb-4 text-centered">
                 <i class="fas fa-exclamation fa-3x mb-2"></i>
                 <h3>Stay Current</h3>
-                <p>First and foremost, this is YOUR library! After you discover what you love, we'll keep you updated.</p>
+                <p>First and foremost, this is YOUR library. After you discover what you love, we'll keep you updated!</p>
             </div>
         </div>
     </div>
@@ -91,34 +91,12 @@
             <div class="col">
                 <div class="container p-5">
                     <h1>Are You Ready To Get Started?</h1>
-                    <p class="d-none d-md-block">Discover your next favorite read or author! Explore a selection of new releases, trending titles, and classics curated just for you.</p>
+                    <p class="d-none d-md-block">Discover your next favorite books or author! Explore a selection of new releases, trending titles, and classics curated just for you.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-<!-- Carousel Book Slider-->
-<!--<div class="slider slider-for slick-initialized slick-slider">-->
-<!--    <div class="slick-track">-->
-<!--        <div class="slick-slide"></div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--<div class="row">-->
-<!--    <div class="slider slider-nav ">-->
-<!--        <button type="button" class="slick-prev slick-arrow">Previous</button>-->
-<!--        <div class="slick-list draggable" th:each="book : ${books}">-->
-<!--            <div class="slick-track" >-->
-<!--                <img class="slick-slide" th:src="${image}" th:each="image : ${book.artwork_url}">-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <button type="button" class="slick-next slick-arrow">Next</button>-->
-<!--    </div>-->
-<!--</div>-->
-
-
-
 
 <footer th:replace="partials/partials.html :: footer"></footer>
 <script src="/static/js/jquery-3.6.0.min.js"></script>
