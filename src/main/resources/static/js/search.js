@@ -138,9 +138,6 @@ $(() => {
         let authorName = $(this).data("name");
 
 
-
-
-
         fetch(`add-author`, {
             headers: {
                 'Accept': 'application/json',
