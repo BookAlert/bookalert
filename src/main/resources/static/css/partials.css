@@ -72,6 +72,9 @@ body {
     background-size: 1000px 400px;
    border-radius: 2%;
 }
+.meet-the-team{
+    font-size: 80px;
+}
 
 /*TEAM CARDS*/
 #team {
