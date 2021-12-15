@@ -67,6 +67,11 @@ body {
 }
 
 /*ABOUT PAGE STYLING*/
+.group-photo{
+    background: url("../img/groupPhoto.jpg");
+    background-size: 1000px 400px;
+   border-radius: 2%;
+}
 
 /*TEAM CARDS*/
 #team {
