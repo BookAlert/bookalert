@@ -70,8 +70,7 @@ body {
 .group-photo{
     background: url("../img/groupPhoto.jpg");
     background-size: 1000px 400px;
-    /*position: relative;*/
-    /*top: -50px;*/
+   border-radius: 2%;
 }
 
 /*TEAM CARDS*/
