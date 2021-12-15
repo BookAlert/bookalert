@@ -69,6 +69,7 @@ public class UserController {
         return "users/profile";
     }
 
+    ///END POINT FOR SAVED BOOKS ON PROFILE PAGE
     @GetMapping("/profile/saved-books")
     public String getSavedBooks(Model model, Authentication authentication) {
         User user = userDao.findByUsername(authentication.getName());
@@ -123,15 +124,7 @@ public class UserController {
         return "authors/authors";
     }
 
-
-//    @PostMapping("/authors/{id}")
-//    public String authorPage(Model model) {
-//        model.addAttribute("authors", authorRepository.findAll());
-//        model.addAttribute("books", booksRepository.findAll());
-////       model.addAttribute("releaseDate", new Date());
-//        return "authors/authors";
-//    }
-
+    /// =================== ENDPOINT TO INDIVIDUAL BOOK PAGE
     @GetMapping("/book/{id}")
     public String bookPage(@PathVariable long id, Model model) {
         model.addAttribute("book", booksRepository.getById(id));
