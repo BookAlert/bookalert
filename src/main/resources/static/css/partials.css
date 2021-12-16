@@ -23,10 +23,15 @@ h1 {
     text-transform: uppercase;
     padding-left: 1rem !important;
     padding-right: 1rem !important;
+    color: black;
 }
 
 .navbar-brand {
     font-family: 'Montserrat', Serif, sans-serif;
+}
+
+#logout-btn {
+    color: black;
 }
 
 .btn-link {
@@ -101,7 +106,7 @@ h1 {
 }
 
 .custom-bar-color {
-    background: rgba(255, 255, 255, 1) !important;
+    background: rgba(255, 255, 255, 0.51) !important;
 }
 
 .image-1 {
@@ -143,4 +148,9 @@ h1 {
 
 button {
     text-transform: uppercase;
+}
+
+/* Book HTML style */
+.book-body {
+    background: url("../img/bookstack.jpeg");
 }

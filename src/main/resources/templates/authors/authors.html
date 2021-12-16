@@ -12,21 +12,6 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous">
 
-<style>
-    .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-    }
-
-    @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-            font-size: 3.5rem;
-        }
-    }
-</style>
 
 <body class="authors-body">
 <div class="dark-overlay"></div>
@@ -52,7 +37,7 @@
     </div>
 
     <section>
-        <div class="d-flex flex-wrap flex-grow-1">
+        <div class="d-flex flex-wrap flex-grow-1 justify-content-center">
                      <div class="author-book-card p-2" th:each="book : ${books}">
                       <div th:class="${'card book-image bg-transparent text-light p-1 text-center ribbon ribbon-top-left ' + (purchasedBookIds.contains(book.id) ? 'purchased' : savedBookIds.contains(book.id) ? 'saved' : '')}">
                           <span th:class="${'purchased-text ' + (purchasedBookIds.contains(book.id) ? 'd-block' : 'd-none')}">Purchased</span>
@@ -62,7 +47,7 @@
                            </a>
                             <p th:text="${{#dates.format(book.release_date, 'MM/dd/YYYY')}}" class="lead"></p>
 
-                          <div class="d-flex justify-content-center mb-3">
+                          <div class="d-flex justify-content-center mb-3" id="card-icons">
                               <button type="button" class="btn btn-link btn-xs save-book align-self-center" data-toggle="tooltip" data-placement="right" title="Save Book" th:data-book-id="${book.id}"><i class="far fa-bookmark fa-lg"></i></button>
                               <button type="button" class="btn btn-link btn-xs mark-purchased align-self-center"  data-toggle="tooltip" data-placement="right" title="Mark Purchased" th:data-book-id="${book.id}"><i class="fas fa-shopping-bag fa-lg"></i></button>
                               <a target="_blank" class="btn btn-link btn-xs purchase-book align-self-center" data-toggle="tooltip" data-placement="right" title="Purchase on iTunes" th:href="${book.itunes_url}" role="button"><i class="fab fa-itunes fa-lg"></i></a>
