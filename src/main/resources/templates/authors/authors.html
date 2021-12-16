@@ -21,9 +21,9 @@
     </div>
     <section>
         <div class="d-flex flex-wrap justify-content-center">
-            <div class="card book-image bg-transparent text-light text-center ribbon ribbon-top-left mb-2 mx-3" th:each="book : ${books}" style="width: 168px;">
+            <div class="author-book-card card book-image bg-transparent text-light text-center ribbon ribbon-top-left mb-2 mx-3" th:each="book : ${books}" style="width: 168px;">
                 <a th:href="@{'/book/' + ${book.id}}">
-                    <div class="border border-light rounded d-inline-block">
+                    <div th:class="${'border border-light rounded d-inline-block' + (purchasedBookIds.contains(book.id) ? 'purchased' : savedBookIds.contains(book.id) ? 'saved' : '')}">
                         <span th:class="${'purchased-text ' + (purchasedBookIds.contains(book.id) ? 'd-block' : 'd-none')}">Purchased</span>
                         <span th:class="${'saved-text ' + (savedBookIds.contains(book.id) ? 'd-block' : 'd-none')}">Saved</span>
                         <img class="book-cover align-self-center" th:src="${book.artwork_url}">
