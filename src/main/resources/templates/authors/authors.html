@@ -14,59 +14,34 @@
 
 
 <body class="authors-body">
-<div class="dark-overlay"></div>
+<div class="overlay position-fixed"></div>
 <main>
-    <div class="b-example-divider"></div>
-
-    <div class="container col-xxl-8 px-4 py-5">
-        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-            <div class="col col-sm-8">
-            </div>
-            <div class="col-lg-12 text-center text-light">
-                <h1 class="display-5 fw-bold lh-1 mb-3" th:text="${author.name}"></h1>
-                <div class="gap-2 text-center">
-                    <a  class="btn btn-primary btn-lg px-4 me-md-1 mb-1" th:href="@{/profile}">Back</a>
-                    <form th:action="@{'/authors/' + ${author.id} + '/delete'}" th:method="POST">
-                        <button type="submit" class="btn btn-danger btn-lg px-3 me-md-1">Delete</button>
-                    </form>
-
+    <div class="d-flex px-4 py-5 my-5 justify-content-center">
+        <h1 class="align-self-center display-5 fw-bold lh-1 mb-3 text-light" th:text="${author.name}"></h1>
+    </div>
+    <section>
+        <div class="d-flex flex-wrap justify-content-center">
+            <div class="card book-image bg-transparent text-light text-center ribbon ribbon-top-left mb-2 mx-3" th:each="book : ${books}" style="width: 168px;">
+                <a th:href="@{'/book/' + ${book.id}}">
+                    <div class="border border-light rounded d-inline-block">
+                        <span th:class="${'purchased-text ' + (purchasedBookIds.contains(book.id) ? 'd-block' : 'd-none')}">Purchased</span>
+                        <span th:class="${'saved-text ' + (savedBookIds.contains(book.id) ? 'd-block' : 'd-none')}">Saved</span>
+                        <img class="book-cover align-self-center" th:src="${book.artwork_url}">
+                    </div>
+                </a>
+                <div th:text="${{#dates.format(book.release_date, 'MM/dd/YYYY')}}" class="lead"></div>
+                <div class="d-flex justify-content-center card-icons" id="card-icons">
+                    <button type="button" class="btn btn-link text-light btn-sm save-book" data-toggle="tooltip" data-placement="right" title="Save Book" th:data-book-id="${book.id}"><i class="far fa-bookmark fa-lg"></i></button>
+                    <button type="button" class="btn btn-link text-light btn-sm mark-purchased"  data-toggle="tooltip" data-placement="right" title="Mark Purchased" th:data-book-id="${book.id}"><i class="fas fa-shopping-bag fa-lg"></i></button>
+                    <a target="_blank" class="btn btn-link text-light btn-sm purchase-book" data-toggle="tooltip" data-placement="right" title="Purchase on iTunes" th:href="${book.itunes_url}" role="button"><i class="fab fa-itunes fa-lg"></i></a>
                 </div>
             </div>
-
+            <div class="gap-2 text-center mb-5">
+                <form th:action="@{'/authors/' + ${author.id} + '/delete'}" th:method="POST">
+                    <button type="submit" class="btn btn-danger btn-lg px-3 me-md-1">Delete</button>
+                </form>
+            </div>
         </div>
-    </div>
-
-    <section>
-        <div class="d-flex flex-wrap flex-grow-1 justify-content-center">
-                     <div class="author-book-card p-2" th:each="book : ${books}">
-                      <div th:class="${'card book-image bg-transparent text-light p-1 text-center ribbon ribbon-top-left ' + (purchasedBookIds.contains(book.id) ? 'purchased' : savedBookIds.contains(book.id) ? 'saved' : '')}">
-                          <span th:class="${'purchased-text ' + (purchasedBookIds.contains(book.id) ? 'd-block' : 'd-none')}">Purchased</span>
-                          <span th:class="${'saved-text ' + (savedBookIds.contains(book.id) ? 'd-block' : 'd-none')}">Saved</span>
-                           <a th:href="@{'/book/' + ${book.id}}">
-                               <img class="book-cover align-self-center border border-light" th:src="${book.artwork_url}">
-                           </a>
-                            <p th:text="${{#dates.format(book.release_date, 'MM/dd/YYYY')}}" class="lead"></p>
-
-                          <div class="d-flex justify-content-center mb-3" id="card-icons">
-                              <button type="button" class="btn btn-link text-light btn-xs save-book align-self-center" data-toggle="tooltip" data-placement="right" title="Save Book" th:data-book-id="${book.id}"><i class="far fa-bookmark fa-lg"></i></button>
-                              <button type="button" class="btn btn-link text-light btn-xs mark-purchased align-self-center"  data-toggle="tooltip" data-placement="right" title="Mark Purchased" th:data-book-id="${book.id}"><i class="fas fa-shopping-bag fa-lg"></i></button>
-                              <a target="_blank" class="btn btn-link text-light btn-xs purchase-book align-self-center" data-toggle="tooltip" data-placement="right" title="Purchase on iTunes" th:href="${book.itunes_url}" role="button"><i class="fab fa-itunes fa-lg"></i></a>
-                          </div>
-
-
-<!--                                <div style="display: inline-block">-->
-<!--                                    <button id="save-button" type="button"  class="btn btn-outline-primary save-book" data-toggle="tooltip" data-placement="bottom" title="Save Book" th:data-book-id="${book.id}"><i class="far fa-bookmark fa-2x"></i></button>-->
-<!--                                    <button type="button" id="purchased-button" class="btn btn-outline-info mark-purchased" data-toggle="tooltip" data-placement="bottom" title="Mark Purchased" th:data-book-id="${book.id}"><i class="fas fa-shopping-bag fa-2x"></i></button>-->
-<!--                                    <a target="_blank" class="btn btn-outline-success purchase-book" data-toggle="tooltip" data-placement="bottom" title="Purchase on itunes" th:href="${book.itunes_url}" role="button"><i class="fab fa-itunes fa-2x"></i></a>-->
-<!--                                 </div>-->
-<!--                          <button type="button" class="btn btn-outline-primary btn-sm save-book" th:data-book-id="${book.id}">Save</button>-->
-<!--                             <a target="_blank" class="btn btn-outline-success btn-sm purchase-book" th:href="${book.itunes_url}" role="button">Buy from iTunes</a>-->
-<!--                            <button type="button" class="btn btn-outline-info btn-sm mark-purchased" th:data-book-id="${book.id}">Purchased</button>-->
-                        </div>
-                     </div>
-
-             </div>
-
     </section>
 </main>
 
