@@ -1,5 +1,8 @@
 <section class="text-light">
-    <h3 class="mb-2 pt-1 pl-2">Upcoming Releases</h3>
+    <h3 class="mb-2 pt-1 pl-2">Your Upcoming Releases</h3>
+    <th:block th:if="${#lists.isEmpty(upcomingReleases)}" class="lead">You don't have any titles yet,
+        <a th:href="@{/search}">search</a> and add to your list!
+    </th:block>
     <div class="d-flex flex-wrap flex-grow-1 justify-content-center">
         <!--bootstrap card with 3 horizontal images-->
         <div class="book-card p-2" th:each="book : ${upcomingReleases}">
@@ -9,10 +12,10 @@
                 </a>
                 <p th:text="${{#dates.format(book.release_date, 'MM/dd/YYYY')}}" class="lead"></p>
                 <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-link btn-xs mb-2 dismiss-new-release" th:data-book-id="${book.id}"><i class="far fa-trash-alt fa-2x"></i></button>
-                    <button type="button" class="btn btn-link btn-xs mb-2 save-book" data-toggle="tooltip" data-placement="right" title="Save Book" th:data-book-id="${book.id}"><i class="far fa-bookmark fa-2x"></i></button>
-                    <a target="_blank" class="btn btn-link btn-xs mb-2 purchase-book" data-toggle="tooltip" data-placement="right" title="Purchase on iTunes" th:href="${book.itunes_url}" role="button"><i class="fab fa-itunes fa-2x"></i></a>
-                    <button type="button" class="btn btn-link btn-xs mark-purchased"  data-toggle="tooltip" data-placement="right" title="Mark Purchased" th:data-book-id="${book.id}"><i class="fas fa-shopping-bag fa-2x"></i></button>
+                    <button type="button" class="btn btn-link text-light btn-xs mb-2 dismiss-new-release" th:data-book-id="${book.id}"><i class="far fa-trash-alt fa-2x"></i></button>
+                    <button type="button" class="btn btn-link text-light btn-xs mb-2 save-book" data-toggle="tooltip" data-placement="right" title="Save Book" th:data-book-id="${book.id}"><i class="far fa-bookmark fa-2x"></i></button>
+                    <a target="_blank" class="btn btn-link text-light btn-xs mb-2 purchase-book" data-toggle="tooltip" data-placement="right" title="Purchase on iTunes" th:href="${book.itunes_url}" role="button"><i class="fab fa-itunes fa-2x"></i></a>
+                    <button type="button" class="btn btn-link text-light btn-xs mark-purchased"  data-toggle="tooltip" data-placement="right" title="Mark Purchased" th:data-book-id="${book.id}"><i class="fas fa-shopping-bag fa-2x"></i></button>
                 </div>
             </div>
         </div>

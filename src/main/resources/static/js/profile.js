@@ -115,8 +115,7 @@ $(() => {
             .then((res) => res.text())
             .then((res) => {
                 $('#profileSavedBooks').html(res)
-                $('[data-toggle="tooltip"]').tooltip({
-                    })
+
             })
     }
 
@@ -125,7 +124,6 @@ $(() => {
             .then((res) => res.text())
             .then((res) => {
                 $('#profileNewReleases').html(res)
-                $('[data-toggle="tooltip"]').tooltip()
             })
     }
 
@@ -134,9 +132,8 @@ $(() => {
             .then((res) => res.text())
             .then((res) => {
                 $('#profileUpcomingReleases').html(res)
-                $('[data-toggle="tooltip"]').tooltip()
             })
     }
 
-
+    $('[data-toggle="tooltip"]').tooltip()
 })

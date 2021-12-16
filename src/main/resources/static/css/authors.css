@@ -34,7 +34,7 @@ body.authors-body{
 .ribbon span {
     position: absolute;
     display: block;
-    width: 225px;
+    width: 180px;
     padding: 5px 0;
     box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
     color: #fff;
@@ -42,6 +42,7 @@ body.authors-body{
     text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
     text-transform: uppercase;
     text-align: center;
+    clip: rect(auto, auto, auto, auto);
 }
 
  /*top left*/
@@ -64,7 +65,7 @@ body.authors-body{
 }
 .ribbon-top-left span {
     right: 20px;
-    top: 50px;
+    top: 36px;
     transform: rotate(-45deg);
 }
 
