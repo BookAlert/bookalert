@@ -3,9 +3,9 @@
     <div class="d-flex flex-wrap flex-grow-1 justify-content-center">
         <!--bootstrap card with 3 horizontal images-->
         <div class="book-card p-2" th:each="book : ${upcomingReleases}">
-            <div class="card p-1 text-center mb-3 bg-transparent border-light">
+            <div class="card p-1 text-center mb-3 bg-transparent">
                 <a class="d-flex" th:href="@{'/book/' + ${book.id}}">
-                    <img class="book-cover align-self-center" th:src="${book.artwork_url}">
+                    <img class="book-cover align-self-center border border-light" th:src="${book.artwork_url}">
                 </a>
                 <p th:text="${{#dates.format(book.release_date, 'MM/dd/YYYY')}}" class="lead"></p>
                 <div class="d-flex justify-content-center">

@@ -41,21 +41,7 @@ public class User {
     )
     private List<Author> authors;
 
-    public List<Author> getAuthors() {
-        return authors;
-    }
 
-    public void setAuthors(List<Author> authors) {
-        this.authors = authors;
-    }
-
-    public List<Book> getNewReleases() {
-        return newReleases;
-    }
-
-    public void setNewReleases(List<Book> newReleases) {
-        this.newReleases = newReleases;
-    }
     @WhereJoinTable(clause = "status_id = 1")
     @SQLInsert(sql = "insert into book_user (user_id, book_id, status_id) values (?, ?, 1)")
     @OrderBy(value = "release_date desc")
@@ -87,27 +73,8 @@ public class User {
     )
     private List<Book> purchasedBooks;
 
-
-    public List<Book> getPurchasedBooks() {
-        return purchasedBooks;
-    }
-
-    public void setPurchasedBooks(List<Book> purchasedBooks) {
-        this.purchasedBooks = purchasedBooks;
-    }
-
-    public List<Book> getSavedBooks() {
-        return savedBooks;
-    }
-
-    public void setSavedBooks(List<Book> savedBooks) {
-        this.savedBooks = savedBooks;
-    }
-
     @OneToMany(mappedBy = "user")
     private List<BookUser> bookUser;
-
-
 
     public User() {
 
@@ -192,5 +159,37 @@ public class User {
 
     public void setIs_private(boolean is_private) {
         this.is_private = is_private;
+    }
+
+    public List<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
+    }
+
+    public List<Book> getNewReleases() {
+        return newReleases;
+    }
+
+    public List<Book> getPurchasedBooks() {
+        return purchasedBooks;
+    }
+
+    public void setPurchasedBooks(List<Book> purchasedBooks) {
+        this.purchasedBooks = purchasedBooks;
+    }
+
+    public List<Book> getSavedBooks() {
+        return savedBooks;
+    }
+
+    public void setSavedBooks(List<Book> savedBooks) {
+        this.savedBooks = savedBooks;
+    }
+
+    public void setNewReleases(List<Book> newReleases) {
+        this.newReleases = newReleases;
     }
 }

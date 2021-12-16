@@ -122,7 +122,7 @@ $(() => {
                             <small class="overflow-y-auto flex-grow-1 px-2 text-justify text-light tighten-line-height">${result.description}</small>
                         </div>
                         <div class="text-right">
-                            <a class="btn btn-outline-light btn-sm" target="_blank" href="${result.trackViewUrl}">Buy from iTunes</a>
+                            <a class="btn btn-outline-light btn-sm text-uppercase" target="_blank" href="${result.trackViewUrl}">Buy from iTunes</a>
                             <button class="btn btn-outline-light btn-sm title-search-result" type="submit" data-name="${result.artistName}" ${ isAdded ? 'disabled': '' }>${isAdded ? 'Author Added' : 'Add Author'}</button>
                         </div>
                     </div>
