@@ -19,7 +19,9 @@
                 <li data-target="#picCarousel" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner">
+                    <div class="overlay"></div>
                 <div class="carousel-item carousel-image-1 active">
+                    <div class="overlay position-absolute"></div>
                     <div class="container">
                         <div class="carousel-caption d-none d-sm-block text-center mb-5">
                             <h1 class="display-3">Use your membership for in-depth searching!</h1>
@@ -31,16 +33,18 @@
                 </div>
 
                 <div class="carousel-item carousel-image-2">
+                    <div class="overlay position-absolute"></div>
                     <div class="container">
                         <div class="carousel-caption d-none d-sm-block text-center mb-5">
                             <h1 class="display-3">Already a member?</h1>
                             <p class="lead">Explore new releases, recent titles, and more!</p>
-                            <a th:href="@{/login}" class="btn btn-info btn-lg">Sign in!</a>
+                            <a th:href="@{/login}" class="btn btn-info btn-lg">Login</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="carousel-item carousel-image-3">
+                    <div class="overlay position-absolute"></div>
                     <div class="container">
                         <div class="carousel-caption d-none d-sm-block text-center mb-5">
                             <h1 class="display-3">The BookAlert Story</h1>
