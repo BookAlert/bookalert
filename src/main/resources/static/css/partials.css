@@ -13,6 +13,10 @@ body {
 
 }
 
+h1 {
+    font-family: 'Montserrat', Serif, sans-serif;
+}
+
 /*HOME PAGE STYLING*/
 .navbar .nav-link {
     font-size: 14px;
@@ -75,9 +79,9 @@ body {
 
 /*ABOUT PAGE STYLING*/
 .group-photo{
-    background: url("../img/groupPhoto.jpg");
-    background-size: 1000px 400px;
-   border-radius: 2%;
+    background: url("../img/team.jpg");
+    height: 300px;
+    border-radius: 2%;
 }
 .meet-the-team{
     font-size: 80px;
@@ -90,6 +94,10 @@ body {
 #team-card:hover {
     background: lightblue;
     color:#fff;
+}
+
+#team-card {
+    height: 425px;
 }
 
 .custom-bar-color {
