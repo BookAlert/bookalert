@@ -124,7 +124,6 @@ $(() => {
             .then((res) => res.text())
             .then((res) => {
                 $('#profileNewReleases').html(res)
-                $('[data-toggle="tooltip"]').tooltip({delay : 100})
             })
     }
 
@@ -133,9 +132,8 @@ $(() => {
             .then((res) => res.text())
             .then((res) => {
                 $('#profileUpcomingReleases').html(res)
-                $('[data-toggle="tooltip"]').tooltip()
             })
     }
 
-
+    $('[data-toggle="tooltip"]').tooltip()
 })

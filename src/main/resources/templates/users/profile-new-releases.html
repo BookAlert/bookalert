@@ -1,5 +1,8 @@
 <section class="text-light">
-    <h3 class="mb-2 pt-1 pl-2">New Releases to your library</h3>
+    <h3 class="mb-2 pt-1 pl-2">Your New Releases</h3>
+    <th:block th:if="${#lists.isEmpty(newReleases)}" class="lead">You don't have any titles yet,
+        <a th:href="@{/search}">search</a> and add to your list!
+    </th:block>
     <div class="d-flex flex-wrap flex-grow-1 justify-content-center">
         <!--bootstrap card with 3 horizontal images-->
         <div class="book-card p-2" th:each="book : ${newReleases}">
