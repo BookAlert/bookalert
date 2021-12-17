@@ -16,19 +16,19 @@ $(() => {
 
     })
 
-    function renderCorrectIcon(author, userSavedAuthorNames) {
-        // in condition, needs to be true only if resultId is in userSavedIds; if this is true, return a string for a checkmark icon, otherwirse return string for plus icon
-        let icon = '<i class="fas fa-check mr-2 add-author" id="search"></i>';
-        // for(let i = 0; i < resultId.length; i++) {
-
-            if(userSavedAuthorNames.includes(author.artistName)) {
-                icon = '<i class="fas fa-check mr-2 add-author-button-checked" id="search"></i>';
-            } else {
-                icon = '<i class="fas fa-plus mr-2 add-author add-author-button" id="search"></i>';
-            }
-        return icon;
-
-    }
+    // function renderCorrectIcon(author, userSavedAuthorNames) {
+    //     // in condition, needs to be true only if resultId is in userSavedIds; if this is true, return a string for a checkmark icon, otherwirse return string for plus icon
+    //     let icon = '<i class="fas fa-check mr-2 add-author" id="search"></i>';
+    //     // for(let i = 0; i < resultId.length; i++) {
+    //
+    //         if(userSavedAuthorNames.includes(author.artistName)) {
+    //             icon = '<i class="fas fa-check mr-2 add-author-button-checked" id="search"></i>';
+    //         } else {
+    //             icon = '<i class="fas fa-plus mr-2 add-author add-author-button" id="search"></i>';
+    //         }
+    //     return icon;
+    //
+    // }
 
 
 //================  FUNCTION TO MAP AUTHOR RESULTS TO HTML
