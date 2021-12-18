@@ -77,7 +77,10 @@ public class UserController {
         if(user == null) {
             return "redirect:login";
         }
-        model.addAttribute("savedBooks",user.getSavedBooks());
+        List<Book> savedBooks = new ArrayList<>();
+        savedBooks.addAll(user.getSavedBooks());
+        savedBooks.sort(Comparator.comparing(Book::getRelease_date).reversed());
+        model.addAttribute("savedBooks", savedBooks);
         return "users/profile-saved-books";
     }
 
