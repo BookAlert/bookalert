@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -87,9 +88,10 @@ public class UserController {
             return "redirect:login";
         }
         long now = System.currentTimeMillis();
+        long recent = System.currentTimeMillis() - (1000L*60*60*24*360);
         List<Book> newReleases = user.getNewReleases()
                 .stream()
-                .filter(book -> book.getRelease_date().getTime() <= now)
+                .filter(book -> book.getRelease_date().getTime() < now)
                 .collect(Collectors.toList());
 
         model.addAttribute("newReleases", newReleases);
@@ -117,8 +119,12 @@ public class UserController {
     public String authorId(@PathVariable long id, Model authorModel, Authentication authentication) {
         User user = userDao.findByUsername(authentication.getName());
         Author author = authorRepository.getById(id);
+        List<Book> books = new ArrayList<>();
+        books.addAll(author.getBooks());
+        books.sort(Comparator.comparing(Book::getRelease_date).reversed());
+
         authorModel.addAttribute("author", authorRepository.getById(id));
-        authorModel.addAttribute("books", booksRepository.findBookByAuthor(author));
+        authorModel.addAttribute("books", books);
         authorModel.addAttribute("purchasedBookIds", user.getPurchasedBooks().stream().map(Book::getId).collect(Collectors.toList()));
         authorModel.addAttribute("savedBookIds", user.getSavedBooks().stream().map(Book::getId).collect(Collectors.toList()));
         return "authors/authors";
