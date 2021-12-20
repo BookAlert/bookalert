@@ -36,12 +36,12 @@
                     <a target="_blank" class="btn btn-link text-light btn-sm purchase-book" data-toggle="tooltip" data-placement="right" title="Purchase on iTunes" th:href="${book.itunes_url}" role="button"><i class="fab fa-itunes fa-lg"></i></a>
                 </div>
             </div>
+        </div>
             <div class="gap-2 text-center mb-5">
                 <form th:action="@{'/authors/' + ${author.id} + '/delete'}" th:method="POST">
-                    <button type="submit" class="btn btn-danger btn-lg px-3 me-md-1">Delete</button>
+                    <button type="submit" class="btn btn-danger btn-lg px-3 me-md-1">Delete Author</button>
                 </form>
             </div>
-        </div>
     </section>
 </main>
 

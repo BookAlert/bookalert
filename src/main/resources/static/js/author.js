@@ -35,6 +35,7 @@ $(() => {
             method: "POST",
             body: JSON.stringify({id: $(this).data('book-id')})
         }).then(() => {
+            $(this).closest('.author-book-card').find('.saved-text').toggleClass('d-block').toggleClass('d-none');
             $(this).closest('.author-book-card').find('.purchased-text').toggleClass('d-none').toggleClass('d-block');
             iziToast.info({
                 title: 'Purchased',
