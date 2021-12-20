@@ -94,7 +94,7 @@ public class UserController {
         long recent = System.currentTimeMillis() - (1000L*60*60*24*360);
         List<Book> newReleases = user.getNewReleases()
                 .stream()
-                .filter(book -> book.getRelease_date().getTime() < now)
+                .filter(book -> book.getRelease_date().getTime() <= now)
                 .collect(Collectors.toList());
 
         model.addAttribute("newReleases", newReleases);
@@ -190,6 +190,11 @@ public class UserController {
         User user = userDao.findByUsername(authentication.getName());
         Book book = booksRepository.getById(bookToSave.getId());
         user.getSavedBooks().add(book);
+        List<Book> updatedPurchasedBooks = user.getSavedBooks()
+                .stream()
+                .filter(purchasedBook -> purchasedBook.getId() != book.getId()).
+                collect(Collectors.toList());
+        user.setPurchasedBooks(updatedPurchasedBooks);
         List<Book> updatedNewReleases = user.getNewReleases()
                 .stream()
                 .filter(newRelease -> newRelease.getId() != book.getId())
@@ -206,6 +211,11 @@ public class UserController {
         Book book = booksRepository.getById(bookToMark.getId());
         user.getPurchasedBooks().add(book);
         user.getNewReleases().remove(book);
+        List<Book> updatedSavedBooks = user.getSavedBooks()
+                .stream()
+                .filter(savedBook -> savedBook.getId() != book.getId())
+                .collect(Collectors.toList());
+        user.setSavedBooks(updatedSavedBooks);
         userDao.save(user);
     }
 
