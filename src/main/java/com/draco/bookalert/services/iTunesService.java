@@ -35,7 +35,13 @@ public class iTunesService {
     public ArrayList<iTunesBook> getAuthorBooks(String name) {
         String encodedName = null;
         try {
-            encodedName = URLEncoder.encode(name, StandardCharsets.UTF_8.toString());
+            encodedName = URLEncoder.encode(name, StandardCharsets.UTF_8.toString()
+                    .replaceAll("\\%+", "%20")
+                    .replaceAll("\\%21", "!")
+                    .replaceAll("\\%27", "'")
+                    .replaceAll("\\%28", "(")
+                    .replaceAll("\\%29", ")")
+                    .replaceAll("\\%7E", "~"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
