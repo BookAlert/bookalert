@@ -82,9 +82,23 @@ $(() => {
             method: "POST",
             body: JSON.stringify({id: $(this).data('book-id') })
         }).then(()=> {
+
+            iziToast.success({
+                title: 'Success',
+                message: 'Successfully saved book!',
+                position: 'topCenter',
+                timeout: 1500
+            });
             loadSavedBooks();
             loadNewReleases();
             loadUpcomingReleases();
+        }).catch(() => {
+            iziToast.fail({
+                title: 'Failure',
+                message: 'Book exists!',
+                position: 'topCenter',
+                timeout: 1500
+            })
         })
     })
 
@@ -100,6 +114,19 @@ $(() => {
             loadSavedBooks();
             loadNewReleases();
             loadUpcomingReleases();
+            iziToast.info({
+                title: 'Purchased',
+                message: 'You own this book',
+                position: 'topCenter',
+                timeout: 1500
+            });
+        }).catch(() => {
+            iziToast.fail({
+                title: 'Failure',
+                message: 'Book exists!',
+                position: 'topCenter',
+                timeout: 1500
+            })
         })
     })
 
