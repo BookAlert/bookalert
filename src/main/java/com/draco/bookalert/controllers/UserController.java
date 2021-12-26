@@ -190,7 +190,7 @@ public class UserController {
         User user = userDao.findByUsername(authentication.getName());
         Book book = booksRepository.getById(bookToSave.getId());
         user.getSavedBooks().add(book);
-        List<Book> updatedPurchasedBooks = user.getSavedBooks()
+        List<Book> updatedPurchasedBooks = user.getPurchasedBooks()
                 .stream()
                 .filter(purchasedBook -> purchasedBook.getId() != book.getId()).
                 collect(Collectors.toList());

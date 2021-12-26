@@ -114,6 +114,7 @@ $(() => {
             loadSavedBooks();
             loadNewReleases();
             loadUpcomingReleases();
+            $(this).closest('.book-card').find('.purchased-text').toggleClass('d-none').toggleClass('d-block');
             iziToast.info({
                 title: 'Purchased',
                 message: 'You own this book',
