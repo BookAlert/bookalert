@@ -82,25 +82,57 @@ $(() => {
             method: "POST",
             body: JSON.stringify({id: $(this).data('book-id') })
         }).then(()=> {
+
+            iziToast.success({
+                title: 'Success',
+                message: 'Successfully saved book!',
+                position: 'topCenter',
+                timeout: 1500
+            });
             loadSavedBooks();
             loadNewReleases();
             loadUpcomingReleases();
+        }).catch(() => {
+            iziToast.fail({
+                title: 'Failure',
+                message: 'Book exists!',
+                position: 'topCenter',
+                timeout: 1500
+            })
         })
     })
 
     $('body').on('click', '.mark-purchased', function () {
+        const bookId = $(this).data('book-id');
         fetch("user/mark-purchased", {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             method: "POST",
-            body: JSON.stringify({id: $(this).data('book-id') })
+            body: JSON.stringify({id: bookId })
         }).then(()=> {
             loadSavedBooks();
             loadNewReleases();
             loadUpcomingReleases();
+            // $(this).closest('.book-card').find('.purchased-text').toggleClass('d-none').toggleClass('d-block');
+            iziToast.info({
+                title: 'Purchased',
+                message: 'You own this book',
+                position: 'topCenter',
+                timeout: 1500
+            });
+
+        }).catch(() => {
+            iziToast.fail({
+                title: 'Failure',
+                message: 'Book exists!',
+                position: 'topCenter',
+                timeout: 1500
+            })
         })
+        // this.setAttribute('disabled', 'true')
+
     })
 
     $('body').on('click', '#demoButton', function () {
@@ -135,5 +167,7 @@ $(() => {
             })
     }
 
-    $('[data-toggle="tooltip"]').tooltip()
+    // $('[data-toggle="tooltip"]').tooltip({
+    //     trigger : 'hover'
+    // })
 })
