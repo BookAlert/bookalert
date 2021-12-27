@@ -8,6 +8,7 @@ $(() => {
             method: "POST",
             body: JSON.stringify({id: $(this).data('book-id')})
         }).then(() => {
+            $(this).closest('.author-book-card').find('.purchased-text').toggleClass('d-block').toggleClass('d-none');
             $(this).closest('.author-book-card').find('.saved-text').toggleClass('d-none').toggleClass('d-block');
             iziToast.success({
                 title: 'Success',
@@ -15,6 +16,8 @@ $(() => {
                 position: 'topCenter',
                 timeout: 1500
             });
+            this.setAttribute('disabled', 'true')
+            $(this).tooltip('hide')
         }).catch(() => {
             iziToast.fail({
                 title: 'Failure',
@@ -35,6 +38,7 @@ $(() => {
             method: "POST",
             body: JSON.stringify({id: $(this).data('book-id')})
         }).then(() => {
+            $(this).closest('.author-book-card').find('.saved-text').toggleClass('d-block').toggleClass('d-none');
             $(this).closest('.author-book-card').find('.purchased-text').toggleClass('d-none').toggleClass('d-block');
             iziToast.info({
                 title: 'Purchased',
@@ -42,6 +46,8 @@ $(() => {
                 position: 'topCenter',
                 timeout: 1500
             });
+            this.setAttribute('disabled', 'true')
+            $(this).tooltip('hide')
         }).catch(() => {
             iziToast.fail({
                 title: 'Failure',
@@ -54,8 +60,9 @@ $(() => {
     // console.log($(this).data('book-id'))
 
     // $('body').on('click', '')
-
-        $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip({
+        trigger : 'hover'
+    })
 
 
 })
