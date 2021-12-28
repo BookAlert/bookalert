@@ -8,10 +8,10 @@
 
 
 <main class="container">
-  <div class="card border-light text-light mb-3 mt-3 bg-transparent">
+  <div class="card border-light text-light mb-5 mt-3 bg-transparent">
     <div class="card-body">
       <h1 class="display-5 fw-bold lh-1 mb-3" th:text="${book.title}"></h1>
-      <img class="border border-light rounded" th:src="${book.artwork_url}">
+      <img class="border border-light rounded mb-3" th:src="${book.artwork_url}">
       <br>
     <a class="btn btn-outline-light text-light btn-sm mb-2 purchase-book" target="_blank" th:href="${book.itunes_url}">PURCHASE FROM ITUNES</a>
       <br>
