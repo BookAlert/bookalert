@@ -8,8 +8,8 @@ $(() => {
             method: "POST",
             body: JSON.stringify({id: $(this).data('book-id')})
         }).then(() => {
-            $(this).closest('.author-book-card').find('.purchased-text').toggleClass('d-block').toggleClass('d-none');
-            $(this).closest('.author-book-card').find('.saved-text').toggleClass('d-none').toggleClass('d-block');
+            $(this).closest('.author-book-card').find('.purchased-text').removeClass('d-block').addClass('d-none');
+            $(this).closest('.author-book-card').find('.saved-text').removeClass('d-none').addClass('d-block');
             iziToast.success({
                 title: 'Success',
                 message: 'Successfully saved book!',
@@ -27,8 +27,7 @@ $(() => {
             })
         })
     })
-    // console.log($(this).data('book-id'))
-    //==========MARK PURCHASED HANDLER
+
     $('body').on('click', '.mark-purchased', function () {
         fetch("/user/mark-purchased", {
             headers: {
@@ -38,8 +37,8 @@ $(() => {
             method: "POST",
             body: JSON.stringify({id: $(this).data('book-id')})
         }).then(() => {
-            $(this).closest('.author-book-card').find('.saved-text').toggleClass('d-block').toggleClass('d-none');
-            $(this).closest('.author-book-card').find('.purchased-text').toggleClass('d-none').toggleClass('d-block');
+            $(this).closest('.author-book-card').find('.saved-text').removeClass('d-block').addClass('d-none');
+            $(this).closest('.author-book-card').find('.purchased-text').removeClass('d-none').addClass('d-block');
             iziToast.info({
                 title: 'Purchased',
                 message: 'You own this book',
@@ -57,9 +56,7 @@ $(() => {
             })
         })
     })
-    // console.log($(this).data('book-id'))
 
-    // $('body').on('click', '')
     $('[data-toggle="tooltip"]').tooltip({
         trigger : 'hover'
     })
