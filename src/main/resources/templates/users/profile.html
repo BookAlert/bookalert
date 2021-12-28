@@ -12,10 +12,10 @@
 
 
     <div class="mb-5 justify-content-center d-flex">
-        <div class="px-4">
+        <div class="px-4 pt-5">
             <div class="card bg-transparent border-light text-light mb-3" id="authorLibrary" style="width: 240px;">
                 <div class="card-body">
-                    <h4 class="">Author Library</h4>
+                    <h3 class="">Author Library</h3>
                     <th:block th:if="${#lists.isEmpty(authors)}" class="lead">List of Authors is empty, <a
                             th:href="@{/search}">search</a> authors and add to your list!
                     </th:block>
@@ -51,19 +51,19 @@
             </ul>
 
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active bg-transparent border border-light rounded-bottom rounded-top-right"
+                <div class="tab-pane p-4 fade show active bg-transparent border border-light rounded-bottom rounded-top-right"
                      id="profileUpcomingReleases"
                      role="tabpanel"
                      aria-labelledby="contact-tab">
                </div>
 
-                <div class="tab-pane fade bg-transparent border border-light rounded-bottom rounded-top-right"
+                <div class="tab-pane p-4 fade bg-transparent border border-light rounded-bottom rounded-top-right"
                      id="profileNewReleases"
                      role="tabpanel"
                      aria-labelledby="profile-tab">
                 </div>
 
-                <div class="tab-pane fade bg-transparent border border-light rounded-bottom rounded-top-right"
+                <div class="tab-pane p-4 fade bg-transparent border border-light rounded-bottom rounded-top-right"
                      id="profileSavedBooks"
                      role="tabpanel"
                      aria-labelledby="home-tab">

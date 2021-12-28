@@ -74,6 +74,7 @@ $(() => {
 
 /// ====================== SAVE NEW RELEASE
     $('body').on('click', '.save-book', function () {
+        $(this).tooltip('hide')
         fetch("user/save-book", {
             headers: {
                 'Accept': 'application/json',
@@ -104,6 +105,7 @@ $(() => {
 
     $('body').on('click', '.mark-purchased', function () {
         const bookId = $(this).data('book-id');
+        $(this).tooltip('hide')
         fetch("user/mark-purchased", {
             headers: {
                 'Accept': 'application/json',
@@ -136,6 +138,7 @@ $(() => {
     })
 
     $('body').on('click', '#demoButton', function () {
+        $(this).tooltip('hide')
         fetch("/fake-new-releases", {method: "POST"})
             .then(()=> {
                 loadNewReleases();
@@ -143,31 +146,34 @@ $(() => {
         })
     })
     function loadSavedBooks() {
+        $(this).tooltip('hide')
         fetch("/profile/saved-books")
             .then((res) => res.text())
             .then((res) => {
                 $('#profileSavedBooks').html(res)
-
+                $('[data-toggle="tooltip"]').tooltip()
             })
     }
 
     function loadNewReleases() {
+        $(this).tooltip('hide')
         fetch("/profile/new-releases")
             .then((res) => res.text())
             .then((res) => {
                 $('#profileNewReleases').html(res)
+                $('[data-toggle="tooltip"]').tooltip()
             })
     }
 
     function loadUpcomingReleases() {
+        $(this).tooltip('hide')
         fetch("/profile/upcoming-releases")
             .then((res) => res.text())
             .then((res) => {
                 $('#profileUpcomingReleases').html(res)
+                $('[data-toggle="tooltip"]').tooltip()
             })
     }
 
-    // $('[data-toggle="tooltip"]').tooltip({
-    //     trigger : 'hover'
-    // })
+
 })
