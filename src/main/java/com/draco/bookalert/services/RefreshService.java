@@ -65,10 +65,10 @@ public class RefreshService {
                 savedBookMap.put(book.getExternalId(), book);
             }
             for (iTunesBook iTunesBook : iTunesBooks) {
-                if(iTunesBook.getTrackId() == null) {
-                    continue;
-                }
-                if (savedBookMap.get(iTunesBook.getTrackId()) == null && iTunesBook.getArtistName().contains(author.getName())) {
+
+                if (iTunesBook.getTrackId() != null &&
+                        savedBookMap.get(iTunesBook.getTrackId()) == null &&
+                        iTunesBook.getArtistName().contains(author.getName())) {
 
                     Collection<User> usersList = userRepository.findByAuthors(author);
 
