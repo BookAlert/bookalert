@@ -173,6 +173,7 @@ button {
     background-size: cover;
 }
 
-/*.card-icons {*/
-/*    height: 30px;*/
-/*}*/
+.book-card {
+    width: 200px;
+    text-align: center;
+}

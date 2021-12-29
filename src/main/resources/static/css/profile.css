@@ -21,3 +21,14 @@ img.book-cover {
     margin-left: -100%;
     margin-right: -100%;
 }
+
+.book-card-title {
+    width: 150px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.book-card-author, .book-card-release-date {
+    font-size: 15px;
+}
