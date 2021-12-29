@@ -8,13 +8,27 @@ main {
 }
 
 body {
-    padding-top: 58px;
+    padding-top: 62px;
 
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, .nav-pills .nav-link, #authorLibraryTitle {
     font-family: Baskerville, Serif, sans-serif;
 }
+
+.nav-pills .nav-link, #authorLibraryTitle {
+    font-size: 28px;
+}
+
+.nav-pills .profile-nav .profile-nav-item {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.nav-pills .profile-nav .profile-nav-item.active {
+    background-color: transparent;
+    color: white;
+}
+
 
 /*HOME PAGE STYLING*/
 .navbar .nav-link {
