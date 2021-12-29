@@ -20,9 +20,19 @@ public class iTunesBook {
 
     private String artworkUrl100;
 
-    private long trackId;
+    private Long trackId;
 
     private String artistName;
+
+    private int artistId;
+
+    public int getArtistId() {
+        return artistId;
+    }
+
+    public void setArtistId(int artistId) {
+        this.artistId = artistId;
+    }
 
     public String getArtistName() {
         return artistName;
@@ -32,7 +42,7 @@ public class iTunesBook {
         this.artistName = artistName;
     }
 
-    public long getTrackId() {
+    public Long getTrackId() {
         return trackId;
     }
 

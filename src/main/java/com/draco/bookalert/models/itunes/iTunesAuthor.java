@@ -7,6 +7,16 @@ public class iTunesAuthor {
 
     private String artistName;
 
+    private int artistId;
+
+    public int getArtistId() {
+        return artistId;
+    }
+
+    public void setArtistId(int artistId) {
+        this.artistId = artistId;
+    }
+
     public String getArtistName() {
         return artistName;
     }

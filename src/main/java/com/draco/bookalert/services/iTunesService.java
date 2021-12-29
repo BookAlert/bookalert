@@ -32,19 +32,19 @@ public class iTunesService {
 
     }
 
-    public ArrayList<iTunesBook> getAuthorBooks(String name) {
-        String encodedName = null;
-        try {
-            encodedName = URLEncoder.encode(name, StandardCharsets.UTF_8.toString()
-                    .replaceAll("\\%+", "%20")
-                    .replaceAll("\\%21", "!")
-                    .replaceAll("\\%27", "'")
-                    .replaceAll("\\%28", "(")
-                    .replaceAll("\\%29", ")")
-                    .replaceAll("\\%7E", "~"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return restTemplate.getForEntity("https://itunes.apple.com/search?term=" + encodedName + "&lang=en_us&media=ebook&entity=ebook&limit=500&attribute=authorTerm", iTunesBookSearchResponse.class).getBody().getResults();
+    public ArrayList<iTunesBook> getAuthorBooks(int id) {
+//        String encodedName = null;
+//        try {
+//            encodedName = URLEncoder.encode(int, StandardCharsets.UTF_8.toString()
+//                    .replaceAll("\\%+", "%20")
+//                    .replaceAll("\\%21", "!")
+//                    .replaceAll("\\%27", "'")
+//                    .replaceAll("\\%28", "(")
+//                    .replaceAll("\\%29", ")")
+//                    .replaceAll("\\%7E", "~"));
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+        return restTemplate.getForEntity("https://itunes.apple.com/lookup?id=" + id + "&entity=ebook", iTunesBookSearchResponse.class).getBody().getResults();
     }
 }

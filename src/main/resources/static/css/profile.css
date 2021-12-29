@@ -17,6 +17,11 @@ img.book-cover {
     height: 250px;
 }
 
+.authors-body img.book-cover {
+    margin-left: -100%;
+    margin-right: -100%;
+}
+
 .nav-tabs .profile-nav .profile-nav-item {
     /*background-color: #79b0d7;*/
     color: #FFF;

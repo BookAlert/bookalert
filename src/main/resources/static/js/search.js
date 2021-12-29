@@ -3,37 +3,25 @@ $(() => {
     ///=================  FETCH DATA FOR AUTHOR
     $('body').on('click', '#authorSearch', function () {
         console.log("testing");
-        const text = $('#authorSearchInput').val();
+        let text = $('#authorSearchInput').val();
+        text = text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
         var url = new URL('author-suggestions', window.location.origin)
 
         url.search = new URLSearchParams({search: text}).toString();
         Promise.all([
             fetch(url)
                 .then(response => response.json()),
+
             fetch("user/authors")
                 .then(response => response.json())
         ]).then(buildSearchResults);
 
     })
 
-    // function renderCorrectIcon(author, userSavedAuthorNames) {
-    //     // in condition, needs to be true only if resultId is in userSavedIds; if this is true, return a string for a checkmark icon, otherwirse return string for plus icon
-    //     let icon = '<i class="fas fa-check mr-2 add-author" id="search"></i>';
-    //     // for(let i = 0; i < resultId.length; i++) {
-    //
-    //         if(userSavedAuthorNames.includes(author.artistName)) {
-    //             icon = '<i class="fas fa-check mr-2 add-author-button-checked" id="search"></i>';
-    //         } else {
-    //             icon = '<i class="fas fa-plus mr-2 add-author add-author-button" id="search"></i>';
-    //         }
-    //     return icon;
-    //
-    // }
 
 
 //================  FUNCTION TO MAP AUTHOR RESULTS TO HTML
-    //call function instead of i tag
-    // <span>${renderCorrectIcon(result, authorsList)}</span>
+
     function buildSearchResults([ results, authorsList ]) {
         const html = results.map(result => {
             const isAdded = authorsList.includes(result.artistName)
@@ -42,25 +30,31 @@ $(() => {
                     <span class="text-light align-self-center mr-2">${result.artistName}</span>
                     <button class="btn btn-xs btn-outline-light align-self-center author-search-result"
                             data-name="${result.artistName}"
+                            data-external-id="${result.artistId}"
                             ${ isAdded ? 'disabled': '' }>
                         ${isAdded ? 'ADDED' : 'ADD'}
                     </button>
                 </div>
           `
         }).join("")
+        console.log(results)
+        console.log(authorsList)
         $('#authorResults').html(html)
     }
 
     //==================  POST RESULTS OF AUTHOR SEARCH W/ EVENT HANDLER
     $('body').on('click', '.author-search-result', function () {
-        const authorName = $(this).data("name");
+        const name = $(this).data("name")
+        const externalId = $(this).data("external-id")
+        this.textContent = 'ADDED'
+        this.setAttribute('disabled', 'true')
         fetch("add-author", {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             method: "POST",
-            body: JSON.stringify({name: authorName})
+            body: JSON.stringify({name, externalId})
         }).then( () => {
             iziToast.success({
                 title: 'Success',
@@ -68,9 +62,6 @@ $(() => {
                 position: 'bottomRight',
                 timeout: 1500
             })
-            this.textContent = 'ADDED'
-            this.setAttribute('disabled', 'true')
-
         }).catch(() => {
             iziToast.fail({
                 title: 'Failure',
@@ -123,7 +114,13 @@ $(() => {
                         </div>
                         <div class="text-right">
                             <a class="btn btn-outline-light btn-sm text-uppercase" target="_blank" href="${result.trackViewUrl}">Buy from iTunes</a>
-                            <button class="btn btn-outline-light btn-sm title-search-result" type="submit" data-name="${result.artistName}" ${ isAdded ? 'disabled': '' }>${isAdded ? 'Author Added' : 'Add Author'}</button>
+                            <button class="btn btn-outline-light btn-sm title-search-result"
+                                    type="submit" 
+                                    data-name="${result.artistName}"
+                                    data-external-id="${result.artistId}"
+                                    ${ isAdded ? 'disabled': '' }>
+                                        ${isAdded ? 'Author Added' : 'Add Author'}
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -135,18 +132,17 @@ $(() => {
 
     //==================  POST RESULTS OF TITLE SEARCH W/ EVENT HANDLER
     $('body').on('click', '.title-search-result', async function(){
-        let authorName = $(this).data("name");
-
-
+        const name = $(this).data("name");
+        const externalId = $(this).data("external-id")
+        this.textContent = 'Author Added'
+        this.setAttribute('disabled', 'true')
         fetch(`add-author`, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             method: "POST",
-            body: JSON.stringify({
-                name:authorName
-            })
+            body: JSON.stringify({name, externalId})
         }).then( () => {
             iziToast.success({
                 title: 'Success',
@@ -154,21 +150,15 @@ $(() => {
                 position: 'bottomRight',
                 timeout: 1500
             })
-            this.textContent = 'Author Added'
-            this.setAttribute('disabled', 'true')
-
         }).catch(() => {
             iziToast.fail({
                 title: 'Failure',
                 message: 'Author exists!',
                 position: 'center',
                 timeout: 1500
-
             })
         })
-
     })
-
 })
 
 
