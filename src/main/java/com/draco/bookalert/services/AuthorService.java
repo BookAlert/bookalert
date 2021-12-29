@@ -43,8 +43,11 @@ public class AuthorService {
         Author savedAuthor = authorRepository.save(author);
 
         List<Book> books = new ArrayList<>();
-        List<iTunesBook> iTunesBooks = iTunesService.getAuthorBooks(author.getName());
+        List<iTunesBook> iTunesBooks = iTunesService.getAuthorBooks(author.getExternalId());
         for (iTunesBook iTunesBook : iTunesBooks) {
+            if(iTunesBook.getTrackId() == null) {
+                continue;
+            }
             if (iTunesBook.getArtistName().contains(author.getName())) {
                 Book book = new Book(iTunesBook, savedAuthor);
                 book = booksRepository.save(book);

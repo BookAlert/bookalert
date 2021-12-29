@@ -58,14 +58,16 @@ public class RefreshService {
         Map<User, List<Book>> userNewReleases = new HashMap<>();
         for (Author author : allAuthors) {
 
-            List<iTunesBook> iTunesBooks = iTunesService.getAuthorBooks(author.getName());
+            List<iTunesBook> iTunesBooks = iTunesService.getAuthorBooks(author.getExternalId());
 
             Map<Long, Book> savedBookMap = new HashMap<>();
             for (Book book : author.getBooks()) {
                 savedBookMap.put(book.getExternalId(), book);
             }
             for (iTunesBook iTunesBook : iTunesBooks) {
-
+                if(iTunesBook.getTrackId() == null) {
+                    continue;
+                }
                 if (savedBookMap.get(iTunesBook.getTrackId()) == null && iTunesBook.getArtistName().contains(author.getName())) {
 
                     Collection<User> usersList = userRepository.findByAuthors(author);

@@ -11,15 +11,14 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
     @Column(nullable = false, unique = true)
     private String name;
 
+    @Column(nullable = false, unique = true)
+    private int externalId;
+
     @OneToMany(mappedBy = "author")
     private List<Book> books;
-
-
-
 
     public Author() {
 
@@ -29,6 +28,14 @@ public class Author {
         this.books = books;
     }
 
+
+    public int getExternalId() {
+        return externalId;
+    }
+
+    public void setExternalId(int externalId) {
+        this.externalId = externalId;
+    }
 
     public long getId() {
         return id;

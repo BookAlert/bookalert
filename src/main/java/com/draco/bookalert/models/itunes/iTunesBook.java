@@ -20,7 +20,7 @@ public class iTunesBook {
 
     private String artworkUrl100;
 
-    private long trackId;
+    private Long trackId;
 
     private String artistName;
 
@@ -32,7 +32,7 @@ public class iTunesBook {
         this.artistName = artistName;
     }
 
-    public long getTrackId() {
+    public Long getTrackId() {
         return trackId;
     }
 
