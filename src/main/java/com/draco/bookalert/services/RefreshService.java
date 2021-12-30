@@ -37,13 +37,16 @@ public class RefreshService {
     private void sendEmails(Map<User,List<Book>> map) {
 
         map.forEach((user, books) -> {
-            StringBuilder body = new StringBuilder("Hello " + user.getFirst_name() + ", \n\n");
+            StringBuilder body = new StringBuilder("<html><body><h1>Hello ")
+                    .append(user.getFirst_name())
+                    .append(", </h1>");
             for(Book book : books) {
                 body.append(book.getTitle())
                     .append(", ")
                     .append(book.getAuthor().getName())
                     .append("\n");
             }
+            body.append("</body></html>");
 
             emailService.prepareAndSend(user, "New Book Releases found", body.toString());
 

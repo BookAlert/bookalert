@@ -2,6 +2,8 @@ package com.draco.bookalert.models.itunes;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.Objects;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class iTunesAuthor {
 
@@ -15,6 +17,19 @@ public class iTunesAuthor {
 
     public void setArtistId(int artistId) {
         this.artistId = artistId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        iTunesAuthor that = (iTunesAuthor) o;
+        return artistId == that.artistId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(artistId);
     }
 
     public String getArtistName() {

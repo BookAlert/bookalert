@@ -1,10 +1,16 @@
+String.prototype.replaceAt = function(index, replacement) {
+    return this.substr(0, index) + replacement + this.substr(index + replacement.length);
+}
 $(() => {
 
     ///=================  FETCH DATA FOR AUTHOR
     $('body').on('click', '#authorSearch', function () {
         console.log("testing");
         let text = $('#authorSearchInput').val();
-        text = text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
+        // text = text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
+        text = text.split(" ")
+            .map(word => word.replaceAt(0, word.charAt(0).toUpperCase()))
+            .join(" ")
         var url = new URL('author-suggestions', window.location.origin)
 
         url.search = new URLSearchParams({search: text}).toString();
