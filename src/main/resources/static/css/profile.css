@@ -22,25 +22,13 @@ img.book-cover {
     margin-right: -100%;
 }
 
-.nav-tabs .profile-nav .profile-nav-item {
-    /*background-color: #79b0d7;*/
-    color: #FFF;
+.book-card-title {
+    width: 150px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
-.nav-tabs .profile-nav .profile-nav-item.active {
-    background-color: rgb(247,248,249);
-    color: #044d9b;
+.book-card-author, .book-card-release-date {
+    font-size: 15px;
 }
-
-/*.tab-content {*/
-/*    border: 1px solid #dee2e6;*/
-/*    border-top: transparent;*/
-/*    padding: 15px;*/
-/*}*/
-
-/*.tab-content .tab-pane {*/
-/*    background-color: #FFF;*/
-/*    color: #0080FF;*/
-/*    min-height: 200px;*/
-/*    height: auto;*/
-/*}*/

@@ -4,12 +4,6 @@ $(() => {
     loadNewReleases();
     loadUpcomingReleases();
 
-    ///=================  FETCH DATA FOR AUTHOR
-    $('body').on('click', '#purchase', function () {
-        console.log("testing");
-    });
-
-
     //============== DISMISS NEW RELEASE
     $('body').on('click', '.dismiss-new-release', function () {
         fetch("user/dismiss-new-release", {
@@ -117,7 +111,6 @@ $(() => {
             loadSavedBooks();
             loadNewReleases();
             loadUpcomingReleases();
-            // $(this).closest('.book-card').find('.purchased-text').toggleClass('d-none').toggleClass('d-block');
             iziToast.info({
                 title: 'Purchased',
                 message: 'You own this book',
@@ -133,12 +126,9 @@ $(() => {
                 timeout: 1500
             })
         })
-        // this.setAttribute('disabled', 'true')
-
     })
 
     $('body').on('click', '#demoButton', function () {
-        $(this).tooltip('hide')
         fetch("/fake-new-releases", {method: "POST"})
             .then(()=> {
                 loadNewReleases();
@@ -146,32 +136,29 @@ $(() => {
         })
     })
     function loadSavedBooks() {
-        $(this).tooltip('hide')
         fetch("/profile/saved-books")
             .then((res) => res.text())
             .then((res) => {
                 $('#profileSavedBooks').html(res)
-                $('[data-toggle="tooltip"]').tooltip()
+                $('[data-toggle="tooltip"]').tooltip({ trigger: 'hover' })
             })
     }
 
     function loadNewReleases() {
-        $(this).tooltip('hide')
         fetch("/profile/new-releases")
             .then((res) => res.text())
             .then((res) => {
                 $('#profileNewReleases').html(res)
-                $('[data-toggle="tooltip"]').tooltip()
+                $('[data-toggle="tooltip"]').tooltip({ trigger: 'hover' })
             })
     }
 
     function loadUpcomingReleases() {
-        $(this).tooltip('hide')
         fetch("/profile/upcoming-releases")
             .then((res) => res.text())
             .then((res) => {
                 $('#profileUpcomingReleases').html(res)
-                $('[data-toggle="tooltip"]').tooltip()
+                $('[data-toggle="tooltip"]').tooltip({ trigger: 'hover' })
             })
     }
 

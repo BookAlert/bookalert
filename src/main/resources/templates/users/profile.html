@@ -8,14 +8,13 @@
 
 <main>
     <nav th:replace="partials/partials.html :: navbar"></nav>
-    <h1 class="text-center text-light m-5">Welcome to your profile, <span th:text="${user.first_name}">User</span>!</h1>
 
 
     <div class="mb-5 justify-content-center d-flex">
-        <div class="px-4 pt-5">
+        <div class="px-4">
+            <div id="authorLibraryTitle" class="text-light my-3 pl-3">Author Library</div>
             <div class="card bg-transparent border-light text-light mb-3" id="authorLibrary" style="width: 240px;">
                 <div class="card-body">
-                    <h3 class="">Author Library</h3>
                     <th:block th:if="${#lists.isEmpty(authors)}" class="lead">List of Authors is empty, <a
                             th:href="@{/search}">search</a> authors and add to your list!
                     </th:block>
@@ -28,22 +27,22 @@
             </div>
         </div>
 
-        <div class="flex-grow-1 px-4" style="max-width: 1200px">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <div class="flex-grow-1 px-4" style="max-width: 1280px">
+            <ul class="nav nav-pills my-3" id="myTab" role="tablist">
                 <li class="nav-item profile-nav">
-                    <a class="nav-link active profile-nav-item" id="upcoming-tab" data-toggle="tab" href="#profileUpcomingReleases" role="tab"
+                    <a class="nav-link active profile-nav-item py-0" id="upcoming-tab" data-toggle="tab" href="#profileUpcomingReleases" role="tab"
                        aria-controls="contact" aria-selected="true">
                         <span class="badge badge-pill badge-secondary"></span> Upcoming Releases
                     </a>
                 </li>
                 <li class="nav-item profile-nav">
-                    <a class="nav-link profile-nav-item" id="new-tab" data-toggle="tab" href="#profileNewReleases" role="tab"
+                    <a class="nav-link profile-nav-item py-0" id="new-tab" data-toggle="tab" href="#profileNewReleases" role="tab"
                        aria-controls="profile" aria-selected="false">
                         <span class="badge badge-pill badge-secondary"></span> New Releases
                     </a>
                 </li>
                 <li class="nav-item profile-nav">
-                    <a class="nav-link profile-nav-item" id="saved-tab" data-toggle="tab" href="#profileSavedBooks" role="tab"
+                    <a class="nav-link profile-nav-item py-0" id="saved-tab" data-toggle="tab" href="#profileSavedBooks" role="tab"
                        aria-controls="home" aria-selected="false">
                         <span class="badge badge-pill badge-secondary"></span> Saved Titles
                     </a>
@@ -51,19 +50,19 @@
             </ul>
 
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane p-4 fade show active bg-transparent border border-light rounded-bottom rounded-top-right"
+                <div class="tab-pane p-2 fade show active bg-transparent border border-light rounded"
                      id="profileUpcomingReleases"
                      role="tabpanel"
                      aria-labelledby="contact-tab">
                </div>
 
-                <div class="tab-pane p-4 fade bg-transparent border border-light rounded-bottom rounded-top-right"
+                <div class="tab-pane p-2 fade bg-transparent border border-light rounded"
                      id="profileNewReleases"
                      role="tabpanel"
                      aria-labelledby="profile-tab">
                 </div>
 
-                <div class="tab-pane p-4 fade bg-transparent border border-light rounded-bottom rounded-top-right"
+                <div class="tab-pane p-2 fade bg-transparent border border-light rounded"
                      id="profileSavedBooks"
                      role="tabpanel"
                      aria-labelledby="home-tab">

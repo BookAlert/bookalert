@@ -12,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @RestController
@@ -19,24 +20,15 @@ public class ConsumeWebServiceController {
     @Autowired
     private iTunesService iTunesService;
 
-    @Autowired
-    private UserRepository userDao;
-
-    @Autowired
-    private AuthorRepository authorRepository;
-
     @ResponseBody
     @RequestMapping(value = "/author-suggestions")
-    public ArrayList<iTunesAuthor> getAuthorList(@RequestParam String search, Authentication authentication) {
-        User user = userDao.findByUsername(authentication.getName());
-        List<Author> userAuthors = user.getAuthors();
+    public ArrayList<iTunesAuthor> getAuthorList(@RequestParam String search) {
         ArrayList<iTunesAuthor> allAuthors = iTunesService.getAuthorList(search);
-        for (iTunesAuthor author : allAuthors) {
-            if(userAuthors.contains(author)) {
-
-            }
+        if (!search.toLowerCase().equals(search)) {
+            ArrayList<iTunesAuthor> allAuthorsLowercase = iTunesService.getAuthorList(search.toLowerCase());
+            allAuthors.addAll(allAuthorsLowercase);
         }
-        return iTunesService.getAuthorList(search);
+        return new ArrayList<>(new HashSet<>(allAuthors));
     }
 
     @ResponseBody
