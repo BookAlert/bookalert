@@ -39,12 +39,15 @@ public class RefreshService {
         map.forEach((user, books) -> {
             StringBuilder body = new StringBuilder("<html><body><h1>Hello ")
                     .append(user.getFirst_name())
-                    .append(", </h1>");
+                    .append(", </h1><h2>You have the following new releases: </h2>");
+
             for(Book book : books) {
-                body.append(book.getTitle())
-                    .append(", ")
-                    .append(book.getAuthor().getName())
-                    .append("\n");
+                body.append("<div><img src=")
+                        .append(book.getArtwork_url())
+                        .append("><div><h3>").append(book.getTitle())
+                        .append(", by ").append(book.getAuthor().getName())
+                        .append("</h3><a target='_blank' href=").append(book.getItunes_url()).append(">Purchase from iTunes</a></div></div>")
+                        .append("<br><br>");
             }
             body.append("</body></html>");
 
