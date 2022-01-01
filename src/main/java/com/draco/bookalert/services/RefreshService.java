@@ -44,7 +44,7 @@ public class RefreshService {
             for(Book book : books) {
                 body.append("<div><img src=")
                         .append(book.getArtwork_url())
-                        .append("><div><h3>").append(book.getTitle())
+                        .append("><div><h3 style='margin-bottom: 0;'>").append(book.getTitle())
                         .append(", by ").append(book.getAuthor().getName())
                         .append("</h3><a target='_blank' href=").append(book.getItunes_url()).append(">Purchase from iTunes</a></div></div>")
                         .append("<br><br>");
