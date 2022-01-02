@@ -7,3 +7,11 @@ body.about-body{
     -o-background-size: cover;
     background-size: cover;
 }
+
+.fab, .fa {
+    color: white;
+}
+
+.fa {
+    transform: rotate(315deg);
+}
