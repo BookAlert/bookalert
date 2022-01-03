@@ -12,19 +12,19 @@
         <h1 class="text-center" style="color: white; text-align: center">Sign Up To BookAlert</h1>
         <div class="container" style="width: 50%;">
 <form class="row g-3 float-md-none" th:action="@{/sign-up}" method="POST" th:object="${user}">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <label for="firstName" class="form-label text-center" style="color: white">First Name</label>
         <input th:field="*{first_name}" type="text" class="text-light form-control border-light bg-dark text-center" style="opacity: 60%" id="firstName" placeholder="Enter your First Name"
                aria-label="Enter your First Name" value="Mark" required>
 
     </div>
-    <div class="col-md-6">
+    <div class="col-md-12">
         <label for="lastName" class="form-label text-center" style="color: white">Last Name</label>
         <input th:field="*{last_name}" type="text" class="text-light form-control border-light bg-dark text-center" style="opacity: 60%" id="lastName" placeholder="Enter your Last Name"
                aria-label="Enter your Last Name" value="Otto" required>
 
     </div>
-    <div class="col-md-6">
+    <div class="col-md-12">
         <label for="username" class="form-label text-center mt-2" style="color: white">Username</label>
         <div class="input-group has-validation">
 <!--            <span class="input-group-text" id="inputGroupPrepend3">@</span>-->
@@ -35,18 +35,18 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-12">
         <label for="email" class="form-label text-center mt-2" style="color: white">Email</label>
-        <input th:field="*{email}" type="text" class="text-light form-control border-light bg-dark text-center" style="opacity: 60%" id="email" placeholder="Enter your Email"
+        <input th:field="*{email}" type="text" class="text-light form-control border-light bg-dark text-center col-md-12" style="opacity: 60%" id="email" placeholder="Enter your Email"
                aria-label="Enter your Email" aria-describedby="validationServer03Feedback" required>
         <div id="validationServer03Feedback" class="invalid-feedback">
             Please provide a valid email.
         </div>
     </div>
-    <div class="col-md-8" style="padding-left: 125px">
+    <div class="col-md-12">
         <label for="password" class="form-label text-center mt-2" style="color: white">Password</label>
 
-        <input th:field="*{password}" type="password" class="text-light form-control border-light bg-dark text-center" style="opacity: 60%; width: 300px" id="password" placeholder="Create a Password"
+        <input th:field="*{password}" type="password" class="text-light form-control border-light bg-dark text-center col-md-12" style="opacity: 60%; width: 300px col-md-12" id="password" placeholder="Create a Password"
                aria-label="Create a Password" aria-describedby="validationServer04Feedback" required minlength="8">
 
         <div id="validationServer04Feedback" class="invalid-feedback">
@@ -54,10 +54,10 @@
         </div>
     </div>
 
-    <div class="col-md-8" style="padding-left: 125px">
+    <div class="col-md-12">
         <label for="confirmPassword" class="form-label text-center mt-2" style="color: white">Confirm Password</label>
 
-        <input type="password" class="text-light form-control border-light bg-dark text-center" style="opacity: 60%; width: 300px" id="confirmPassword" placeholder="Confirm your Password"
+        <input type="password" class="text-light form-control border-light bg-dark text-center col-md-12" style="opacity: 60%; width: 300px col-md-12" id="confirmPassword" placeholder="Confirm your Password"
                aria-label="Confirm your Password" aria-describedby="validationServer05Feedback" required minlength="8">
         <div id="validationServer05Feedback" class="invalid-feedback">
             Please provide a valid password.
@@ -65,7 +65,7 @@
     </div>
 
     <div class="col-12 text-center mt-4">
-        <button class="btn btn-outline-light mb-5" type="submit">Sign me up!!</button>
+        <button class="btn btn-outline-light mb-5" type="submit">Sign up</button>
     </div>
 </form>
 </div>
