@@ -34,13 +34,5 @@ provides an easy way to stay up to date on new, and upcoming releases from your 
 - [MySql](https://www.mysql.com/)
 - [iTunesSearch API](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/index.html#//apple_ref/doc/uid/TP40017632-CH3-SW1)
 
-user stories (posted here?)
 
-![alt database_design](main/static/)
-
-Running the project (IntelliJ)
-
-1. Clone the repository to your local machine
-
-2. 
 
