@@ -15,3 +15,8 @@ body.about-body{
 .fa {
     transform: rotate(315deg);
 }
+
+.story {
+    font-family: Baskerville, Serif, sans-serif;
+    font-size: 22px;
+}

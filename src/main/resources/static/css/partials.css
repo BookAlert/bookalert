@@ -46,14 +46,9 @@ body nav .navbar-brand {
 }
 
 #logout-btn {
-    color: black;
+    color: gray;
 }
 
-/*.btn-link {*/
-/*    font-size: 14px;*/
-/*    text-transform: uppercase;*/
-/*    text-decoration: none;*/
-/*}*/
 
 .navbar .nav-item.active {
     border-left: #444 3px solid;
