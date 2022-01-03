@@ -40,7 +40,7 @@ public class DemoController {
                 author.getBooks().remove(0);
                 authorRepository.save(author);
                 booksRepository.delete(book);
-                // TODO: Remove any records from the book_user table
+
             }
         }
         refreshService.run();
